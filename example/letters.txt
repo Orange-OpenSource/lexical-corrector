@@ -1,0 +1,112 @@
+# defines letter pairs which do not trigger the Levenshtein distance of 1 (1000) but
+# which are "cheaper"
+
+#reduplication 850
+transposition 850
+
+# diacritical marks: a missing or additional accent counts only as a 0.3 distance
+penalty 300
+a áàäâå
+e éèêë
+c çčć
+d đ
+i îïíıì
+l ł
+n ñňń
+o öøôóò
+u üûúù
+r ř
+s šś
+w ŵẅẃ
+y ŷÿý
+z žź
+
+A ÄÂÁÅÀ
+C ČÇĆ
+D Đ
+E ÉÊËÈ
+I ÏÎİÌ
+L Ł
+N ÑŇŃ
+O ØÖÔÓÒ
+U ŮÚÛÜÙ
+R Ř
+S ŠŚ
+W ŴẄẂ
+Y ŸŶÝ
+Z ŽŹ
+
+# cyrillic diacritics
+у ў
+и й
+е ё
+к ќ
+#а̄ а
+#о̄ о
+#е̄ е
+
+Е Ё 
+И Й
+У Ў
+# palochka Ukranian I, Latin I, Latin l, digit 1
+Ӏ ІIl1
+
+
+# neighbouring keys on AZERTY keyboard
+penalty 900
+a z
+z ae
+e zr 
+r et
+t ry
+y tu
+u yi
+i uo
+o ip
+p o
+q s
+s qd
+d sf
+f dg
+g fh
+h gj
+j hk
+k jl
+l km
+m lù
+w x
+x wc
+c xv
+v cb
+b vn
+n b
+
+# upper/lowercase inversions have a 0.2 distance
+penalty 200
+a A
+b B
+c C
+d D
+e E
+f F
+g G
+h H
+i I
+j J
+k K
+l L
+m M
+n N
+o O
+p P
+q Q
+r R
+s S
+t T
+u U
+v V
+w W
+x X
+y Y
+z Z
+

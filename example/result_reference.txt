@@ -1,0 +1,160 @@
+enter word> amont (maxdist: 1000)
+1 solutions: 
+  0: amont
+	1 lemma: amont
+		pos: NCMS000
+enter word> eaux (maxdist: 800)
+1 solutions: 
+  0: eaux
+	1 lemma: eau
+		pos: NCFP000
+enter word> aval (maxdist: 800)
+1 solutions: 
+  0: aval
+	1 lemma: aval
+		pos: NCMS000
+enter word> eau (maxdist: 600)
+1 solutions: 
+  0: eau
+	1 lemma: eau
+		pos: NCFS000
+enter word> avail (maxdist: 1000)
+4 solutions: 
+  1000: avais
+	1 lemma: avoir
+		pos: VMII1S0
+	2 lemma: avoir
+		pos: VMII2S0
+  1000: avait
+	1 lemma: avoir
+		pos: VMII3S0
+  1000: avril
+	1 lemma: avril
+		pos: NCMS000
+  1000: aval
+	1 lemma: aval
+		pos: NCMS000
+enter word> avait (maxdist: 1000)
+1 solutions: 
+  0: avait
+	1 lemma: avoir
+		pos: VMII3S0
+enter word> avaient (maxdist: 1400)
+1 solutions: 
+  0: avaient
+	1 lemma: avoir
+		pos: VMII3P0
+enter word> suis (maxdist: 800)
+1 solutions: 
+  0: suis
+	1 lemma: être
+		pos: VMIP1S0
+	2 lemma: suivre
+		pos: VMIP1S0
+	3 lemma: suivre
+		pos: VMIP2S0
+	4 lemma: suivre
+		pos: VMM02S0
+enter word> ire (maxdist: 600)
+1 solutions: 
+  0: ire
+	1 lemma: ire
+		pos: NCFS000
+enter word> aller (maxdist: 1000)
+1 solutions: 
+  0: aller
+	1 lemma: aller
+		pos: VMN0000
+	2 lemma: aller
+		pos: NCMS000
+enter word> etait (maxdist: 1000)
+5 solutions: 
+  300: était
+	1 lemma: être
+		pos: VMII3S0
+  1000: entait
+	1 lemma: enter
+		pos: VMII3S0
+  1000: estait
+	1 lemma: ester
+		pos: VMII3S0
+  1000: jetait
+	1 lemma: jeter
+		pos: VMII3S0
+  1000: ôtait
+	1 lemma: ôter
+		pos: VMII3S0
+enter word> éleve (maxdist: 1000)
+6 solutions: 
+  300: élève
+	1 lemma: élever
+		pos: VMIP1S0
+	2 lemma: élever
+		pos: VMIP3S0
+	3 lemma: élever
+		pos: VMM02S0
+	4 lemma: élever
+		pos: VMSP1S0
+	5 lemma: élever
+		pos: VMSP3S0
+	6 lemma: élève
+		pos: NCCS000
+  300: élevé
+	1 lemma: élever
+		pos: VMP00SM
+  900: éleva
+	1 lemma: élever
+		pos: VMIS3S0
+  1000: élevée
+	1 lemma: élever
+		pos: VMP00SF
+  1000: élever
+	1 lemma: élever
+		pos: VMN0000
+  1000: élevez
+	1 lemma: élever
+		pos: VMIP2P0
+	2 lemma: élever
+		pos: VMM02P0
+enter word> connait (maxdist: 1400)
+9 solutions: 
+  300: connaît
+	1 lemma: connaître
+		pos: VMIP3S0
+  1000: cannait
+	1 lemma: canner
+		pos: VMII3S0
+  1000: cognait
+	1 lemma: cogner
+		pos: VMII3S0
+  1000: connais
+	1 lemma: connaître
+		pos: VMIP1S0
+	2 lemma: connaître
+		pos: VMIP2S0
+	3 lemma: connaître
+		pos: VMM02S0
+  1000: contait
+	1 lemma: conter
+		pos: VMII3S0
+  1000: cornait
+	1 lemma: corner
+		pos: VMII3S0
+  1000: donnait
+	1 lemma: donner
+		pos: VMII3S0
+  1000: sonnait
+	1 lemma: sonner
+		pos: VMII3S0
+  1000: tonnait
+	1 lemma: tonner
+		pos: VMII3S0
+enter word> masion (maxdist: 1200)
+2 solutions: 
+  850: maison
+	1 lemma: maison
+		pos: NCFS000
+  1000: mansion
+	1 lemma: mansion
+		pos: NCFS000
+enter word> 

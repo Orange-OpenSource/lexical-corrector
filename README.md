@@ -98,7 +98,7 @@ get corrections. fo find the best guesses up to a certain edit distance
 The the default distance for one different character is 1000. The file [example/letters.txt](example/letters.txt) can be used to define different distance values for some kind of errors.
 
 
-See [example/main.cc](example/main.cc) for more information. Do not forget to add `-I/usr/local/include/lexicon` to your c++ compiler
+See [example/main.cc](example/main.cc) for more information. Do not forget to add `-I/usr/local/include/lexicon` and `-llexicon` to your c++ compiler
 
 ### Java
 
@@ -125,4 +125,6 @@ get corrections. fo find the best guesses up to a certain edit distance
 
 
 
-See [java/src/main/java/com/orange/labs/lexicon/Lexicon.java](java/src/main/java/com/orange/labs/lexicon/Lexicon.java) for more information
+See [java/src/main/java/com/orange/labs/lexicon/Lexicon.java](java/src/main/java/com/orange/labs/lexicon/Lexicon.java) for more
+information.
+

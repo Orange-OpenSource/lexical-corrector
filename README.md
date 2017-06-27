@@ -33,6 +33,7 @@ For the tests a partial lexicon is downloaded from the FreeLing project
     mkdir build
     cd build
     cmake  -DCMAKE_BUILD_TYPE=Release  [-DCMAKE_INSTALL_PREFIX=/usr/local]  ..	
+
 (you can also use `Debug`, especially for test_valgrind)
 
     make [-j 4]
@@ -49,7 +50,8 @@ The java version needs maven to compile
 
 ## Testing (C++)
 
-   example/lexiconAccess [options] in:lexfile [in:wordfile]
+    example/lexiconAccess [options] in:lexfile [in:wordfile]
+
 options:
 
     --similar  <file>  similar letter definition
@@ -58,6 +60,7 @@ options:
     --exact    speedtest with exact access
 
 for instance
+
     ./build/example/lexiconAccess  --similar example/letters.txt  downloaded_data/dictionary.txt [testfile.txt]
 
 ## Install library
@@ -100,9 +103,11 @@ See [example/main.cc](example/main.cc) for more information. Do not forget to ad
 ### Java
 
 create an instance of the data tree:
+
     ArbreBinaire ab = new ArbreBinaire(String lexfile, boolean multipleLemmasPerLine);
 
 for each thread, create a corrector instance:
+
     Corrector cr = new Corrector(ab);
 
 get corrections. fo find the best guesses up to a certain edit distance (finds also exact matches)

@@ -138,7 +138,7 @@ void Noeud::dot(ostream & out) {
 
 void Noeud::parcourir(const Character *word, const unsigned int maxdist, Calculator *calc, unsigned int depth) {
     calc->push(key_value);
-#ifndef DEBUG 
+#ifdef DEBUG 
     cout << "KEY " << id << " " << (Character) key_value << " depth:" << depth << endl;
     calc->printstack(cout);
 #endif    
@@ -149,7 +149,7 @@ void Noeud::parcourir(const Character *word, const unsigned int maxdist, Calcula
     while (*p) {
         
         Character key = *p;
-#ifndef DEBUG         
+#ifdef DEBUG         
         cout << "ROW " << row << " COL " << col << " " << *p << " " << endl;
 #endif
         // inserting values in current row
@@ -202,7 +202,7 @@ void Noeud::parcourir(const Character *word, const unsigned int maxdist, Calcula
 
         }
 #endif
-        cout << "cc " << cost << endl;
+        //cout << "cc " << cost << endl;
         // TODO si la différence est uniquement la suppression/ajout d'un accent on prend penalty/2
         unsigned short val = calc->minNeighbour(row, col, cost);
 
@@ -216,7 +216,7 @@ void Noeud::parcourir(const Character *word, const unsigned int maxdist, Calcula
             if (a<val) val=a;
         }
 #endif
-        cout << "cd " << cost << endl;
+        //cout << "cd " << cost << endl;
         calc->set(row, col, val);
 #ifdef DEBUG         
         cout << "COST: " << cost << " r:" << row << " c:" << col << " v:" << val << endl;

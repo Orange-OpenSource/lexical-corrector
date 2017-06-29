@@ -48,7 +48,9 @@ The java version needs maven to compile
     cd java
     mvn install
 
-## Testing (C++)
+## Using
+
+### C++ tool
 
     example/lexiconAccess [options] in:lexfile [in:wordfile]
 
@@ -59,9 +61,22 @@ options:
     --speed    execute speedtest (needs wordfile)
     --exact    speedtest with exact access
 
-for instance
+for instance (correction with respect to a standard lexicon)
 
     ./build/example/lexiconAccess  --similar example/letters.txt  downloaded_data/dictionary.txt [testfile.txt]
+
+The following configuration replaces `?` into letter with an diacritic symbol (like accented letters). This can be used in order to reaccentuate a text, which has been corrupted by an invalid encoding conversion
+
+    ./build/example/lexiconAccess  --similar example/correct-diacritics.txt  downloaded_data/dictionary.txt
+
+
+### Java tool
+
+    java -jar java/target/lexicon-1.0.0-jar-with-dependencies.jar [options] in:lexfile [in:letter_definition]
+
+for instance
+
+    java -jar java/target/lexicon-1.0.0-jar-with-dependencies.jar downloaded_data/dictionary.txt example/letters.txt 
 
 ## Install library
 

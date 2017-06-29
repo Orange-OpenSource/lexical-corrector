@@ -1,7 +1,7 @@
 # defines letter pairs which do not trigger the Levenshtein distance of 1 (1000) but
 # which are "cheaper")
 
-# correct diacritics which ar encoreded as '?'
+# correct diacritics which are encoded as '?'
 penalty 11
 ? ăâîşŞţŢĂÂÎáàäâåéèêëçčćđîïíıìłñňńöøôóòüûúùřšśŵẅẃŷÿýžźÄÂÁÅÀČÇĆĐÉÊËÈÏÎİÌŁÑŇŃØÖÔÓÒŮÚÛÜÙŘŠŚŴẄẂŸŶÝŽŹß
 

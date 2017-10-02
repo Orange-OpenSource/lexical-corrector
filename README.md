@@ -56,10 +56,12 @@ The java version needs maven to compile
 
 options:
 
-    --similar  <file>  similar letter definition
-    --singleEntry   one entry per lexicon file (form TAB other information)
-    --speed    execute speedtest (needs wordfile)
-    --exact    speedtest with exact access
+    --similar <file>  similar letter definition
+    --singleEntry     one entry per lexicon file (form TAB other information)
+    --speed           execute speedtest (needs wordfile)
+    --exact           speedtest with exact access
+    --maxdist <n>     factor used to calculate maximal allowed distance (n * wordLength / 5)
+    --defdist <n>     default distance unless changed via similar letter definition (1000)
 
 for instance (correction with respect to a standard lexicon)
 

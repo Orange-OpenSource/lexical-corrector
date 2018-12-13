@@ -175,7 +175,11 @@ bool speedtest(const char *lexfile, const char *similarletters, const char *word
 /// trier un map selon les valeurs
 bool resultSort(std::pair<const WordForm *, unsigned int> a,
                 std::pair<const WordForm *, unsigned int> b) {  
-    if (a.second < b.second) return true;
+    if (a.second == b.second) {
+	if (a.first->form < b.first->form) return true;
+    } else {
+	if (a.second < b.second) return true;
+    }
     return false;
 }
 
@@ -189,7 +193,7 @@ int main(int argc, char *argv[]) {
              << " --similar  <file>  similar letter definition" << endl
              << " --singleEntry      one entry per lexicon file (form TAB other information)" << endl
              << " --speed            execute speedtest (needs wordfile)" << endl
-             << " --exact            speedtest with exact access" << endl
+             << " --exact            (speed)test with exact access" << endl
 	     << " --maxdist <n>      factor used to calculate maximal allowed distance (n * wordLength / 5)" << endl
 	     << " --defdist <n>      default distance (1000)" << endl
 	    // << " --quiet            only output the best correction (or the original word)" << endl
@@ -299,11 +303,12 @@ int main(int argc, char *argv[]) {
 
 	    if (distance < 1) distance = 1000;
 	    //if (!firstOnly) {
-	    cout << mot << " (maxdist: " << distance << ")" << endl;
+	    cout << mot << " (max penalty allowed: " << distance << ")" << endl;
 	    //}
 
-	    map<const WordForm *, unsigned int> *res = cr.findWordBest(mot.c_str(), distance);
-	    //map<const WordForm *, unsigned int> *res = cr.findWordCorrected(mot.c_str(), distance);
+	    map<const WordForm *, unsigned int> *res;
+	    if (!exact) res = cr.findWordCorrected(mot.c_str(), distance);
+	    else res = cr.findWordBest(mot.c_str(), distance);
 
 	    // trier en fonction de la distance levenshtein
 	    vector<std::pair<const WordForm *, unsigned int> > resVec(res->begin(), res->end());
@@ -317,7 +322,7 @@ int main(int argc, char *argv[]) {
 	    //    }
 	    //    cout << endl;
 	    //} else {
-	    cout << res->size() << " solutions: " << endl;
+	    cout << res->size() << " solutions:" << endl;
 	    for (vector<std::pair<const WordForm *, unsigned int> >::iterator it = resVec.begin(); 
 		 it != resVec.end(); ++it) {
 		cout << "  " << it->second << ": " << *(it->first) << endl;

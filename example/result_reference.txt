@@ -1,25 +1,34 @@
-enter word> amont (maxdist: 1000)
-1 solutions: 
+enter word> amont (max penalty allowed: 1000)
+4 solutions:
   0: amont
 	1 lemma: amont
 		pos: NCMS000
-enter word> eaux (maxdist: 800)
-1 solutions: 
+  1000: amant
+	1 lemma: amant
+		pos: NCMS000
+  1000: amonts
+	1 lemma: amont
+		pos: NCMP000
+  1000: mont
+	1 lemma: mont
+		pos: NCMS000
+enter word> eaux (max penalty allowed: 800)
+1 solutions:
   0: eaux
 	1 lemma: eau
 		pos: NCFP000
-enter word> aval (maxdist: 800)
-1 solutions: 
+enter word> aval (max penalty allowed: 800)
+1 solutions:
   0: aval
 	1 lemma: aval
 		pos: NCMS000
-enter word> eau (maxdist: 600)
-1 solutions: 
+enter word> eau (max penalty allowed: 600)
+1 solutions:
   0: eau
 	1 lemma: eau
 		pos: NCFS000
-enter word> avail (maxdist: 1000)
-4 solutions: 
+enter word> avail (max penalty allowed: 1000)
+4 solutions:
   1000: avais
 	1 lemma: avoir
 		pos: VMII1S0
@@ -28,24 +37,90 @@ enter word> avail (maxdist: 1000)
   1000: avait
 	1 lemma: avoir
 		pos: VMII3S0
-  1000: avril
-	1 lemma: avril
-		pos: NCMS000
   1000: aval
 	1 lemma: aval
 		pos: NCMS000
-enter word> avait (maxdist: 1000)
-1 solutions: 
+  1000: avril
+	1 lemma: avril
+		pos: NCMS000
+enter word> avait (max penalty allowed: 1000)
+11 solutions:
   0: avait
 	1 lemma: avoir
 		pos: VMII3S0
-enter word> avaient (maxdist: 1400)
-1 solutions: 
+  1000: avais
+	1 lemma: avoir
+		pos: VMII1S0
+	2 lemma: avoir
+		pos: VMII2S0
+  1000: avant
+	1 lemma: avant
+		pos: NCMS000
+  1000: axait
+	1 lemma: axer
+		pos: VMII3S0
+  1000: bavait
+	1 lemma: baver
+		pos: VMII3S0
+  1000: cavait
+	1 lemma: caver
+		pos: VMII3S0
+  1000: gavait
+	1 lemma: gaver
+		pos: VMII3S0
+  1000: havait
+	1 lemma: haver
+		pos: VMII3S0
+  1000: lavait
+	1 lemma: laver
+		pos: VMII3S0
+  1000: pavait
+	1 lemma: paver
+		pos: VMII3S0
+  1000: savait
+	1 lemma: savoir
+		pos: VMII3S0
+enter word> avaient (max penalty allowed: 1400)
+11 solutions:
   0: avaient
 	1 lemma: avoir
 		pos: VMII3P0
-enter word> suis (maxdist: 800)
-1 solutions: 
+  1000: avalent
+	1 lemma: avaler
+		pos: VMIP3P0
+	2 lemma: avaler
+		pos: VMSP3P0
+  1000: avarient
+	1 lemma: avarier
+		pos: VMIP3P0
+	2 lemma: avarier
+		pos: VMSP3P0
+  1000: axaient
+	1 lemma: axer
+		pos: VMII3P0
+  1000: bavaient
+	1 lemma: baver
+		pos: VMII3P0
+  1000: cavaient
+	1 lemma: caver
+		pos: VMII3P0
+  1000: gavaient
+	1 lemma: gaver
+		pos: VMII3P0
+  1000: havaient
+	1 lemma: haver
+		pos: VMII3P0
+  1000: lavaient
+	1 lemma: laver
+		pos: VMII3P0
+  1000: pavaient
+	1 lemma: paver
+		pos: VMII3P0
+  1000: savaient
+	1 lemma: savoir
+		pos: VMII3P0
+enter word> suis (max penalty allowed: 800)
+1 solutions:
   0: suis
 	1 lemma: être
 		pos: VMIP1S0
@@ -55,20 +130,49 @@ enter word> suis (maxdist: 800)
 		pos: VMIP2S0
 	4 lemma: suivre
 		pos: VMM02S0
-enter word> ire (maxdist: 600)
-1 solutions: 
+enter word> ire (max penalty allowed: 600)
+1 solutions:
   0: ire
 	1 lemma: ire
 		pos: NCFS000
-enter word> aller (maxdist: 1000)
-1 solutions: 
+enter word> aller (max penalty allowed: 1000)
+10 solutions:
   0: aller
 	1 lemma: aller
 		pos: VMN0000
 	2 lemma: aller
 		pos: NCMS000
-enter word> etait (maxdist: 1000)
-5 solutions: 
+  1000: ailler
+	1 lemma: ailler
+		pos: VMN0000
+  1000: allers
+	1 lemma: aller
+		pos: NCMP000
+  1000: alleu
+	1 lemma: alleu
+		pos: NCMS000
+  1000: allez
+	1 lemma: aller
+		pos: VMIP2P0
+	2 lemma: aller
+		pos: VMM02P0
+  1000: allier
+	1 lemma: allier
+		pos: VMN0000
+  1000: baller
+	1 lemma: baller
+		pos: VMN0000
+  1000: daller
+	1 lemma: daller
+		pos: VMN0000
+  1000: raller
+	1 lemma: raller
+		pos: VMN0000
+  1000: taller
+	1 lemma: taller
+		pos: VMN0000
+enter word> etait (max penalty allowed: 1000)
+5 solutions:
   300: était
 	1 lemma: être
 		pos: VMII3S0
@@ -84,8 +188,11 @@ enter word> etait (maxdist: 1000)
   1000: ôtait
 	1 lemma: ôter
 		pos: VMII3S0
-enter word> éleve (maxdist: 1000)
-6 solutions: 
+enter word> éleve (max penalty allowed: 1000)
+6 solutions:
+  300: élevé
+	1 lemma: élever
+		pos: VMP00SM
   300: élève
 	1 lemma: élever
 		pos: VMIP1S0
@@ -99,15 +206,9 @@ enter word> éleve (maxdist: 1000)
 		pos: VMSP3S0
 	6 lemma: élève
 		pos: NCCS000
-  300: élevé
-	1 lemma: élever
-		pos: VMP00SM
   900: éleva
 	1 lemma: élever
 		pos: VMIS3S0
-  1000: élevée
-	1 lemma: élever
-		pos: VMP00SF
   1000: élever
 	1 lemma: élever
 		pos: VMN0000
@@ -116,8 +217,11 @@ enter word> éleve (maxdist: 1000)
 		pos: VMIP2P0
 	2 lemma: élever
 		pos: VMM02P0
-enter word> connait (maxdist: 1400)
-9 solutions: 
+  1000: élevée
+	1 lemma: élever
+		pos: VMP00SF
+enter word> connait (max penalty allowed: 1400)
+9 solutions:
   300: connaît
 	1 lemma: connaître
 		pos: VMIP3S0
@@ -149,12 +253,23 @@ enter word> connait (maxdist: 1400)
   1000: tonnait
 	1 lemma: tonner
 		pos: VMII3S0
-enter word> masion (maxdist: 1200)
-2 solutions: 
+enter word> masion (max penalty allowed: 1200)
+2 solutions:
   850: maison
 	1 lemma: maison
 		pos: NCFS000
   1000: mansion
 	1 lemma: mansion
+		pos: NCFS000
+enter word> maisson (max penalty allowed: 1400)
+3 solutions:
+  1000: caisson
+	1 lemma: caisson
+		pos: NCMS000
+  1000: maison
+	1 lemma: maison
+		pos: NCFS000
+  1000: moisson
+	1 lemma: moisson
 		pos: NCFS000
 enter word> 

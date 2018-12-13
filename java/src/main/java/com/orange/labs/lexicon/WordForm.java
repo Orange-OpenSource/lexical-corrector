@@ -2,17 +2,17 @@
 
 Copyright (c) 2017, Orange S.A.
 
-Redistribution and use in source and binary forms, with or without modification, 
+Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
   1. Redistributions of source code must retain the above copyright notice,
      this list of conditions and the following disclaimer.
 
-  2. Redistributions in binary form must reproduce the above copyright notice, 
+  2. Redistributions in binary form must reproduce the above copyright notice,
      this list of conditions and the following disclaimer in the documentation
      and/or other materials provided with the distribution.
 
-  3. Neither the name of the copyright holder nor the names of its contributors 
+  3. Neither the name of the copyright holder nor the names of its contributors
      may be used to endorse or promote products derived from this software without
      specific prior written permission.
 
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  @author Johannes Heinecke
- @version 1.0 as of 6th April 2017
+ @version 1.0.1 as of 13th December 2018
 */
 
 package com.orange.labs.lexicon;
@@ -43,9 +43,11 @@ import java.util.List;
 public class WordForm implements Comparable {
     String form;
     List<LexicalEntry> entries;
+    // regexp used ti split lines in the lexicon
+    public static String FIELDSEPARATOR = "[ \t]+";
 
     /** une ligne du lexique à lire
-    
+
     @param lexiconline fichier lexique
     @param multipleLemmasPerLine si vrai on attend des lignes à la freeling: forme POS1 lemme1 POS2 lemme2 ...
     si non on attend un lexique avec une entrée par ligne: forme [POS [lemme]]
@@ -55,9 +57,8 @@ public class WordForm implements Comparable {
             // ligne: forme [POS [lemme]]
 
             //form = lexiconline;
-            String[] elems = lexiconline.split("[ \t]+");
+            String[] elems = lexiconline.split(FIELDSEPARATOR);
             form = elems[0];
-           
             if (elems.length > 1) {
                 entries = new ArrayList<>();
                 if (elems.length > 2)
@@ -67,7 +68,7 @@ public class WordForm implements Comparable {
             }
         } else {
             // on pense que la ligne lexicale est forme POS lemme POS Lemme ...
-            String[] elems = lexiconline.split("[ \t]+");
+            String[] elems = lexiconline.split(FIELDSEPARATOR);
             form = elems[0];
 
             if (elems.length > 1 && elems.length % 2 == 1) {
@@ -88,9 +89,12 @@ public class WordForm implements Comparable {
     }
 
     public void merge(WordForm wf2) {
-        entries.addAll(wf2.getEntries());
+        if (wf2.entries == null) return;
+        //System.err.println("swwww " + wf2 + " " + entries);
+        if (entries == null) entries = wf2.getEntries();
+        else entries.addAll(wf2.getEntries());
     }
-    
+
     public String toString() {
         StringBuilder sb = new StringBuilder(form);
         if (entries != null) {
@@ -109,11 +113,14 @@ public class WordForm implements Comparable {
     @Override
     public int compareTo(Object o) {
         if (o instanceof WordForm) {
-            return -1;
-        } else {
             return form.compareTo(((WordForm) o).form);
+        } else {
+            return -1;
         }
     }
+
+
+
 
     public class LexicalEntry {
         String lemma;
@@ -131,7 +138,7 @@ public class WordForm implements Comparable {
         public String getPos() {
             return pos;
         }
-        
-        
+
+
     }
 }

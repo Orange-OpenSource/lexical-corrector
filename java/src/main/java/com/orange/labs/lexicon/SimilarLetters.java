@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  @author Johannes Heinecke
- @version 1.0 as of 6th April 2017
+ @version 1.0.1 as of 13th December 2018
 */
 
 package com.orange.labs.lexicon;
@@ -113,7 +113,7 @@ public class SimilarLetters {
                 }
             }
 
-            System.out.println("" + letterPairs.size() + " weighted corrections loaded from " + fn);
+          //  System.out.println("" + letterPairs.size() + " weighted corrections loaded from " + fn);
 //        
 //            for (String p : letterPairs.keySet()) {
 //                out.println("aa " + p + " " + letterPairs.get(p));

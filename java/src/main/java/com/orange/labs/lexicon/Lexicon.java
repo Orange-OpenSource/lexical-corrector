@@ -28,9 +28,8 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  @author Johannes Heinecke
- @version 1.0 as of 6th April 2017
-*/
-
+ @version 1.0.1 as of 13th December 2018
+ */
 package com.orange.labs.lexicon;
 
 import java.io.BufferedReader;
@@ -52,7 +51,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-
 public class Lexicon {
 
     ArbreBinaire ab;
@@ -70,12 +68,14 @@ public class Lexicon {
         cr = new Corrector(ab);
     }
 
-    public static <K, V extends Comparable<? super V>> Map<K, V> sortBMapValue(Map<K, V> map) {
+    public static <K  extends Comparable<? super K> , V extends Comparable<? super V>> Map<K, V> sortBMapValue(Map<K, V> map) {
         List<Map.Entry<K, V>> list = new LinkedList<>(map.entrySet());
         Collections.sort(list, new Comparator<Map.Entry<K, V>>() {
-
                      @Override
                      public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
+                         if (o1.getValue().equals(o2.getValue())) {
+                             return (o1.getKey()).compareTo(o2.getKey());
+                         }
                          return (o1.getValue()).compareTo(o2.getValue());
                      }
                  });
@@ -100,7 +100,7 @@ public class Lexicon {
         //Calculator.penalty = d;
         cr.setDefaultPenalty(d);
     }
-    
+
     public class CorrectorThread implements Runnable {
         ArbreBinaire ab;
         Corrector cr;
@@ -192,6 +192,12 @@ public class Lexicon {
 
     }
 
+    class SortByLemma implements Comparator<WordForm.LexicalEntry> {
+        public int compare(WordForm.LexicalEntry a, WordForm.LexicalEntry b) {
+            return a.lemma.compareTo(b.lemma);
+        }
+    }
+
     public void test(String word, Integer maxpenalty, Boolean silent) {
         try {
             PrintStream out = new PrintStream(System.out, true, "UTF-8");
@@ -215,7 +221,15 @@ public class Lexicon {
                     out.println();
                 } else {
                     for (WordForm wf : res_sorted.keySet()) {
-                        out.println("  " + res.get(wf) + ": " + wf);
+                        //out.println("  " + res.get(wf) + ": " + wf);
+                        out.println("  " + res.get(wf) + ": " + wf.getForm());
+                        int ct = 1;
+
+                        List<WordForm.LexicalEntry> les = wf.getEntries();
+                        Collections.sort(les, new SortByLemma());
+                        for (WordForm.LexicalEntry entry : les) {
+                            out.format("\t%d lemma: %s\n\t\tpos: %s\n", ct++, entry.lemma, entry.pos);
+                        }
                     }
                 }
             } else {
@@ -228,21 +242,21 @@ public class Lexicon {
         }
     }
 
-   public String testtext(String text, Integer maxpenalty, Boolean silent) {
+    public String testtext(String text, Integer maxpenalty, Boolean silent) {
         StringBuilder sb = new StringBuilder();
-        String [] words = text.split("[\\s,;:\\.-]+");
+        String[] words = text.split("[\\s,;:\\.-]+");
         for (String word : words) {
             sb.append(test2(word, maxpenalty, silent)); //.append("\n");
         }
         return sb.toString();
-   }
-    
+    }
+
     public String test2(String word, Integer maxpenalty, Boolean silent) {
-        StringBuilder sb = new StringBuilder();      
+        StringBuilder sb = new StringBuilder();
         //PrintStream out = new PrintStream(System.out, true, "UTF-8");
         if (maxpenalty == -1) {
             int maxdistfactor = 1000;
-               maxpenalty = maxdistfactor * word.length() / 4;
+            maxpenalty = maxdistfactor * word.length() / 4;
         }
         Map<WordForm, Integer> res = cr.findWordCorrected(word, maxpenalty);
         if (!silent) {
@@ -289,6 +303,7 @@ public class Lexicon {
             System.out.println("   --text textfile|--testcorr wordlist|--testexact wordlist [--log]");
             System.out.println("   --defaultdist <n>");
             System.out.println("   --maxdistfactor <n>");
+            System.out.println("   --sep <regex>   field separator");
             System.out.println("");
         } else {
 
@@ -302,6 +317,7 @@ public class Lexicon {
                 int maxdistfactor = 1000;
                 int defaultdistance = 1000;
                 String wordlist = null;
+                String sep = null;
                 int shift = 0;
 //                if (args.length > 1 && (args[0].equals("--multipleLemmas") || args[0].equals("-m"))) {
 //                    multipleLemmasPerLine = true;
@@ -324,7 +340,9 @@ public class Lexicon {
                         texttype = Text.TESTEXACT;
                         shift++;
                         wordlist = args[shift++];
-
+                    } else if (args[i].equals("--sep")) {
+                        shift++;
+                        sep = args[shift++];
                     } else if (args[i].equals("--defaultdist")) {
                         shift++;
                         int defdist = Integer.parseInt(args[shift++]);
@@ -332,7 +350,6 @@ public class Lexicon {
                             //Calculator.penalty = defdist;
                             defaultdistance = defdist;
                         }
-
                     } else if (args[i].equals("--maxdistfactor")) {
                         shift++;
                         int tmp = Integer.parseInt(args[shift++]);
@@ -350,6 +367,9 @@ public class Lexicon {
 
                 }
 
+                if (sep != null) {
+                    WordForm.FIELDSEPARATOR = sep;
+                }
                 Lexicon lexicon = new Lexicon(args[shift], multipleLemmasPerLine);
 
                 if (args.length == 2 + shift) {
@@ -357,7 +377,7 @@ public class Lexicon {
                 }
 
                 lexicon.setDefaultDist(defaultdistance);
-                
+
                 if (texttype == Text.TESTCORR || texttype == Text.TESTEXACT) {
                     List<String> wl = new ArrayList<>();
                     BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(wordlist)), "UTF-8"));
@@ -390,7 +410,7 @@ public class Lexicon {
                         if (input.isEmpty()) {
                             break;
                         }
-                        maxpenalty = maxdistfactor * input.length() / 4;
+                        maxpenalty = maxdistfactor * input.length() / 5;
                         System.out.println(input + " (max penalty allowed: " + maxpenalty + ")");
                         lexicon.test(input, maxpenalty, false);
                         System.out.print("enter word> ");

@@ -2,17 +2,17 @@
 
 Copyright (c) 2017, Orange S.A.
 
-Redistribution and use in source and binary forms, with or without modification, 
+Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
   1. Redistributions of source code must retain the above copyright notice,
      this list of conditions and the following disclaimer.
 
-  2. Redistributions in binary form must reproduce the above copyright notice, 
+  2. Redistributions in binary form must reproduce the above copyright notice,
      this list of conditions and the following disclaimer in the documentation
      and/or other materials provided with the distribution.
 
-  3. Neither the name of the copyright holder nor the names of its contributors 
+  3. Neither the name of the copyright holder nor the names of its contributors
      may be used to endorse or promote products derived from this software without
      specific prior written permission.
 
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  @author Johannes Heinecke
- @version 1.0 as of 6th April 2017
+ @version 1.0.1 as of 13th December 2018
 */
 
 package com.orange.labs.lexicon;
@@ -51,31 +51,50 @@ public class ArbreBinaire {
     /** créer l'arbre binaire avec le nom du fichier qui contient le lexique en format
      "forme [lemme pos [lemme pos [...]]]"
      @param lexfile fichier du lexiaue
-     @throws IOException 
+     @throws IOException
      */
     public ArbreBinaire(String lexfile) throws IOException {
         this(lexfile, false);
     }
 
-    /** créer l'arbre binaire avec le nom du fichier qui contient un mot par ligne (y compris locutions)    
+    /** créer l'arbre binaire avec le nom du fichier qui contient un mot par ligne (y compris locutions)
      @param lexfile fichier du lexiaue
      @param multipleLemmasPerLine si vrai on attend des lignes à la freeling: forme POS1 lemme1 POS2 lemme2 ...
     si non on attend un lexique avec une entrée par ligne: forme [POS [lemme]]
-     @throws IOException 
+     @throws IOException
      */
     public ArbreBinaire(String lexfile, boolean multipleLemmasPerLine) throws IOException {
         root = new Noeud('\u0000');
-        FileInputStream fis = new FileInputStream(new File(lexfile));
+        addFile(lexfile, multipleLemmasPerLine);
+//        FileInputStream fis = new FileInputStream(new File(lexfile));
+//
+//        //Construct BufferedReader from InputStreamReader
+//        BufferedReader br = new BufferedReader(new InputStreamReader(fis, "utf8"));
+//
+//        String line;
+//        while ((line = br.readLine()) != null) {
+//            addWord(line, multipleLemmasPerLine);
+//        }
+//
+//
+//        if (debug) {
+//            System.out.println("ROOT: " + root);
+//        }
+//        br.close();
+//
+//        System.err.println("Tree: nodes: " + Noeud.ndct + ", maximal word length: " + maxwordlength
+//                + ", words: " + countforms);
+    }
 
-        //Construct BufferedReader from InputStreamReader
+    public void addFile(String lexfile, boolean multipleLemmasPerLine) throws IOException {
+        FileInputStream fis = new FileInputStream(new File(lexfile));
         BufferedReader br = new BufferedReader(new InputStreamReader(fis, "utf8"));
 
-        String line;       
+        String line;
         while ((line = br.readLine()) != null) {
             addWord(line, multipleLemmasPerLine);
         }
-        
-        
+
         if (debug) {
             System.out.println("ROOT: " + root);
         }
@@ -88,7 +107,7 @@ public class ArbreBinaire {
     public void addPenaltyFile(String penaltyFileName) throws FileNotFoundException {
         Noeud.similar = new SimilarLetters(penaltyFileName);
     }
-    
+
     public String dot() {
         String res = "digraph\n{\n" + root.dot() + "}\n";
         return res;
@@ -107,7 +126,7 @@ public class ArbreBinaire {
                 n = n.left;
                 //cout << "LEFT:" << *n << endl;
                 ix++;
-            } else if (n.left.right != null) {
+            } else if (n.left != null && n.left.right != null) {
                 found = false;
                 Noeud x = n.left.right;
                 //cout << "X: " << *x << endl;

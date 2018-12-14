@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.0 as of 6th April 2017
+ Version:  1.0.1 as of 14th December 2018
 */
 
 #ifndef SIMILARLETTERS_H
@@ -74,7 +74,7 @@ private:
     // on met la lettre avec la valeur plus basse à gauche
     map<unsigned long, int>letterPairs;
     unsigned int default_penalty;
-
+    string filename;
     
     int reduplicationPenalty; /// penalty for reduplicated letters (default if not specified)
     int transpositionPenalty; /// penalty for transposed letters (default if not specified)

@@ -33,7 +33,10 @@ are permitted provided that the following conditions are met:
 
 package com.orange.labs.lexicon;
 
+import com.orange.labs.lexicon.WordForm.LexicalEntry;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -100,6 +103,7 @@ public class WordForm implements Comparable {
         if (entries != null) {
             sb.append(" [");
             boolean first = true;
+            Collections.sort(entries, new SortLE());
             for (LexicalEntry le : entries) {
                 if (!first) sb.append(", "); else first = false;
                 sb.append(le.lemma);
@@ -122,7 +126,7 @@ public class WordForm implements Comparable {
 
 
 
-    public class LexicalEntry {
+    public class LexicalEntry implements Comparable {
         String lemma;
         String pos;
 
@@ -139,6 +143,25 @@ public class WordForm implements Comparable {
             return pos;
         }
 
-
+        @Override
+        public int compareTo(Object o) {
+            if (o instanceof LexicalEntry) {
+                LexicalEntry other = (LexicalEntry)o;
+                if (lemma.equals(other.lemma)) {
+                    return pos.compareTo(other.pos);
+                } else {
+                    return lemma.compareTo(other.lemma);
+                }
+            } else {
+                return -1;
+            }
+        }
     }
+    static class SortLE implements Comparator<LexicalEntry> {
+            public int compare(LexicalEntry a, LexicalEntry b)  {
+                return a.compareTo(b);
+            }
+        }
+
+
 }

@@ -7,4 +7,5 @@ cat $MYDIR/../../example/word2.txt \
       $MYDIR/../../example/letters.txt > $MYDIR/../../build/javares.txt
 
 meld $MYDIR/../../build/javares.txt $MYDIR/../../example/result_reference.txt
+#tkdiff $MYDIR/../../build/javares.txt $MYDIR/../../example/result_reference.txt
 

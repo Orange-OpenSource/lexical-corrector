@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.0 as of 6th April 2017
+ Version:  1.0.1 as of 14th December 2018
 */
 
 #include "SimilarLetters.h"
@@ -45,6 +45,7 @@ using namespace std;
 SimilarLetters::SimilarLetters(const char *filename, unsigned int penalty) :
     default_penalty(penalty) {   
     ifstream ifp(filename);
+    this->filename = filename;
     uint32_t *ucs4bufferA = new uint32_t [200];
     uint32_t *ucs4bufferB = new uint32_t [200];
     if (!ifp) {
@@ -95,7 +96,9 @@ SimilarLetters::SimilarLetters(const char *filename, unsigned int penalty) :
                 if (tmp.size() != 2) {
                     cerr << "ERR 2 invalid line (" << ct << "): " << line << endl;
                 } else {
+		    // letter which can be replaced ...
                     unsigned letterlen = u8_toucs(ucs4bufferA, 200, tmp[0].c_str(), -1);
+		    // by these variations
                     unsigned alternatives = u8_toucs(ucs4bufferB, 200, tmp[1].c_str(), -1);
                     if (letterlen != 1) {
                         cerr << "ERR 3 invalid line (" << ct << "): "
@@ -103,8 +106,9 @@ SimilarLetters::SimilarLetters(const char *filename, unsigned int penalty) :
 			 << line << endl;
                     } else if (penalty != default_penalty) {    
 			//cerr << "line " << line << endl;
-                        uint32_t a = ucs4bufferA[0];
+
                         for (unsigned int i = 0; i < alternatives; ++i) {
+			    uint32_t a = ucs4bufferA[0];
                             uint32_t b = ucs4bufferB[i];
                             if (a > b) {
                                 // mettre le plus petit sur a
@@ -116,7 +120,7 @@ SimilarLetters::SimilarLetters(const char *filename, unsigned int penalty) :
                             couple <<= 32; // shift à gauche
                             couple |= b; // rajouter b
                             letterPairs[couple] = penalty;
-			    //cerr << "adding: " << couple << endl;
+			    //cerr << "adding: " << hex << couple << endl;
                         }
                     }
                 }
@@ -126,7 +130,7 @@ SimilarLetters::SimilarLetters(const char *filename, unsigned int penalty) :
     delete [] ucs4bufferA;
     delete [] ucs4bufferB;
 
-    //cerr << *this << endl;
+    //cout << *this << endl;
 }
 
 
@@ -157,7 +161,7 @@ ostream& operator<<(ostream& out, const SimilarLetters &s) {
     uint32_t b;
     char utfchar[10];
 
-    out << s.letterPairs.size() << " pairs" << endl;
+    out << s.letterPairs.size() << " weighted corrections loaded from " << s.filename << endl;
 
     unsigned int ct = 0;
     for (map<unsigned long, int>::const_iterator it = s.letterPairs.begin(); it != s.letterPairs.end(); ++it) {

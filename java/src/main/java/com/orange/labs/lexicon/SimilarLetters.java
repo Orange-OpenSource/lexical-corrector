@@ -2,17 +2,17 @@
 
 Copyright (c) 2017, Orange S.A.
 
-Redistribution and use in source and binary forms, with or without modification, 
+Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
   1. Redistributions of source code must retain the above copyright notice,
      this list of conditions and the following disclaimer.
 
-  2. Redistributions in binary form must reproduce the above copyright notice, 
+  2. Redistributions in binary form must reproduce the above copyright notice,
      this list of conditions and the following disclaimer in the documentation
      and/or other materials provided with the distribution.
 
-  3. Neither the name of the copyright holder nor the names of its contributors 
+  3. Neither the name of the copyright holder nor the names of its contributors
      may be used to endorse or promote products derived from this software without
      specific prior written permission.
 
@@ -39,8 +39,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  *
@@ -55,12 +55,12 @@ public class SimilarLetters {
     ) throws FileNotFoundException {
         FileInputStream fis = new FileInputStream(new File(fn));
        // this.default_penalty = defaultpenalty;
-        letterPairs = new HashMap<>();
+        letterPairs = new TreeMap<>();
 
         //Construct BufferedReader from InputStreamReader
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(fis, "utf8"));
-            //  PrintStream out = new PrintStream(System.out, true, "UTF-8");
+//            PrintStream out = new PrintStream(System.out, true, "UTF-8");
             String line;
             int penalty = -1; //default_penalty;
             int ct = 0;
@@ -113,11 +113,12 @@ public class SimilarLetters {
                 }
             }
 
-          //  System.out.println("" + letterPairs.size() + " weighted corrections loaded from " + fn);
-//        
+//            System.out.println("" + letterPairs.size() + " weighted corrections loaded from " + fn);
+//            int ii = 1;
 //            for (String p : letterPairs.keySet()) {
-//                out.println("aa " + p + " " + letterPairs.get(p));
+//                out.format("%d: %s:%s\t%s\n", ii++, p.charAt(1), p.charAt(0), letterPairs.get(p));
 //            }
+//            System.out.println();
         } catch (IOException e) {
         }
     }
@@ -138,7 +139,7 @@ public class SimilarLetters {
 //            PrintStream out = new PrintStream(System.out, true, "UTF-8");
 //               out.println("AAA " + a + " " + b + ":: " + sb + " " + letterPairs.size());
 //        } catch (UnsupportedEncodingException ex) {
-//           
+//
 //        }
         //Integer penalty = letterPairs.get(couple);
         Integer penalty = letterPairs.get(sb.toString());

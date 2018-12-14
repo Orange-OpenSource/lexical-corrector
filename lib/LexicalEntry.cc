@@ -28,14 +28,14 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.0 as of 6th April 2017
+ Version:  1.0.1 as of 14th December 2018
 */
 
 #include <string>
 #include <sstream>
 #include <vector>
 #include <iterator>
-
+#include <algorithm>
 
 #include "LexicalEntry.h"
 #include "Util.h"
@@ -128,10 +128,23 @@ WordForm::~WordForm() {
 //    }
 }
 
+bool LESort(const LexicalEntry & a,
+	    const LexicalEntry & b) {  
+    if (a.lemma == b.lemma) {
+	if (a.pos < b.pos) return true;
+    } else {
+	if (a.lemma < b.lemma) return true;
+    }
+    return false;
+}
+
+
 ostream& operator<<(ostream& out, const WordForm &wf) {
     out << wf.form;
     unsigned int ct = 1;
-    for (vector<LexicalEntry>::const_iterator it = wf.entries.begin(); it != wf.entries.end(); ++it, ++ct) {
+    vector<LexicalEntry>ee = wf.entries;
+    sort(ee.begin(), ee.end(), &LESort);
+    for (vector<LexicalEntry>::const_iterator it = ee.begin(); it != ee.end(); ++it, ++ct) {
         //out << " L:" << (*it)->lemma << " P:" << (*it)->pos;
         out << "\n\t"<< ct << " lemma: " << (it)->lemma;
         if (!(it)->pos.empty()) out << "\n\t\tpos: " << (it)->pos;

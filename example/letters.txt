@@ -2,7 +2,7 @@
 # which are "cheaper"
 
 #reduplication 850
-transposition 850
+transposition 900
 
 # diacritical marks: a missing or additional accent counts only as a 0.3 distance
 penalty 300
@@ -49,11 +49,11 @@ Z ŽŹ
 И Й
 У Ў
 # palochka Ukranian I, Latin I, Latin l, digit 1
-Ӏ ІIl1
+#Ӏ ІIl1
 
 
 # neighbouring keys on AZERTY keyboard
-penalty 900
+penalty 902
 a z
 z ae
 e zr 

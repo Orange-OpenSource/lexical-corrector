@@ -122,14 +122,14 @@ enter word> avaient (max penalty allowed: 1400)
 enter word> suis (max penalty allowed: 800)
 1 solutions:
   0: suis
-	1 lemma: être
+	1 lemma: suivre
 		pos: VMIP1S0
 	2 lemma: suivre
-		pos: VMIP1S0
-	3 lemma: suivre
 		pos: VMIP2S0
-	4 lemma: suivre
+	3 lemma: suivre
 		pos: VMM02S0
+	4 lemma: être
+		pos: VMIP1S0
 enter word> ire (max penalty allowed: 600)
 1 solutions:
   0: ire
@@ -139,9 +139,9 @@ enter word> aller (max penalty allowed: 1000)
 10 solutions:
   0: aller
 	1 lemma: aller
-		pos: VMN0000
-	2 lemma: aller
 		pos: NCMS000
+	2 lemma: aller
+		pos: VMN0000
   1000: ailler
 	1 lemma: ailler
 		pos: VMN0000
@@ -206,7 +206,7 @@ enter word> éleve (max penalty allowed: 1000)
 		pos: VMSP3S0
 	6 lemma: élève
 		pos: NCCS000
-  900: éleva
+  1000: éleva
 	1 lemma: élever
 		pos: VMIS3S0
   1000: élever
@@ -255,7 +255,7 @@ enter word> connait (max penalty allowed: 1400)
 		pos: VMII3S0
 enter word> masion (max penalty allowed: 1200)
 2 solutions:
-  850: maison
+  900: maison
 	1 lemma: maison
 		pos: NCFS000
   1000: mansion
@@ -272,4 +272,21 @@ enter word> maisson (max penalty allowed: 1400)
   1000: moisson
 	1 lemma: moisson
 		pos: NCFS000
+enter word> chantonq (max penalty allowed: 1600)
+1 solutions:
+  902: chantons
+	1 lemma: chanter
+		pos: VMIP1P0
+	2 lemma: chanter
+		pos: VMM01P0
+enter word> bolatilites (max penalty allowed: 2200)
+2 solutions:
+  1202: volatilités
+	1 lemma: volatilité
+		pos: NCFP000
+  1902: volatilises
+	1 lemma: volatiliser
+		pos: VMIP2S0
+	2 lemma: volatiliser
+		pos: VMSP2S0
 enter word> 

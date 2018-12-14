@@ -32,6 +32,7 @@ are permitted provided that the following conditions are met:
  */
 package com.orange.labs.lexicon;
 
+import com.orange.labs.lexicon.WordForm.SortLE;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -192,7 +193,7 @@ public class Lexicon {
 
     }
 
-    class SortByLemma implements Comparator<WordForm.LexicalEntry> {
+    private class SortByLemma implements Comparator<WordForm.LexicalEntry> {
         public int compare(WordForm.LexicalEntry a, WordForm.LexicalEntry b) {
             return a.lemma.compareTo(b.lemma);
         }
@@ -226,7 +227,8 @@ public class Lexicon {
                         int ct = 1;
 
                         List<WordForm.LexicalEntry> les = wf.getEntries();
-                        Collections.sort(les, new SortByLemma());
+                        //Collections.sort(les, new SortByLemma());
+                        Collections.sort(les, new SortLE());
                         for (WordForm.LexicalEntry entry : les) {
                             out.format("\t%d lemma: %s\n\t\tpos: %s\n", ct++, entry.lemma, entry.pos);
                         }

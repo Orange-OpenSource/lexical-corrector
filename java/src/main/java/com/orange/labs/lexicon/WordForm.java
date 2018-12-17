@@ -52,12 +52,12 @@ public class WordForm implements Comparable {
     /** une ligne du lexique à lire
 
     @param lexiconline fichier lexique
-    @param multipleLemmasPerLine si vrai on attend des lignes à la freeling: forme POS1 lemme1 POS2 lemme2 ...
-    si non on attend un lexique avec une entrée par ligne: forme [POS [lemme]]
+    @param multipleLemmasPerLine si vrai on attend des lignes à la freeling: forme lemma1 POS1 lemma2 POS2 ...
+    si non on attend un lexique avec une entrée par ligne: forme [lemma [POS]]
     */
     public WordForm(String lexiconline, boolean multipleLemmasPerLine) {
         if (!multipleLemmasPerLine) {
-            // ligne: forme [POS [lemme]]
+            // line: forme [lemma [POS]]
 
             //form = lexiconline;
             String[] elems = lexiconline.split(FIELDSEPARATOR);

@@ -2,17 +2,17 @@
 
 Copyright (c) 2017, Orange S.A.
 
-Redistribution and use in source and binary forms, with or without modification, 
+Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
   1. Redistributions of source code must retain the above copyright notice,
      this list of conditions and the following disclaimer.
 
-  2. Redistributions in binary form must reproduce the above copyright notice, 
+  2. Redistributions in binary form must reproduce the above copyright notice,
      this list of conditions and the following disclaimer in the documentation
      and/or other materials provided with the distribution.
 
-  3. Neither the name of the copyright holder nor the names of its contributors 
+  3. Neither the name of the copyright holder nor the names of its contributors
      may be used to endorse or promote products derived from this software without
      specific prior written permission.
 
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  @author Johannes Heinecke
- @version 1.0.1 as of 13th December 2018
+ @version 1.0.2 as of 17th December 2018
  */
 package com.orange.labs.lexicon;
 
@@ -53,19 +53,20 @@ import java.util.List;
 import java.util.Map;
 
 public class Lexicon {
-
     ArbreBinaire ab;
     Corrector cr;
+    boolean multipleLemmasPerLine;
 
-    /** create new Lexicon 
+    /** create new Lexicon
      @param lexfile name fo the lexicon file
      @param multipleLemmasPerLine si vrai on attend des lignes à la freeling: forme POS1 lemme1 POS2 lemme2 ...
      si non on attend un lexique avec une entrée par ligne: forme [POS [lemme]]
      */
     public Lexicon(String lexfile, boolean multipleLemmasPerLine) throws IOException {
+        this.multipleLemmasPerLine = multipleLemmasPerLine;
         ab = new ArbreBinaire(lexfile, multipleLemmasPerLine);
         //PrintStream out = new PrintStream(System.out, true, "UTF-8");
-        //out.println(ab.dot());      
+        //out.println(ab.dot());
         cr = new Corrector(ab);
     }
 
@@ -88,10 +89,15 @@ public class Lexicon {
         return result;
     }
 
-    /** 
+    /** add more lexicon files */
+    public void addFile(String fn) throws IOException {
+        ab.addFile(fn, multipleLemmasPerLine);
+    }
+
+    /**
      Add a penalty file which modifies penalties for certain errors
      @param penaltyFileName
-     @throws FileNotFoundException 
+     @throws FileNotFoundException
      */
     public void addPenaltyFile(String penaltyFileName) throws FileNotFoundException {
         ab.addPenaltyFile(penaltyFileName);
@@ -100,6 +106,20 @@ public class Lexicon {
     public void setDefaultDist(Integer d) {
         //Calculator.penalty = d;
         cr.setDefaultPenalty(d);
+    }
+
+    /** non threaded interface (for API doc see Correctoer.java) */
+
+    public Map<WordForm, Integer> findWordCorrected(String word, int maxdist) {
+        return cr.findWordCorrected(word, maxdist);
+    }
+
+    public WordForm findWordExact(String word) {
+        return cr.findWordExact(word);
+    }
+
+    public Map<WordForm, Integer> findWordBest(String word, int maxdist) {
+         return cr.findWordBest(word, maxdist);
     }
 
     public class CorrectorThread implements Runnable {

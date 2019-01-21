@@ -183,8 +183,10 @@ void ArbreBinaire::addWord(const string &lexiconline, bool multipleEntries) {
     maxwordlength = maxwordlength < wf->form.size() ? wf->form.size() : maxwordlength;
     countforms++;
 
-    //int ucslength = 
-    u8_toucs(ucs4buffer, maxUCS, wf->form.c_str(), -1);
+#ifdef DEBUG
+    int ucslength = 
+#endif
+        u8_toucs(ucs4buffer, maxUCS, wf->form.c_str(), -1);
 
 #ifdef DEBUG
     cout << "ADDWORD " << wf->form << endl;

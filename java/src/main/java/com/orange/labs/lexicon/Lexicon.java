@@ -51,6 +51,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Lexicon {
     ArbreBinaire ab;
@@ -246,9 +247,9 @@ public class Lexicon {
                         out.println("  " + res.get(wf) + ": " + wf.getForm());
                         int ct = 1;
 
-                        List<WordForm.LexicalEntry> les = wf.getEntries();
+                        Set<WordForm.LexicalEntry> les = wf.getEntries();
                         //Collections.sort(les, new SortByLemma());
-                        Collections.sort(les, new SortLE());
+                        //Collections.sort(les, new SortLE());
                         for (WordForm.LexicalEntry entry : les) {
                             out.format("\t%d lemma: %s\n\t\tpos: %s\n", ct++, entry.lemma, entry.pos);
                         }

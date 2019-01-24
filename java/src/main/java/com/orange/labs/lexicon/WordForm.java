@@ -34,10 +34,9 @@ are permitted provided that the following conditions are met:
 package com.orange.labs.lexicon;
 
 import com.orange.labs.lexicon.WordForm.LexicalEntry;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -45,7 +44,7 @@ import java.util.List;
  */
 public class WordForm implements Comparable {
     String form;
-    List<LexicalEntry> entries;
+    Set<LexicalEntry> entries;
     // regexp used ti split lines in the lexicon
     public static String FIELDSEPARATOR = "[ \t]+";
 
@@ -63,7 +62,7 @@ public class WordForm implements Comparable {
             String[] elems = lexiconline.split(FIELDSEPARATOR);
             form = elems[0];
             if (elems.length > 1) {
-                entries = new ArrayList<>();
+                entries = new TreeSet<>();
                 if (elems.length > 2)
                     entries.add(new LexicalEntry(elems[1], elems[2]));
                 else
@@ -75,7 +74,7 @@ public class WordForm implements Comparable {
             form = elems[0];
 
             if (elems.length > 1 && elems.length % 2 == 1) {
-                entries = new ArrayList<>();
+                entries = new TreeSet<>();
                 for (int i = 1; i < elems.length; i += 2) {
                     entries.add(new LexicalEntry(elems[i], elems[i + 1]));
                 }
@@ -87,7 +86,7 @@ public class WordForm implements Comparable {
         return form;
     }
 
-    public List<LexicalEntry> getEntries() {
+    public Set<LexicalEntry> getEntries() {
         return entries;
     }
 
@@ -103,7 +102,7 @@ public class WordForm implements Comparable {
         if (entries != null) {
             sb.append(" [");
             boolean first = true;
-            Collections.sort(entries, new SortLE());
+            //Collections.sort(entries, new SortLE());
             for (LexicalEntry le : entries) {
                 if (!first) sb.append(", "); else first = false;
                 sb.append(le.lemma);
@@ -147,7 +146,7 @@ public class WordForm implements Comparable {
         public int compareTo(Object o) {
             if (o instanceof LexicalEntry) {
                 LexicalEntry other = (LexicalEntry)o;
-                if (lemma.equals(other.lemma)) {
+                if (lemma.equals(other.lemma) && pos != null) {
                     return pos.compareTo(other.pos);
                 } else {
                     return lemma.compareTo(other.lemma);

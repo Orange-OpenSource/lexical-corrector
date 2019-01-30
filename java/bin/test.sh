@@ -1,8 +1,12 @@
 #!/bin/bash
 
 MYDIR=$(dirname $0)
+
+NEWESTJAR=$(ls  $MYDIR/../target/lexicon-*-jar-with-dependencies.jar | tail -1)
+echo $NEWESTJAR
+
 cat $MYDIR/../../example/word2.txt \
-    | java -jar $MYDIR/../target/lexicon-1.0.1-jar-with-dependencies.jar \
+    | java -jar $NEWESTJAR \
       $MYDIR/../../downloaded_data/dictionary.txt \
       $MYDIR/../../example/letters.txt > $MYDIR/../../build/javares.txt
 

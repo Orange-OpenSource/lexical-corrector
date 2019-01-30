@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  @author Johannes Heinecke
- @version 1.0 as of 6th April 2017
+ @version 1.2 as of 30th January 2019
 */
 
 package com.orange.labs.lexicon;
@@ -54,7 +54,7 @@ public class Calculator {
     public Calculator(int tsize) {
         this.tsize = tsize;
       
-        table = new int[tsize][tsize];
+        table = new int[this.tsize][this.tsize];
         solutions = new HashMap<>();
         stack = new Stack<>();
     }
@@ -65,6 +65,10 @@ public class Calculator {
     
     public int getDefaultPenalty() {
         return penalty;
+    }
+    
+    int getTsize() {
+        return tsize;
     }
     
     public void init() {     
@@ -83,7 +87,9 @@ public class Calculator {
     }
 
     public int minNeighbour(int row, int col, int cost) {
-        if (debug) System.out.println("minneighbour " + row + " " + col);
+        // if we get a OutOfBoundary exception here, increase tsize 
+        if (debug)  System.out.println("minneighbour " + row + " " + col + " " + cost);
+        //System.err.println("TTT " +table.length + " " + table[0].length + " " + row + " "  +col);
         int x = table[row][col - 1] + penalty;
         int y = table[row - 1][col] + penalty;
         int z = table[row - 1][col - 1] + cost;

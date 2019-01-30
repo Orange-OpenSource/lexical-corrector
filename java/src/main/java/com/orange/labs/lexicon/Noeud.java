@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  @author Johannes Heinecke
- @version 1.0 as of 6th April 2017
+ @version 1.2 as of 30th January 2019
 */
 
 package com.orange.labs.lexicon;
@@ -107,13 +107,13 @@ public class Noeud {
         if (debug) {
             System.out.println("KEY " + id + " " + key_value + " depth: " + depth);
             calc.printstack();
-        }
+        }        
 
         int ix = 0;
         //char p = word.charAt(ix);
         int row = calc.stacksize() - 1;
         int col = 1;
-        while (ix < word.length()) {
+        while (ix < word.length() && col < calc.getTsize()) {
             Character key = word.charAt(ix);
 
             // inserting values in current row
@@ -139,7 +139,7 @@ public class Noeud {
             //str = Normalizer.normalize(str, Form.NFC);
 //str2 = Normalizer.normalize(str2, Form.NFC);
 //#endif
-            // TODO si la différence est uniquement la suppression/ajout d'un accent on prend penalty/2
+
             int val = calc.minNeighbour(row, col, cost);
 
             if (withDamerau) {
@@ -155,9 +155,10 @@ public class Noeud {
 
 
             calc.set(row, col, val);
-//#ifdef DEBUG         
-//        cout << "COST: " << cost << " r:" << row << " c:" << col << " v:" << val << endl;
-//#endif
+       
+           // System.err.println("Word <" + word.substring(0, ix+1) + "> ix:" + ix+ " COST: " 
+           //                    + cost + " r:" + row + " c:" + col + " v:" + val + " ");
+
             ++ix;
             ++col;
 

@@ -253,6 +253,14 @@ enter word> connait (max penalty allowed: 1400)
   1000: tonnait
 	1 lemma: tonner
 		pos: VMII3S0
+enter word> hepato-gastro-entérologues (max penalty allowed: 5200)
+2 solutions:
+  300: hépato-gastro-entérologues
+	1 lemma: hépato-gastro-entérologue
+		pos: NCMP000
+  1300: hépato-gastro-entérologue
+	1 lemma: hépato-gastro-entérologue
+		pos: NCMS000
 enter word> masion (max penalty allowed: 1200)
 2 solutions:
   900: maison
@@ -272,6 +280,8 @@ enter word> maisson (max penalty allowed: 1400)
   1000: moisson
 	1 lemma: moisson
 		pos: NCFS000
+enter word> constitutionnalisassions-cette-affaire (max penalty allowed: 7600)
+0 solutions:
 enter word> chantonq (max penalty allowed: 1600)
 1 solutions:
   902: chantons

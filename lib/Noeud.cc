@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.0 as of 6th April 2017
+ Version:  1.2 as of 30th January 2019
 */
 
 // TODO conf pour le score de reduplication
@@ -146,7 +146,7 @@ void Noeud::parcourir(const Character *word, const unsigned int maxdist, Calcula
     unsigned int row = calc->stacksize() - 1;
     unsigned int col = 1;
     unsigned int similarpenalty;
-    while (*p) {
+    while (*p && col < calc->getTsize()) {
         
         Character key = *p;
 #ifdef DEBUG         

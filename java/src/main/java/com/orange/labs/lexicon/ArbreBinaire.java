@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  @author Johannes Heinecke
- @version 1.0.1 as of 13th December 2018
+ @version 1.2 as of 30th January 2019
 */
 
 package com.orange.labs.lexicon;
@@ -100,7 +100,7 @@ public class ArbreBinaire {
         }
         br.close();
 
-        System.err.println("Tree: nodes: " + Noeud.ndct + ", maximal word length: " + maxwordlength
+        System.err.println("Added: "+lexfile +" Tree: nodes: " + Noeud.ndct + ", maximal word length: " + maxwordlength
                 + ", words: " + countforms);
     }
 

@@ -28,11 +28,10 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  @author Johannes Heinecke
- @version 1.0.2 as of 17th December 2018
+ @version 1.2 as of 30th January 2019
  */
 package com.orange.labs.lexicon;
 
-import com.orange.labs.lexicon.WordForm.SortLE;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -93,6 +92,9 @@ public class Lexicon {
     /** add more lexicon files */
     public void addFile(String fn) throws IOException {
         ab.addFile(fn, multipleLemmasPerLine);
+        
+        // new file may have longer words than initially seen, so it is needed to recreate Corrector here
+         cr = new Corrector(ab);
     }
 
     /**
@@ -250,8 +252,10 @@ public class Lexicon {
                         Set<WordForm.LexicalEntry> les = wf.getEntries();
                         //Collections.sort(les, new SortByLemma());
                         //Collections.sort(les, new SortLE());
-                        for (WordForm.LexicalEntry entry : les) {
-                            out.format("\t%d lemma: %s\n\t\tpos: %s\n", ct++, entry.lemma, entry.pos);
+                        if (les != null) {
+                            for (WordForm.LexicalEntry entry : les) {
+                                out.format("\t%d lemma: %s\n\t\tpos: %s\n", ct++, entry.lemma, entry.pos);
+                            }
                         }
                     }
                 }

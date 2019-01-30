@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.0 as of 6th April 2017
+ Version:  1.2 as of 30th January 2019
 */
 
 
@@ -43,7 +43,7 @@ unsigned int Calculator::penalty = 1000;
 
 Calculator::Calculator(unsigned int size) {
     tsize = size;
-
+    cerr << "tsize " << tsize << endl;
     tmp = new unsigned [tsize * tsize];
     table = new unsigned * [tsize];
     for (unsigned int i=0; i<tsize; ++i) {

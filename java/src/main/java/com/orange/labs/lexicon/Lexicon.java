@@ -427,8 +427,12 @@ public class Lexicon {
                 } else {
                     //interactive
 
+                    //BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("ab.dot")), "UTF-8"));
+                    //bw.write(lexicon.ab.root.toString());
+                    //bw.close();
+                    
                     BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "utf8"));
-
+                    
                     String input;
                     int maxpenalty;
                     System.out.print("enter word> ");

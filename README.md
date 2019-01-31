@@ -74,11 +74,13 @@ The following configuration replaces `?` into letter with an diacritic symbol (l
 
 ### Java tool
 
-    java -jar java/target/lexicon-1.0.0-jar-with-dependencies.jar [options] in:lexfile [in:letter_definition]
+    java -jar java/target/lexicon-n.m.o-jar-with-dependencies.jar [options] in:lexfile [in:letter_definition]
 
 for instance
 
-    java -jar java/target/lexicon-1.0.0-jar-with-dependencies.jar downloaded_data/dictionary.txt example/letters.txt 
+    java -jar java/target/lexicon-n.m.o-jar-with-dependencies.jar downloaded_data/dictionary.txt example/letters.txt 
+
+If the lexicon file is very large, it may be necessary to increase the JVM stacksize using the `-Xmss` option
 
 ## Install library
 

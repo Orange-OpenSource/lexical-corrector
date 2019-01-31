@@ -206,6 +206,7 @@ public class Noeud {
         if (info != null) {
             sb.append('"').append(info).append('"');
         }
+        sb.append('\n');
         if (left != null) {
             sb.append(" L:").append(left.key_value);
         }
@@ -214,10 +215,10 @@ public class Noeud {
         }
 
         if (left != null) {
-            sb.append("(").append(id).append(":").append(left).append(")").append(id).append(":");
+            sb.append("(").append(id).append(":").append(left).append(")\n").append(id).append(":");
         }
         if (right != null) {
-            sb.append("[").append(id).append(":").append(right).append("]").append(id).append(":");
+            sb.append("[").append(id).append(":").append(right).append("]\n").append(id).append(":");
         }
         return sb.toString();
     }

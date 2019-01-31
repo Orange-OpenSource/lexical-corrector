@@ -29,8 +29,7 @@ are permitted provided that the following conditions are met:
 
  @author Johannes Heinecke
  @version 1.2 as of 30th January 2019
-*/
-
+ */
 package com.orange.labs.lexicon;
 
 import java.io.BufferedReader;
@@ -40,13 +39,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
 public class ArbreBinaire {
 
     int maxwordlength = 0;
     int countforms = 0;
     Noeud root = null;
     final boolean debug = false;
+    String name; // "name" of the lexicon (= name of the first file loaded, needed only for verbosity :-)
 
     /** créer l'arbre binaire avec le nom du fichier qui contient le lexique en format
      "forme [lemme pos [lemme pos [...]]]"
@@ -65,25 +64,9 @@ public class ArbreBinaire {
      */
     public ArbreBinaire(String lexfile, boolean multipleLemmasPerLine) throws IOException {
         root = new Noeud('\u0000');
+        String [] path = lexfile.split(File.separator);
+        name = path[path.length-1];
         addFile(lexfile, multipleLemmasPerLine);
-//        FileInputStream fis = new FileInputStream(new File(lexfile));
-//
-//        //Construct BufferedReader from InputStreamReader
-//        BufferedReader br = new BufferedReader(new InputStreamReader(fis, "utf8"));
-//
-//        String line;
-//        while ((line = br.readLine()) != null) {
-//            addWord(line, multipleLemmasPerLine);
-//        }
-//
-//
-//        if (debug) {
-//            System.out.println("ROOT: " + root);
-//        }
-//        br.close();
-//
-//        System.err.println("Tree: nodes: " + Noeud.ndct + ", maximal word length: " + maxwordlength
-//                + ", words: " + countforms);
     }
 
     public void addFile(String lexfile, boolean multipleLemmasPerLine) throws IOException {
@@ -100,8 +83,10 @@ public class ArbreBinaire {
         }
         br.close();
 
-        System.err.println("Added: "+lexfile +" Tree: nodes: " + Noeud.ndct + ", maximal word length: " + maxwordlength
-                + ", words: " + countforms);
+        System.err.format("Lexicon: %s, added: %s; Tree: nodes: %d, maximal word length: %d, words: %d\n",
+                          name, lexfile, Noeud.ndct, maxwordlength, countforms);
+        
+        
     }
 
     public void addPenaltyFile(String penaltyFileName) throws FileNotFoundException {
@@ -203,8 +188,9 @@ public class ArbreBinaire {
 //    cout << "__" << *n << endl;
 //#endif
         if (!multipleLemmasPerLine) {
-            if (n.info == null)  n.info = wf;
-            else {
+            if (n.info == null) {
+                n.info = wf;
+            } else {
                 n.info.merge(wf);
             }
         } else {

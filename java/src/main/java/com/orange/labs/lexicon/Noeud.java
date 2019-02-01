@@ -2,17 +2,17 @@
 
 Copyright (c) 2017, Orange S.A.
 
-Redistribution and use in source and binary forms, with or without modification, 
+Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
   1. Redistributions of source code must retain the above copyright notice,
      this list of conditions and the following disclaimer.
 
-  2. Redistributions in binary form must reproduce the above copyright notice, 
+  2. Redistributions in binary form must reproduce the above copyright notice,
      this list of conditions and the following disclaimer in the documentation
      and/or other materials provided with the distribution.
 
-  3. Neither the name of the copyright holder nor the names of its contributors 
+  3. Neither the name of the copyright holder nor the names of its contributors
      may be used to endorse or promote products derived from this software without
      specific prior written permission.
 
@@ -33,6 +33,9 @@ are permitted provided that the following conditions are met:
 
 package com.orange.labs.lexicon;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 
 public class Noeud {
     Noeud left = null;
@@ -45,10 +48,12 @@ public class Noeud {
     public static int ndct = 0; // to have a unique node id number
     final boolean debug = false;
 
-    final boolean withDamerau = true;
-    final boolean withAccents = false;
-  
-    
+    public static int maxdepth = 0;
+
+    final static boolean withDamerau = true;
+    final static boolean withAccents = false;
+
+
     //final static Collator collator = Collator.getInstance(Locale.FRENCH);
    //     collator.setStrength(Collator.PRIMARY);
 
@@ -60,7 +65,7 @@ public class Noeud {
 //        }
         key_value = kv;
         id = ndct++;
-      
+
         //System.out.println("NOEUD " + (id == 0 ? '0' : id) + " " + kv);
     }
 
@@ -107,7 +112,7 @@ public class Noeud {
         if (debug) {
             System.out.println("KEY " + id + " " + key_value + " depth: " + depth);
             calc.printstack();
-        }        
+        }
 
         int ix = 0;
         //char p = word.charAt(ix);
@@ -122,23 +127,14 @@ public class Noeud {
             if (key.equals(key_value)) {
                 cost = 0;
             }
-            
-            
-            
-            else if (Noeud.similar != null) {                
+
+
+
+            else if (Noeud.similar != null) {
                 Integer newpen = Noeud.similar.areSimilar(key, key_value);
                 if (newpen != null) cost = newpen;
             }
 
-      
-              
-            
-//#define WITHACCENTS
-//#ifdef WITHACCENTS        
-//        else if (Noeud::identicalWithoutDiacritics(key, key_value)) cost = Calculator::penalty/2;
-            //str = Normalizer.normalize(str, Form.NFC);
-//str2 = Normalizer.normalize(str2, Form.NFC);
-//#endif
 
             int val = calc.minNeighbour(row, col, cost);
 
@@ -153,15 +149,10 @@ public class Noeud {
                 }
             }
 
-
             calc.set(row, col, val);
-       
-           // System.err.println("Word <" + word.substring(0, ix+1) + "> ix:" + ix+ " COST: " 
-           //                    + cost + " r:" + row + " c:" + col + " v:" + val + " ");
 
             ++ix;
             ++col;
-
         }
 
         if (debug) {
@@ -178,7 +169,6 @@ public class Noeud {
 
         if (lowest <= maxdist) {
             // on continue...
-            //cout << "continue" << endl;
             int curdist = calc.get(row, col - 1);
             if (curdist <= maxdist && info != null) {
 
@@ -194,7 +184,6 @@ public class Noeud {
         }
         calc.pop();
         if (right != null) {
-            //cout << "alternative" << endl;
             right.parcourir(word, maxdist, calc, depth);
         }
 
@@ -221,6 +210,42 @@ public class Noeud {
             sb.append("[").append(id).append(":").append(right).append("]\n").append(id).append(":");
         }
         return sb.toString();
+    }
+
+    /** out put the node and its children in a textual form */
+    public void toText(int depth, BufferedWriter bw) throws IOException {
+        if (key_value != 0) bw.write(key_value);
+        //else sb.append("\\0");
+
+        if (info != null) {
+            bw.write(" \"");
+            bw.write(info.toString());
+            bw.write("\"\n");
+            //for(int i=1; i<depth; ++i) bw.write("  ");
+            if (depth > 1) {
+                String format = String.format("%%-%ds", 2*(depth-1));
+                String indent = String.format(format, depth-1);
+                bw.write(indent);
+            }
+        }
+        //sb.append('\n');
+        if (left != null) {
+            bw.write("(");
+            left.toText(depth+1, bw);
+        }
+        if (right != null) {
+            bw.write('\n');
+
+            //for(int i=1; i<depth; ++i) bw.write("  ");
+            if (depth > 1) {
+                String format = String.format("%%-%ds", 2*(depth-1));
+                String indent = String.format(format, depth-1);
+                bw.write(indent);
+            }
+            bw.write(",");
+            right.toText(depth+1, bw);
+        }
+        bw.write(")");
     }
 
 }

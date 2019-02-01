@@ -83,8 +83,9 @@ public class ArbreBinaire {
         }
         br.close();
 
-        System.err.format("Lexicon: %s, added: %s; Tree: nodes: %d, maximal word length: %d, words: %d\n",
-                          name, lexfile, Noeud.ndct, maxwordlength, countforms);
+        System.err.format("Lexicon: %s, added: %s; Tree: nodes: %d, maximal word length: %d, words: %d, maxdepth: %d\n",
+                          name, lexfile, Noeud.ndct, maxwordlength, countforms
+                          , Noeud.maxdepth);
         
         
     }
@@ -199,8 +200,10 @@ public class ArbreBinaire {
     }
 
     Noeud insert(Character key, Noeud n) {
+        int depth = 1; // calculate the depthness of the binary tree
         if (n.left == null) {
             n.left = new Noeud(key);
+            n.maxdepth = Math.max(n.maxdepth, 1);
             //	cout << "A: " << *n->left << endl;
             return n.left;
         } else if (n.left.key_value.equals(key)) {
@@ -209,20 +212,24 @@ public class ArbreBinaire {
         }// different letter, add right node
         else if (n.left.right == null) {
             n.left.right = new Noeud(key);
+            n.maxdepth = Math.max(n.maxdepth, 2);
             //cout << "B: " << *n->left->right << endl;
             return n.left.right;
         }// there is already I right node: go through chain until we find our letter
         else {
             Noeud x = n.left.right;
+            depth++;
             while (true) {
                 if (x.key_value.equals(key)) {
                     return x;
                 }
                 if (x.right == null) {
                     x.right = new Noeud(key);
+                    n.maxdepth = Math.max(n.maxdepth, depth);
                     return x.right;
                 }
 
+                depth++;
                 x = x.right;
             }
         }

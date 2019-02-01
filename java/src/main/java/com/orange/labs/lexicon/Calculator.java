@@ -2,17 +2,17 @@
 
 Copyright (c) 2017, Orange S.A.
 
-Redistribution and use in source and binary forms, with or without modification, 
+Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
   1. Redistributions of source code must retain the above copyright notice,
      this list of conditions and the following disclaimer.
 
-  2. Redistributions in binary form must reproduce the above copyright notice, 
+  2. Redistributions in binary form must reproduce the above copyright notice,
      this list of conditions and the following disclaimer in the documentation
      and/or other materials provided with the distribution.
 
-  3. Neither the name of the copyright holder nor the names of its contributors 
+  3. Neither the name of the copyright holder nor the names of its contributors
      may be used to endorse or promote products derived from this software without
      specific prior written permission.
 
@@ -50,10 +50,10 @@ public class Calculator {
 
     final boolean debug = false;
 
-   
+
     public Calculator(int tsize) {
         this.tsize = tsize;
-      
+
         table = new int[this.tsize][this.tsize];
         solutions = new HashMap<>();
         stack = new Stack<>();
@@ -62,18 +62,18 @@ public class Calculator {
     public void setDefaultPenalty(int d) {
         penalty = d;
     }
-    
+
     public int getDefaultPenalty() {
         return penalty;
     }
-    
+
     int getTsize() {
         return tsize;
     }
-    
-    public void init() {     
+
+    public void init() {
         for (int col = 0; col < tsize; ++col) {
-            table[0][col] = col * penalty;           
+            table[0][col] = col * penalty;
             for (int row = 1; row < tsize; ++row) {
                 table[row][col] = 0;
             }
@@ -87,7 +87,7 @@ public class Calculator {
     }
 
     public int minNeighbour(int row, int col, int cost) {
-        // if we get a OutOfBoundary exception here, increase tsize 
+        // if we get a OutOfBoundary exception here, increase tsize
         if (debug)  System.out.println("minneighbour " + row + " " + col + " " + cost);
         //System.err.println("TTT " +table.length + " " + table[0].length + " " + row + " "  +col);
         int x = table[row][col - 1] + penalty;
@@ -108,7 +108,7 @@ public class Calculator {
 
     public void status(PrintStream out, String word, int maxrow, int maxcol) {
         for (int col = 0; col < maxcol; ++col) {
-            // pour toutes les 
+            // pour toutes les
             if (col == 0) {
                 out.print("\t");
             }
@@ -153,7 +153,7 @@ public class Calculator {
     Character getPenultime() {
         return stack.elementAt(stack.size()-2);
     }
-    
+
     void pop() {
         stack.pop();
     }
@@ -173,6 +173,119 @@ public class Calculator {
     void printstack() {
         System.out.println(" STACK" + stack);
     }
-    
-    
+
+    class Result {
+        int lowest;
+        int row;
+        int col;
+        public Result(int l, int r, int c) {
+            lowest = l;
+            row = r;
+            col = c;
+        }
+    }
+
+    // unsuccessful trial to replace recursion by iteration
+    /*
+    void parcourir(Noeud root, String word, int maxdist) {
+        Noeud start = root.left;
+        Result r1 = firstpart(start, word, maxdist, 1);
+        int depth = 1;
+        Stack<Noeud> leftnodes = new Stack<>();
+        if (r1.lowest <= maxdist) {
+
+            // on continue...
+            int curdist = this.get(r1.row, r1.col - 1);
+            if (curdist <= maxdist && start.info != null) {
+
+                if (debug) {
+                    System.out.println("FOUND " + start.info + " " + curdist);
+                }
+
+                this.addResult(start.info, curdist); // il y a un mot
+            }
+            if (start.left != null) {
+                start = start.left;
+                //left.parcourir(word, maxdist, calc, depth + 1);
+                r1 = firstpart(start, word, maxdist, depth+1);
+            }
+
+        }
+
+
+        this.pop();
+        if (start.right != null) {
+           // right.parcourir(word, maxdist, calc, depth);
+           r1 = firstpart(start.right, word, maxdist, depth+1);
+        }
+
+
+    }
+
+
+    Result firstpart(Noeud node, String word, int maxdist, int depth) {
+        this.push(node.key_value);
+
+        if (debug) {
+            System.out.println("KEY " + node.id + " " + node.key_value + " depth: " + depth);
+            this.printstack();
+        }
+
+        int ix = 0;
+        //char p = word.charAt(ix);
+        int row = this.stacksize() - 1;
+        int col = 1;
+        while (ix < word.length() && col < this.getTsize()) {
+            Character key = word.charAt(ix);
+
+            // inserting values in current row
+            //int cost = Calculator.penalty; // la transposition de deux caractère ne coute que 0.9 * cost
+            int cost = this.getDefaultPenalty();
+            if (key.equals(node.key_value)) {
+                cost = 0;
+            }
+
+
+
+            else if (Noeud.similar != null) {
+                Integer newpen = Noeud.similar.areSimilar(key, node.key_value);
+                if (newpen != null) cost = newpen;
+            }
+
+
+            int val = this.minNeighbour(row, col, cost);
+
+            if (Noeud.withDamerau) {
+                if (row > 1 && col > 1
+                        && key.equals(this.getPenultime()) // a[i] = b[j-1]
+                        && node.key_value.equals(word.charAt(ix - 1))) { // a[i-1] = b[j]
+                    int a = this.get(row - 2, col - 2) + ((int) (cost * .9)); // transposition de deux caractères
+                    if (a < val) {
+                        val = a;
+                    }
+                }
+            }
+
+            this.set(row, col, val);
+
+            ++ix;
+            ++col;
+        }
+
+        if (debug) {
+            this.status(System.out, word, row + 1, col - 1);
+        }
+
+        // pas la peine de continuer si la distance > maxdist
+        //unsigned short curdist = table->get(row, depth  < col - 1 ? depth  : col - 1);
+        int lowest = this.lowest(row, col);
+
+        if (debug) {
+            System.out.println("LOWEST " + lowest + " depth:" + depth + " r:" + row + " c:" + (col - 1) + " maxdist" + maxdist);
+        }
+        return new Result(lowest, row, col);
+    }
+*/
+
+
 }

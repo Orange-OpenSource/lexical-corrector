@@ -92,7 +92,7 @@ public class Lexicon {
     /** add more lexicon files */
     public void addFile(String fn) throws IOException {
         ab.addFile(fn, multipleLemmasPerLine);
-        
+
         // new file may have longer words than initially seen, so it is needed to recreate Corrector here
          cr = new Corrector(ab);
     }
@@ -331,6 +331,8 @@ public class Lexicon {
             System.out.println("   --defaultdist <n>");
             System.out.println("   --maxdistfactor <n>");
             System.out.println("   --sep <regex>   field separator");
+            System.out.println("   --dot <.dot filename> put the binary tree in a dot file (only versy small dictionaries!)");
+            System.out.println("   --tree <.txt filename> put the binary tree in a text file (only very small dictionaries!)");
             System.out.println("");
         } else {
 
@@ -345,6 +347,8 @@ public class Lexicon {
                 int defaultdistance = 1000;
                 String wordlist = null;
                 String sep = null;
+                String dotfile = null;
+                String txtfile = null;
                 int shift = 0;
 //                if (args.length > 1 && (args[0].equals("--multipleLemmas") || args[0].equals("-m"))) {
 //                    multipleLemmasPerLine = true;
@@ -367,6 +371,12 @@ public class Lexicon {
                         texttype = Text.TESTEXACT;
                         shift++;
                         wordlist = args[shift++];
+                    } else if (args[i].equals("--dot")) {
+                        shift++;
+                        dotfile = args[shift++];
+                    } else if (args[i].equals("--tree")) {
+                        shift++;
+                        txtfile = args[shift++];
                     } else if (args[i].equals("--sep")) {
                         shift++;
                         sep = args[shift++];
@@ -405,6 +415,19 @@ public class Lexicon {
 
                 lexicon.setDefaultDist(defaultdistance);
 
+                if (dotfile != null) {
+                    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(dotfile)), "UTF-8"));
+                    bw.write(lexicon.ab.dot());
+                    bw.close();
+                }
+                if (txtfile != null) {
+                    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(txtfile)), "UTF-8"));
+                    //bw.write(lexicon.ab.root.toText(0));
+                    lexicon.ab.root.toText(0, bw);
+                    bw.close();
+                }
+
+
                 if (texttype == Text.TESTCORR || texttype == Text.TESTEXACT) {
                     List<String> wl = new ArrayList<>();
                     BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(wordlist)), "UTF-8"));
@@ -427,12 +450,10 @@ public class Lexicon {
                 } else {
                     //interactive
 
-                    //BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("ab.dot")), "UTF-8"));
-                    //bw.write(lexicon.ab.root.toString());
-                    //bw.close();
-                    
+
+
                     BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "utf8"));
-                    
+
                     String input;
                     int maxpenalty;
                     System.out.print("enter word> ");

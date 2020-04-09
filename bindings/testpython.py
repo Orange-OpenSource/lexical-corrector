@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # This library is under the Modified BSD License:
 # 
 # Copyright (c) 2017-2020, Orange S.A. All rights reserved.
@@ -27,37 +29,33 @@
 # Version: 2.0 as of 9th April 2020
 
 
-cmake_minimum_required (VERSION 3.5)
-project (lexicon)
+import sys
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fmax-errors=2 -pthread")
+if len(sys.argv) < 5:
+    print("Error in %s" % sys.argv[0], file=sys.stderr)
+    print("usage:\n  %s libdirname lexfile similarlettersfile wordlist" % sys.argv[0], file=sys.stderr)
+else:
+    sys.path.append(sys.argv[1])
 
+    import json
+    import LexCor
 
-#find_package(Boost COMPONENTS regex REQUIRED)
-#if (Boost_FOUND)
-#	message(STATUS "Boost found: ${Boost_LIBRARIES}")
-#	# include_directories(${BOOST_INCLUDE_DIR})
-#endif()
-
-# deactivate with cmake -DCP_EXPORT=False
-set(CP_EXPORT TRUE)
-
-if(CP_EXPORT)
-    # needed to build Python bindings
-    # swig needs that c/c++ code is compiled with -fPIC
-    set (CMAKE_POSITION_INDEPENDENT_CODE TRUE)
-endif()
+    
+    lc = LexCor.LexicalCorrector(sys.argv[2], sys.argv[3], 1)
+    res = lc.findWordExact("trompette")
+    j = json.loads(res)
+    json.dump(j, sys.stdout, indent=2)
+    print()
 
 
-add_subdirectory (lib)
-add_subdirectory (example)
+    res = lc.findWordCorrected("mange", 1500)
+    j = json.loads(res)
+    json.dump(j, sys.stdout, indent=2)
+    print()
+
+    res = lc.findWordBest("manè", 1500)
+    j = json.loads(res)
+    json.dump(j, sys.stdout, indent=2)
+    print()
 
 
-if(CP_EXPORT)
-   add_subdirectory(bindings)
-endif()
-
-
-# activate this in order to avoid /usr/local/lib
-set(CMAKE_INSTALL_PREFIX ../testinstall)

@@ -31,77 +31,45 @@ are permitted provided that the following conditions are met:
  Version:  2.0 as of 9th April 2020
 */
 
-/* 
- * File:   LexicalEntry.h
- * currently for freeling style dictionaries
- * form lemma POS [lemma POS [...]]
- */
 
-#ifndef __LEXICALENTRY_H__
-#define __LEXICALENTRY_H__
+#ifndef __LEXICAL_CORRECTOR_H__
+#define __LEXICAL_CORRECTOR_H__
 
 #include <iostream>
-#include <string>
+#include <fstream>
 #include <vector>
+#include <string>
+
+#include "Arbre.h"
+#include "Corrector.h"
+
+//const string __version__ = "2.0.0";
 
 
-using std::vector;
-using std::ostream;
-using std::string;
+class LexicalCorrector {
+ public:
+    LexicalCorrector(const char *lexfile, const char *similarletters, int multipleEntries);
 
-#include "Util.h"
-
-class LexicalEntry {
-public:
-    string lemma;
-    string pos;
-    string type;
-    string traits_m;
-    string traits_s;
-    string usems;
+    ~LexicalCorrector();
     
-    LexicalEntry () {
-    }
     
-    LexicalEntry (const LexicalEntry &le) {
-        //copy of constructor
-        lemma = le.lemma;
-        pos = le.pos;
-        type = le.type;
-        traits_m = traits_m;
-        traits_s = le.traits_s;
-        usems = usems;
-    }
-    
+    // returns the correct word or an empty string
+    string findWordExact(const char *word);
+
+    // find corrections of a word. result is a json string 
+    string findWordCorrected(const char *word, unsigned int maxdist);
+
+    // find corrections of a word with lowest distance 
+    string findWordBest(const char *word, unsigned int maxdist);
+
+ private:
+    // helper function to create json output
+    void getWFs(std::ostream &out, map<const WordForm *, unsigned int> *res);
+
+    ArbreBinaire *ab = 0;
+    Corrector *cr = 0;
+
 };
 
-
-class WordForm {
-public:
-    /**
-     * 
-     * @param lexiconline line read from file
-     * @param multipleEntries if true, we expect a line like "form lemma cat lemma cat ..." else lines are "form description"
-     */
-    WordForm(const string &lexiconline, bool multipleEntries = true);
-    ~WordForm();
-    string form;
-    vector<LexicalEntry>entries;
-    
-    friend ostream& operator<<(ostream& out, const WordForm &wf);
-
-    string toJson() const;
-
-   
-    /** copy tje lexical entry to this word form */
-    void addLexicalEntry(LexicalEntry &le) {
-	entries.push_back(le);
-    }
-    void addLexicalEntry(const vector<LexicalEntry > &le) {
-	entries.insert(entries.end(), le.begin(), le.end());
-    }
-};
-
-
-#endif /* LEXICALENTRY_H */
+#endif
 

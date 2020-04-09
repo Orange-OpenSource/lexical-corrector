@@ -31,77 +31,23 @@ are permitted provided that the following conditions are met:
  Version:  2.0 as of 9th April 2020
 */
 
-/* 
- * File:   LexicalEntry.h
- * currently for freeling style dictionaries
- * form lemma POS [lemma POS [...]]
- */
+%module LexCor
 
-#ifndef __LEXICALENTRY_H__
-#define __LEXICALENTRY_H__
+%include "std_string.i"
+//%include "cpointer.i"
 
-#include <iostream>
-#include <string>
-#include <vector>
+//#ifdef SWIGPYTHON
+//%include "std_vector.i"
+//%include "std_iostream.i"
+//#endif
 
 
-using std::vector;
-using std::ostream;
-using std::string;
+using namespace std;
 
-#include "Util.h"
+%{
+	#include "LexicalCorrector.h"
+%}
 
-class LexicalEntry {
-public:
-    string lemma;
-    string pos;
-    string type;
-    string traits_m;
-    string traits_s;
-    string usems;
-    
-    LexicalEntry () {
-    }
-    
-    LexicalEntry (const LexicalEntry &le) {
-        //copy of constructor
-        lemma = le.lemma;
-        pos = le.pos;
-        type = le.type;
-        traits_m = traits_m;
-        traits_s = le.traits_s;
-        usems = usems;
-    }
-    
-};
+%include "LexicalCorrector.h"
 
-
-class WordForm {
-public:
-    /**
-     * 
-     * @param lexiconline line read from file
-     * @param multipleEntries if true, we expect a line like "form lemma cat lemma cat ..." else lines are "form description"
-     */
-    WordForm(const string &lexiconline, bool multipleEntries = true);
-    ~WordForm();
-    string form;
-    vector<LexicalEntry>entries;
-    
-    friend ostream& operator<<(ostream& out, const WordForm &wf);
-
-    string toJson() const;
-
-   
-    /** copy tje lexical entry to this word form */
-    void addLexicalEntry(LexicalEntry &le) {
-	entries.push_back(le);
-    }
-    void addLexicalEntry(const vector<LexicalEntry > &le) {
-	entries.insert(entries.end(), le.begin(), le.end());
-    }
-};
-
-
-#endif /* LEXICALENTRY_H */
 

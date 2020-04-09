@@ -1,6 +1,6 @@
 /** This library is under the 3-Clause BSD License
 
-Copyright (c) 2017, Orange S.A.
+Copyright (c) 2017-2020, Orange S.A.
 
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.0.1 as of 14th December 2018
+ Version:  2.0.0 as of 9th April 2020
 */
 
 #include <string>
@@ -43,6 +43,7 @@ are permitted provided that the following conditions are met:
 using std::vector;
 using std::istringstream;
 using std::istream_iterator;
+using std::ostringstream;
 
 /** A wordform found in the lexicon
  * 
@@ -139,6 +140,29 @@ bool LESort(const LexicalEntry & a,
 }
 
 
+string WordForm::toJson() const {
+    ostringstream out;
+    out << '{'
+	<< "\"form\": \"" << form << "\","
+	<< "\"lemmas\": [";
+    vector<LexicalEntry>ee = entries;
+    sort(ee.begin(), ee.end(), &LESort);
+    for (vector<LexicalEntry>::const_iterator it = ee.begin(); it != ee.end(); ++it) {
+	if (it != ee.begin()) out << ",";
+        out << "{"<< "\"lemma\": \"" << (it)->lemma << "\"";
+        if (!(it)->pos.empty()) out << ", \"pos\": \"" << (it)->pos << "\"";
+        //if (!(it)->type.empty()) out << "\n\t\ttype: " << (it)->type;
+        //if (!(it)->traits_m.empty()) out << "\n\t\tmorpho: " << (it)->traits_m;
+        //if (!(it)->traits_s.empty()) out << "\n\t\tsyntax: " << (it)->traits_s;
+        //if (!(it)->usems.empty()) out << "\n\t\tsem: " << (it)->usems;
+	out << "}";
+    }
+    out << "]}";
+    return out.str();
+}
+
+
+
 ostream& operator<<(ostream& out, const WordForm &wf) {
     out << wf.form;
     unsigned int ct = 1;
@@ -155,3 +179,4 @@ ostream& operator<<(ostream& out, const WordForm &wf) {
     }
     return out;
 }
+

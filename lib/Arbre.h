@@ -53,7 +53,7 @@ class ArbreBinaire {
      * 
      * @param lexfile a file containing the forms of the lexicon (one entry per line)
      * @param similarletters a file defining which letters are considered similar (gives lower penality)
-     * @param multipleEntries if true, we expect a line like "form lemma cat lemma cat ..." else lines are "form description"
+     * @param multipleEntries if true, we expect a line like "form lemma POS lemma POS ..." (space separated) else lines are "form [lemma [POS [type [morpho features [syntactic feature [semantics]]]]]] (tab separated)"
      */
     ArbreBinaire(const char *lexfile = 0, const char *similarletters = 0, bool multipleEntries = true);
     ~ArbreBinaire();

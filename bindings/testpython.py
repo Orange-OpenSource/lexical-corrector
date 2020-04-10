@@ -33,29 +33,54 @@ import sys
 
 if len(sys.argv) < 5:
     print("Error in %s" % sys.argv[0], file=sys.stderr)
-    print("usage:\n  %s libdirname lexfile similarlettersfile wordlist" % sys.argv[0], file=sys.stderr)
+    print("usage:\n  %s libdirname lexfile similarlettersfile testwordlist" % sys.argv[0], file=sys.stderr)
 else:
     sys.path.append(sys.argv[1])
 
     import json
     import LexCor
 
-    
+    # dictionary, distance definitions, format
+    # for format see README.md
     lc = LexCor.LexicalCorrector(sys.argv[2], sys.argv[3], 1)
-    res = lc.findWordExact("trompette")
-    j = json.loads(res)
-    json.dump(j, sys.stdout, indent=2)
-    print()
+
+    #res = lc.findWordExact("trompette")
+    #j = json.loads(res)
+    #json.dump(j, sys.stdout, indent=2)
+    #print()
+
+    #res = lc.findWordCorrected("mange", 1500)
+    #j = json.loads(res)
+    #json.dump(j, sys.stdout, indent=2)
+    #print()
+
+    #res = lc.findWordBest("manè", 1500)
+    #j = json.loads(res)
+    #json.dump(j, sys.stdout, indent=2)
+    #print()
 
 
-    res = lc.findWordCorrected("mange", 1500)
-    j = json.loads(res)
-    json.dump(j, sys.stdout, indent=2)
-    print()
+    ifp = open(sys.argv[4])
 
-    res = lc.findWordBest("manè", 1500)
-    j = json.loads(res)
-    json.dump(j, sys.stdout, indent=2)
-    print()
+    distfactor = 1000
 
+    allres = "["
+    first = True
+    for word in ifp:
+        word = word.strip()
+        if len(word) < 1:
+            continue
+        maxdistance = int(distfactor * (len(word) / 5))
 
+        if (maxdistance < 1):
+            maxdistance = 1000
+        if not first:
+            allres += ","
+        first = False
+        allres += '{ "word": "%s", "maxdist": %d, "results": ' % (word, maxdistance)
+
+        res = lc.findWordCorrected(word, maxdistance)
+        allres += res + "}"
+    allres += "]"
+    j = json.loads(allres)
+    json.dump(j, sys.stdout, indent=2, ensure_ascii=False)

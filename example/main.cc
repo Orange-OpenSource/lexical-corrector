@@ -314,36 +314,35 @@ int main(int argc, char *argv[]) {
 	    vector<std::pair<const WordForm *, unsigned int> > resVec(res->begin(), res->end());
 	    sort(resVec.begin(), resVec.end(), &resultSort);
 
-	    //if (firstOnly) {
-	    //    if (resVec.empty()) cout << mot;
-	    //    else {
-	    //	const WordForm *wf = resVec.begin()->first;
-	    //	cout << wf->form;
-	    //    }
-	    //    cout << endl;
-	    //} else {
 	    cout << res->size() << " solutions:" << endl;
+	    //cout << '[';
 	    for (vector<std::pair<const WordForm *, unsigned int> >::iterator it = resVec.begin(); 
 		 it != resVec.end(); ++it) {
 		cout << "  " << it->second << ": " << *(it->first) << endl;
+		//if (it != resVec.begin()) cout << ", ";
+		//cout << "{ \"dist\": " << it->second
+		//     << ", \"word\": " << (it->first)->toJson() << "}";
 	    }
-	    //}       
+	    //cout << ']' << endl;
 	}
     } else {
 	// correct textfile
 	ifstream ifp(textfile);
 	string word;
 	if (ifp) {
-	    cout << "Reading text from '" << textfile << "'" << endl;
+	    cerr << "Reading text from '" << textfile << "'" << endl;
+	    cout << '[';
+	    bool first = true;
 	    while (!ifp.eof()) {
 		ifp >> word;
+		//cerr << "<<" << word <<"||" << word.size() << ">>" << endl;
 		if (word.size() < 1) continue;
 		unsigned wordLength = cr.unicodePoints(word.c_str());
 		int distance = distfactor * wordLength / 5;
 		if (distance < 1) distance = 1000;
 
-		//#define DATCHA
-#ifdef DATCHA
+#define CORRECT
+#ifdef CORRECT
 		map<const WordForm *, unsigned int> *res = cr.findWordCorrected(word.c_str(), distance);
 #else
 		map<const WordForm *, unsigned int> *res = cr.findWordBest(word.c_str(), distance);
@@ -353,31 +352,51 @@ int main(int argc, char *argv[]) {
 		// trier en fonction de la distance levenshtein
 		vector<std::pair<const WordForm *, unsigned int> > resVec(res->begin(), res->end());
 		sort(resVec.begin(), resVec.end(), &resultSort);
-		if (!resVec.empty()) {
-		    const WordForm *wf = resVec.begin()->first;
-		    if (
-#ifdef DATCHA
-			true || 
-#endif
-			word != wf->form) {
-			//cout << word << "\t>>\t" << wf->form;
-			cout << word << "\t>>";
-			for (vector<std::pair<const WordForm *, unsigned int> >::iterator it = resVec.begin(); 
-			     it != resVec.end(); ++it) {
-			    cout << "\t" << it->first->form
-#ifdef DATCHA
-				 << ":" << it->second
-#endif
-				;
-			}
-		    } else
-			cout << word;
-		} else {
-		    cout << word;
+
+
+		if (!first) cout << ',' << endl;
+		first = false;
+		cout << "{ \"word\": \"" << word
+		     << "\", \"maxdist\": " << distance
+		     << ", \"results\": [";
+
+		for (vector<std::pair<const WordForm *, unsigned int> >::iterator it = resVec.begin();
+		     it != resVec.end(); ++it) {
+		    //cout << "  " << it->second << ": " << *(it->first) << endl;
+		    if (it != resVec.begin()) cout << ", ";
+		    cout << "{ \"dist\": " << it->second
+			 << ", \"entry\": " << (it->first)->toJson() << "}";
 		}
-		cout << endl;
-		word = "";
+		cout << "]}";
+
+
+// 		if (!resVec.empty()) {
+// 		    const WordForm *wf = resVec.begin()->first;
+// 		    if (
+// #ifdef CORRECT
+// 			true ||
+// #endif
+// 			word != wf->form) {
+// 			//cout << word << "\t>>\t" << wf->form;
+// 			cout << word << "\t>>";
+// 			for (vector<std::pair<const WordForm *, unsigned int> >::iterator it = resVec.begin();
+// 			     it != resVec.end(); ++it) {
+// 			    cout << "\t" << it->first->form
+// #ifdef CORRECT
+// 				 << ":" << it->second
+// #endif
+// 				;
+// 			}
+// 		    } else
+// 			cout << word;
+// 		} else {
+// 		    cout << word;
+// 		}
+// 		cout << endl;
+
+		word = ""; // to avoid reading the same word if empty line
 	    }
+	    cout << ']';
 	} else {
 	    cerr << "cannot open " << textfile << endl;
 	    return 10;

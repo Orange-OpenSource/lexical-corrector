@@ -20,8 +20,10 @@ Johannes Heinecke
 
 ## Requirements
 
-GNU libunistring unicode library
-
+* GNU libunistring unicode library (Ubuntu: `sudo apt install libunistring-dev`)
+* for tests only
+  * `jq` json parser  (Ubuntu: `sudo apt install jq`)
+  * `meld` utilities   (Ubuntu: `sudo apt install meld`)
 
 ## Compiling
 
@@ -40,6 +42,7 @@ For the tests a partial lexicon is downloaded from the FreeLing project
     make mini_test
     make speed_test
     make valgrind_test
+    make python_test
 
 ### Java library
 
@@ -71,6 +74,23 @@ The following configuration replaces `?` into letter with an diacritic symbol (l
 
     ./build/example/lexiconAccess  --similar example/correct-diacritics.txt  downloaded_data/dictionary.txt
 
+The format of the lexfile is space separated list of
+```
+form lemma POS [lemma2 POS [...]]
+```
+
+or
+
+```
+form lemma POS
+form lemma2 POS
+...
+```
+
+if the option `--singleEntry` is used, the format is a tab-separated list of
+```
+form [lemma [POS [type [morpho features [syntactic feature [semantics]]]]]]"
+```
 
 ### Java tool
 
@@ -146,4 +166,22 @@ get corrections. fo find the best guesses up to a certain edit distance
 
 See [java/src/main/java/com/orange/labs/lexicon/Lexicon.java](java/src/main/java/com/orange/labs/lexicon/Lexicon.java) for more
 information.
+
+### Python (3)
+
+In difference to Java and C++, the Python3 API returns JSON objects (this was done to avoid fiddling too much with Swig's interfacing)
+
+    import sys
+    import json
+    import LexCor
+
+    lc = LexCor.LexicalCorrector(dictionary, letters, 1)
+    #                          word to correct, maximal Levenshtein-distance (* 1000)
+    res = lc.findWordCorrected("violinn", 1500)
+    j = json.loads(res)
+    json.dump(j, sys.stdout, indent=2, ensure_ascii=False)
+
+See also [bindings/testpython.py](bindings/testpython.py).
+
+The the default distance for one different character is 1000. The file [example/letters.txt](example/letters.txt) can be used to define different distance values for some kind of errors.
 

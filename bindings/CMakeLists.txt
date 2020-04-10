@@ -30,7 +30,7 @@
 
 if(CP_EXPORT)
    set(INTERFACE LexicalCorrector.i)
-   set(WORDS ${PROJECT_SOURCE_DIR}/example/word.txt)
+   set(WORDS ${PROJECT_SOURCE_DIR}/example/word2.txt)
    set(SIMILARLETTERS ${PROJECT_SOURCE_DIR}/example/letters.txt)
    set(FREELING_TXT ${PROJECT_SOURCE_DIR}/downloaded_data/dictionary.txt)
 
@@ -64,13 +64,14 @@ if(CP_EXPORT)
          set_target_properties(${PYTHON_CP_NAME} PROPERTIES PREFIX _ )
          target_link_libraries(${PYTHON_CP_NAME} lexicon)
 
-         add_custom_target(testpython
+         add_custom_target(python_test
             #COMMAND echo "bin path ${CMAKE_CURRENT_BINARY_DIR}"
             COMMAND echo "PYTHON TEST ${PYCOMMAND} -u ${CMAKE_CURRENT_SOURCE_DIR}/testpython.py ${CMAKE_CURRENT_BINARY_DIR} ${FREELING_TXT} ${SIMILARLETTERS} ${WORDS}"
-            COMMAND ${PYCOMMAND} -u ${CMAKE_CURRENT_SOURCE_DIR}/testpython.py ${CMAKE_CURRENT_BINARY_DIR}  ${FREELING_TXT} ${SIMILARLETTERS} ${WORDS}
+            COMMAND ${PYCOMMAND} -u ${CMAKE_CURRENT_SOURCE_DIR}/testpython.py ${CMAKE_CURRENT_BINARY_DIR}  ${FREELING_TXT} ${SIMILARLETTERS} ${WORDS} | tee result_py.json
+            COMMAND echo
+            COMMAND echo "comparing: result_py.json ${PROJECT_SOURCE_DIR}/example/result_reference.json"
+            COMMAND meld result_py.json ${PROJECT_SOURCE_DIR}/example/result_reference.json
          )
-      
-         #add_dependencies(testpython lexicon)
 
       else()
          message("pythonlibs not installed on your system")

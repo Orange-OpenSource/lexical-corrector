@@ -78,13 +78,17 @@ add_custom_target(speed_test
 	)
 
 add_custom_target(mini_test
-	COMMAND cat ${PROJECT_SOURCE_DIR}/example/word2.txt | 
-			./lexiconAccess
-			--similar ${SIMILARLETTERS}
-			${FREELING_TXT} | tee result.txt
+	#COMMAND cat ${PROJECT_SOURCE_DIR}/example/word2.txt |
+	#		./lexiconAccess
+	#		--similar ${SIMILARLETTERS}
+	#		${FREELING_TXT} | tee result.txt
+	COMMAND ./lexiconAccess
+		--similar ${SIMILARLETTERS}
+		${FREELING_TXT}
+		${PROJECT_SOURCE_DIR}/example/word2.txt | jq . | tee result.json
 	COMMAND echo
-	COMMAND echo "comparing: result.txt ${PROJECT_SOURCE_DIR}/example/result_reference.txt"
-	COMMAND meld result.txt ${PROJECT_SOURCE_DIR}/example/result_reference.txt
+	COMMAND echo "comparing: result.txt ${PROJECT_SOURCE_DIR}/example/result_reference.json"
+	COMMAND meld result.json ${PROJECT_SOURCE_DIR}/example/result_reference.json
 	
 	)
 	

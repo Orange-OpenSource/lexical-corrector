@@ -1,0 +1,1447 @@
+[
+  {
+    "word": "amont",
+    "maxdist": 1000,
+    "results": [
+      {
+        "dist": 0,
+        "entry": {
+          "form": "amont",
+          "lemmas": [
+            {
+              "lemma": "amont",
+              "pos": "NCMS000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "amant",
+          "lemmas": [
+            {
+              "lemma": "amant",
+              "pos": "NCMS000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "amonts",
+          "lemmas": [
+            {
+              "lemma": "amont",
+              "pos": "NCMP000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "mont",
+          "lemmas": [
+            {
+              "lemma": "mont",
+              "pos": "NCMS000"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "eaux",
+    "maxdist": 800,
+    "results": [
+      {
+        "dist": 0,
+        "entry": {
+          "form": "eaux",
+          "lemmas": [
+            {
+              "lemma": "eau",
+              "pos": "NCFP000"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "aval",
+    "maxdist": 800,
+    "results": [
+      {
+        "dist": 0,
+        "entry": {
+          "form": "aval",
+          "lemmas": [
+            {
+              "lemma": "aval",
+              "pos": "NCMS000"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "eau",
+    "maxdist": 600,
+    "results": [
+      {
+        "dist": 0,
+        "entry": {
+          "form": "eau",
+          "lemmas": [
+            {
+              "lemma": "eau",
+              "pos": "NCFS000"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "avail",
+    "maxdist": 1000,
+    "results": [
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "avais",
+          "lemmas": [
+            {
+              "lemma": "avoir",
+              "pos": "VMII1S0"
+            },
+            {
+              "lemma": "avoir",
+              "pos": "VMII2S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "avait",
+          "lemmas": [
+            {
+              "lemma": "avoir",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "aval",
+          "lemmas": [
+            {
+              "lemma": "aval",
+              "pos": "NCMS000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "avril",
+          "lemmas": [
+            {
+              "lemma": "avril",
+              "pos": "NCMS000"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "avait",
+    "maxdist": 1000,
+    "results": [
+      {
+        "dist": 0,
+        "entry": {
+          "form": "avait",
+          "lemmas": [
+            {
+              "lemma": "avoir",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "avais",
+          "lemmas": [
+            {
+              "lemma": "avoir",
+              "pos": "VMII1S0"
+            },
+            {
+              "lemma": "avoir",
+              "pos": "VMII2S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "avant",
+          "lemmas": [
+            {
+              "lemma": "avant",
+              "pos": "NCMS000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "axait",
+          "lemmas": [
+            {
+              "lemma": "axer",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "bavait",
+          "lemmas": [
+            {
+              "lemma": "baver",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "cavait",
+          "lemmas": [
+            {
+              "lemma": "caver",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "gavait",
+          "lemmas": [
+            {
+              "lemma": "gaver",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "havait",
+          "lemmas": [
+            {
+              "lemma": "haver",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "lavait",
+          "lemmas": [
+            {
+              "lemma": "laver",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "pavait",
+          "lemmas": [
+            {
+              "lemma": "paver",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "savait",
+          "lemmas": [
+            {
+              "lemma": "savoir",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "avaient",
+    "maxdist": 1400,
+    "results": [
+      {
+        "dist": 0,
+        "entry": {
+          "form": "avaient",
+          "lemmas": [
+            {
+              "lemma": "avoir",
+              "pos": "VMII3P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "avalent",
+          "lemmas": [
+            {
+              "lemma": "avaler",
+              "pos": "VMIP3P0"
+            },
+            {
+              "lemma": "avaler",
+              "pos": "VMSP3P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "avarient",
+          "lemmas": [
+            {
+              "lemma": "avarier",
+              "pos": "VMIP3P0"
+            },
+            {
+              "lemma": "avarier",
+              "pos": "VMSP3P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "axaient",
+          "lemmas": [
+            {
+              "lemma": "axer",
+              "pos": "VMII3P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "bavaient",
+          "lemmas": [
+            {
+              "lemma": "baver",
+              "pos": "VMII3P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "cavaient",
+          "lemmas": [
+            {
+              "lemma": "caver",
+              "pos": "VMII3P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "gavaient",
+          "lemmas": [
+            {
+              "lemma": "gaver",
+              "pos": "VMII3P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "havaient",
+          "lemmas": [
+            {
+              "lemma": "haver",
+              "pos": "VMII3P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "lavaient",
+          "lemmas": [
+            {
+              "lemma": "laver",
+              "pos": "VMII3P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "pavaient",
+          "lemmas": [
+            {
+              "lemma": "paver",
+              "pos": "VMII3P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "savaient",
+          "lemmas": [
+            {
+              "lemma": "savoir",
+              "pos": "VMII3P0"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "suis",
+    "maxdist": 800,
+    "results": [
+      {
+        "dist": 0,
+        "entry": {
+          "form": "suis",
+          "lemmas": [
+            {
+              "lemma": "suivre",
+              "pos": "VMIP1S0"
+            },
+            {
+              "lemma": "suivre",
+              "pos": "VMIP2S0"
+            },
+            {
+              "lemma": "suivre",
+              "pos": "VMM02S0"
+            },
+            {
+              "lemma": "être",
+              "pos": "VMIP1S0"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "ire",
+    "maxdist": 600,
+    "results": [
+      {
+        "dist": 0,
+        "entry": {
+          "form": "ire",
+          "lemmas": [
+            {
+              "lemma": "ire",
+              "pos": "NCFS000"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "aller",
+    "maxdist": 1000,
+    "results": [
+      {
+        "dist": 0,
+        "entry": {
+          "form": "aller",
+          "lemmas": [
+            {
+              "lemma": "aller",
+              "pos": "NCMS000"
+            },
+            {
+              "lemma": "aller",
+              "pos": "VMN0000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "ailler",
+          "lemmas": [
+            {
+              "lemma": "ailler",
+              "pos": "VMN0000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "allers",
+          "lemmas": [
+            {
+              "lemma": "aller",
+              "pos": "NCMP000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "alleu",
+          "lemmas": [
+            {
+              "lemma": "alleu",
+              "pos": "NCMS000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "allez",
+          "lemmas": [
+            {
+              "lemma": "aller",
+              "pos": "VMIP2P0"
+            },
+            {
+              "lemma": "aller",
+              "pos": "VMM02P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "allier",
+          "lemmas": [
+            {
+              "lemma": "allier",
+              "pos": "VMN0000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "baller",
+          "lemmas": [
+            {
+              "lemma": "baller",
+              "pos": "VMN0000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "daller",
+          "lemmas": [
+            {
+              "lemma": "daller",
+              "pos": "VMN0000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "raller",
+          "lemmas": [
+            {
+              "lemma": "raller",
+              "pos": "VMN0000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "taller",
+          "lemmas": [
+            {
+              "lemma": "taller",
+              "pos": "VMN0000"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "etait",
+    "maxdist": 1000,
+    "results": [
+      {
+        "dist": 300,
+        "entry": {
+          "form": "était",
+          "lemmas": [
+            {
+              "lemma": "être",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "entait",
+          "lemmas": [
+            {
+              "lemma": "enter",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "estait",
+          "lemmas": [
+            {
+              "lemma": "ester",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "jetait",
+          "lemmas": [
+            {
+              "lemma": "jeter",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "ôtait",
+          "lemmas": [
+            {
+              "lemma": "ôter",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "éleve",
+    "maxdist": 1000,
+    "results": [
+      {
+        "dist": 300,
+        "entry": {
+          "form": "élevé",
+          "lemmas": [
+            {
+              "lemma": "élever",
+              "pos": "VMP00SM"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 300,
+        "entry": {
+          "form": "élève",
+          "lemmas": [
+            {
+              "lemma": "élever",
+              "pos": "VMIP1S0"
+            },
+            {
+              "lemma": "élever",
+              "pos": "VMIP3S0"
+            },
+            {
+              "lemma": "élever",
+              "pos": "VMM02S0"
+            },
+            {
+              "lemma": "élever",
+              "pos": "VMSP1S0"
+            },
+            {
+              "lemma": "élever",
+              "pos": "VMSP3S0"
+            },
+            {
+              "lemma": "élève",
+              "pos": "NCCS000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "éleva",
+          "lemmas": [
+            {
+              "lemma": "élever",
+              "pos": "VMIS3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "élever",
+          "lemmas": [
+            {
+              "lemma": "élever",
+              "pos": "VMN0000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "élevez",
+          "lemmas": [
+            {
+              "lemma": "élever",
+              "pos": "VMIP2P0"
+            },
+            {
+              "lemma": "élever",
+              "pos": "VMM02P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "élevée",
+          "lemmas": [
+            {
+              "lemma": "élever",
+              "pos": "VMP00SF"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "connait",
+    "maxdist": 1400,
+    "results": [
+      {
+        "dist": 300,
+        "entry": {
+          "form": "connaît",
+          "lemmas": [
+            {
+              "lemma": "connaître",
+              "pos": "VMIP3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "cannait",
+          "lemmas": [
+            {
+              "lemma": "canner",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "cognait",
+          "lemmas": [
+            {
+              "lemma": "cogner",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "connais",
+          "lemmas": [
+            {
+              "lemma": "connaître",
+              "pos": "VMIP1S0"
+            },
+            {
+              "lemma": "connaître",
+              "pos": "VMIP2S0"
+            },
+            {
+              "lemma": "connaître",
+              "pos": "VMM02S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "contait",
+          "lemmas": [
+            {
+              "lemma": "conter",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "cornait",
+          "lemmas": [
+            {
+              "lemma": "corner",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "donnait",
+          "lemmas": [
+            {
+              "lemma": "donner",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "sonnait",
+          "lemmas": [
+            {
+              "lemma": "sonner",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "tonnait",
+          "lemmas": [
+            {
+              "lemma": "tonner",
+              "pos": "VMII3S0"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "hepato-gastro-entérologues",
+    "maxdist": 5200,
+    "results": [
+      {
+        "dist": 300,
+        "entry": {
+          "form": "hépato-gastro-entérologues",
+          "lemmas": [
+            {
+              "lemma": "hépato-gastro-entérologue",
+              "pos": "NCMP000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1300,
+        "entry": {
+          "form": "hépato-gastro-entérologue",
+          "lemmas": [
+            {
+              "lemma": "hépato-gastro-entérologue",
+              "pos": "NCMS000"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "masion",
+    "maxdist": 1200,
+    "results": [
+      {
+        "dist": 900,
+        "entry": {
+          "form": "maison",
+          "lemmas": [
+            {
+              "lemma": "maison",
+              "pos": "NCFS000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "mansion",
+          "lemmas": [
+            {
+              "lemma": "mansion",
+              "pos": "NCFS000"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "maisson",
+    "maxdist": 1400,
+    "results": [
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "caisson",
+          "lemmas": [
+            {
+              "lemma": "caisson",
+              "pos": "NCMS000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "maison",
+          "lemmas": [
+            {
+              "lemma": "maison",
+              "pos": "NCFS000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "moisson",
+          "lemmas": [
+            {
+              "lemma": "moisson",
+              "pos": "NCFS000"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "constitutionnalisassions-cette-affaire",
+    "maxdist": 7600,
+    "results": []
+  },
+  {
+    "word": "chantonq",
+    "maxdist": 1600,
+    "results": [
+      {
+        "dist": 902,
+        "entry": {
+          "form": "chantons",
+          "lemmas": [
+            {
+              "lemma": "chanter",
+              "pos": "VMIP1P0"
+            },
+            {
+              "lemma": "chanter",
+              "pos": "VMM01P0"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "bolatilites",
+    "maxdist": 2200,
+    "results": [
+      {
+        "dist": 1202,
+        "entry": {
+          "form": "volatilités",
+          "lemmas": [
+            {
+              "lemma": "volatilité",
+              "pos": "NCFP000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1902,
+        "entry": {
+          "form": "volatilises",
+          "lemmas": [
+            {
+              "lemma": "volatiliser",
+              "pos": "VMIP2S0"
+            },
+            {
+              "lemma": "volatiliser",
+              "pos": "VMSP2S0"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "manè",
+    "maxdist": 800,
+    "results": [
+      {
+        "dist": 600,
+        "entry": {
+          "form": "mâne",
+          "lemmas": [
+            {
+              "lemma": "mâne",
+              "pos": "NCMS000"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "monge",
+    "maxdist": 1000,
+    "results": [
+      {
+        "dist": 902,
+        "entry": {
+          "form": "longe",
+          "lemmas": [
+            {
+              "lemma": "longe",
+              "pos": "NCFS000"
+            },
+            {
+              "lemma": "longer",
+              "pos": "VMIP1S0"
+            },
+            {
+              "lemma": "longer",
+              "pos": "VMIP3S0"
+            },
+            {
+              "lemma": "longer",
+              "pos": "VMM02S0"
+            },
+            {
+              "lemma": "longer",
+              "pos": "VMSP1S0"
+            },
+            {
+              "lemma": "longer",
+              "pos": "VMSP3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "mange",
+          "lemmas": [
+            {
+              "lemma": "manger",
+              "pos": "VMIP1S0"
+            },
+            {
+              "lemma": "manger",
+              "pos": "VMIP3S0"
+            },
+            {
+              "lemma": "manger",
+              "pos": "VMM02S0"
+            },
+            {
+              "lemma": "manger",
+              "pos": "VMSP1S0"
+            },
+            {
+              "lemma": "manger",
+              "pos": "VMSP3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "monde",
+          "lemmas": [
+            {
+              "lemma": "monde",
+              "pos": "NCMS000"
+            },
+            {
+              "lemma": "monder",
+              "pos": "VMIP1S0"
+            },
+            {
+              "lemma": "monder",
+              "pos": "VMIP3S0"
+            },
+            {
+              "lemma": "monder",
+              "pos": "VMM02S0"
+            },
+            {
+              "lemma": "monder",
+              "pos": "VMSP1S0"
+            },
+            {
+              "lemma": "monder",
+              "pos": "VMSP3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "monte",
+          "lemmas": [
+            {
+              "lemma": "monte",
+              "pos": "NCFS000"
+            },
+            {
+              "lemma": "monter",
+              "pos": "VMIP1S0"
+            },
+            {
+              "lemma": "monter",
+              "pos": "VMIP3S0"
+            },
+            {
+              "lemma": "monter",
+              "pos": "VMM02S0"
+            },
+            {
+              "lemma": "monter",
+              "pos": "VMSP1S0"
+            },
+            {
+              "lemma": "monter",
+              "pos": "VMSP3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "ronge",
+          "lemmas": [
+            {
+              "lemma": "ronger",
+              "pos": "VMIP1S0"
+            },
+            {
+              "lemma": "ronger",
+              "pos": "VMIP3S0"
+            },
+            {
+              "lemma": "ronger",
+              "pos": "VMM02S0"
+            },
+            {
+              "lemma": "ronger",
+              "pos": "VMSP1S0"
+            },
+            {
+              "lemma": "ronger",
+              "pos": "VMSP3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "songe",
+          "lemmas": [
+            {
+              "lemma": "songe",
+              "pos": "NCMS000"
+            },
+            {
+              "lemma": "songer",
+              "pos": "VMIP1S0"
+            },
+            {
+              "lemma": "songer",
+              "pos": "VMIP3S0"
+            },
+            {
+              "lemma": "songer",
+              "pos": "VMM02S0"
+            },
+            {
+              "lemma": "songer",
+              "pos": "VMSP1S0"
+            },
+            {
+              "lemma": "songer",
+              "pos": "VMSP3S0"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "allees",
+    "maxdist": 1200,
+    "results": [
+      {
+        "dist": 300,
+        "entry": {
+          "form": "allées",
+          "lemmas": [
+            {
+              "lemma": "aller",
+              "pos": "VMP00PF"
+            },
+            {
+              "lemma": "allée",
+              "pos": "NCFP000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 902,
+        "entry": {
+          "form": "allers",
+          "lemmas": [
+            {
+              "lemma": "aller",
+              "pos": "NCMP000"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 1000,
+        "entry": {
+          "form": "allies",
+          "lemmas": [
+            {
+              "lemma": "allier",
+              "pos": "VMIP2S0"
+            },
+            {
+              "lemma": "allier",
+              "pos": "VMSP2S0"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "word": "affaiblison",
+    "maxdist": 2200,
+    "results": [
+      {
+        "dist": 2000,
+        "entry": {
+          "form": "affaiblirons",
+          "lemmas": [
+            {
+              "lemma": "affaiblir",
+              "pos": "VMIF1P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 2000,
+        "entry": {
+          "form": "affaibliront",
+          "lemmas": [
+            {
+              "lemma": "affaiblir",
+              "pos": "VMIF3P0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 2000,
+        "entry": {
+          "form": "affaiblis",
+          "lemmas": [
+            {
+              "lemma": "affaiblir",
+              "pos": "VMIP1S0"
+            },
+            {
+              "lemma": "affaiblir",
+              "pos": "VMIP2S0"
+            },
+            {
+              "lemma": "affaiblir",
+              "pos": "VMIS1S0"
+            },
+            {
+              "lemma": "affaiblir",
+              "pos": "VMIS2S0"
+            },
+            {
+              "lemma": "affaiblir",
+              "pos": "VMM02S0"
+            },
+            {
+              "lemma": "affaiblir",
+              "pos": "VMP00PM"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 2000,
+        "entry": {
+          "form": "affaiblisse",
+          "lemmas": [
+            {
+              "lemma": "affaiblir",
+              "pos": "VMSI1S0"
+            },
+            {
+              "lemma": "affaiblir",
+              "pos": "VMSP1S0"
+            },
+            {
+              "lemma": "affaiblir",
+              "pos": "VMSP3S0"
+            }
+          ]
+        }
+      },
+      {
+        "dist": 2000,
+        "entry": {
+          "form": "affaiblissons",
+          "lemmas": [
+            {
+              "lemma": "affaiblir",
+              "pos": "VMIP1P0"
+            },
+            {
+              "lemma": "affaiblir",
+              "pos": "VMM01P0"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

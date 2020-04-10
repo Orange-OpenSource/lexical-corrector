@@ -52,6 +52,8 @@ using std::ostringstream;
  */
 WordForm::WordForm(const string &lexiconline, bool multipleEntries) {
     if (multipleEntries) {
+	// format of dico line:
+	// form lemma POS lemma2 POS lemma3 POS ...
         istringstream iss(lexiconline);
         istream_iterator<string> begin(iss);
         istream_iterator<string> end;
@@ -79,6 +81,8 @@ WordForm::WordForm(const string &lexiconline, bool multipleEntries) {
         }
         tmp.clear();
     } else {
+	// format of dico line (TSV):
+	// form [lemma [POS [type [morpho features [syntactic feature [semantics]]]]]]
         // lire lexique produit avec acceslexique --dump --tab
         string::size_type space = lexiconline.find('\t');
         //std::cout << space << " " << lexiconline << std::endl;

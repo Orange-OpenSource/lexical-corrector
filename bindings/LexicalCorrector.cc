@@ -60,23 +60,31 @@ string LexicalCorrector::findWordExact(const char *word) {
     return wf->toJson();
 }
 
-void LexicalCorrector::getWFs(ostream &out, map<const WordForm *, unsigned int> *res) {
-    vector<std::pair<const WordForm *, int>> pairs;
-    for (auto itr = res->begin(); itr != res->end(); ++itr) {
-	pairs.push_back(*itr);
-    }
 
-    sort(pairs.begin(), pairs.end(), [=](std::pair<const WordForm *, int>& a,
-					 std::pair<const WordForm *, int>& b) {
-	     return a.second < b.second;
-	 });
+/// trier un map selon les valeurs
+bool resultSort(std::pair<const WordForm *, unsigned int> a,
+                std::pair<const WordForm *, unsigned int> b) {
+    if (a.second == b.second) {
+	if (a.first->form < b.first->form) return true;
+    } else {
+	if (a.second < b.second) return true;
+    }
+    return false;
+}
+
+
+
+void LexicalCorrector::getWFs(ostream &out, map<const WordForm *, unsigned int> *res) {
+    // trier en fonction de la distance levenshtein
+    vector<std::pair<const WordForm *, unsigned int> > resVec(res->begin(), res->end());
+    sort(resVec.begin(), resVec.end(), &resultSort);
 
     out << '[';
-    for (vector<std::pair<const WordForm *, int>>::iterator it = pairs.begin();
-	 it != pairs.end(); ++it) {
-	if (it != pairs.begin()) out << ", ";
+    for (vector<std::pair<const WordForm *, unsigned int>>::iterator it = resVec.begin();
+	 it != resVec.end(); ++it) {
+	if (it != resVec.begin()) out << ", ";
 	out << "{ \"dist\": " << it->second
-	    << ", \"word\": " << (it->first)->toJson() << "}";
+	    << ", \"entry\": " << (it->first)->toJson() << "}";
     }
     out << ']';
 }

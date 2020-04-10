@@ -60,6 +60,7 @@ Corrector::Corrector(const ArbreBinaire *ab) : arbre(ab) {
 Corrector::~Corrector() {
     delete calculator;
     delete [] ucs4buffer;
+    //cerr << "** delete Corrector " << this << endl;
 }
 
 unsigned int Corrector::unicodePoints(const char *word) {

@@ -45,6 +45,7 @@ are permitted provided that the following conditions are met:
 using std::ostream;
 using std::string;
 
+const string __version__ = "2.1.0";
 
 class ArbreBinaire {
  public:

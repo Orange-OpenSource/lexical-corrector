@@ -73,6 +73,15 @@ if(CP_EXPORT)
             COMMAND meld result_py.json ${PROJECT_SOURCE_DIR}/example/result_reference.json
          )
 
+         add_custom_target(pythonbasic_test
+            #COMMAND echo "bin path ${CMAKE_CURRENT_BINARY_DIR}"
+            COMMAND echo "PYTHON TEST ${PYCOMMAND} -u ${CMAKE_CURRENT_SOURCE_DIR}/testpython.py ${CMAKE_CURRENT_BINARY_DIR} ${FREELING_TXT} ${SIMILARLETTERS} ${WORDS}"
+            COMMAND ${PYCOMMAND} -u ${CMAKE_CURRENT_SOURCE_DIR}/testpython_basic.py ${CMAKE_CURRENT_BINARY_DIR}  ${FREELING_TXT} ${SIMILARLETTERS} ${WORDS} | tee result_pybasic.txt
+            COMMAND echo
+            COMMAND echo "comparing: result_pybasic.txt ${PROJECT_SOURCE_DIR}/example/result_reference.short.txt"
+            COMMAND meld result_pybasic.txt ${PROJECT_SOURCE_DIR}/example/result_reference.short.txt
+         )
+
       else()
          message("pythonlibs not installed on your system")
       endif()

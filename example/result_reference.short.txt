@@ -1,0 +1,552 @@
+{
+  "error": "no corrector"
+}
+{
+  "form": "mange",
+  "lemmas": [
+    {
+      "lemma": "manger",
+      "pos": "VMIP1S0"
+    },
+    {
+      "lemma": "manger",
+      "pos": "VMIP3S0"
+    },
+    {
+      "lemma": "manger",
+      "pos": "VMM02S0"
+    },
+    {
+      "lemma": "manger",
+      "pos": "VMSP1S0"
+    },
+    {
+      "lemma": "manger",
+      "pos": "VMSP3S0"
+    }
+  ]
+}
+[
+  {
+    "dist": 1000,
+    "entry": {
+      "form": "tendu",
+      "lemmas": [
+        {
+          "lemma": "tendre",
+          "pos": "VMP00SM"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1000,
+    "entry": {
+      "form": "tondu",
+      "lemmas": [
+        {
+          "lemma": "tondre",
+          "pos": "VMP00SM"
+        },
+        {
+          "lemma": "tondu",
+          "pos": "NCMS000"
+        }
+      ]
+    }
+  }
+]
+[
+  {
+    "dist": 600,
+    "entry": {
+      "form": "m\u00e2ne",
+      "lemmas": [
+        {
+          "lemma": "m\u00e2ne",
+          "pos": "NCMS000"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1000,
+    "entry": {
+      "form": "mana",
+      "lemmas": [
+        {
+          "lemma": "mana",
+          "pos": "NCMS000"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "cane",
+      "lemmas": [
+        {
+          "lemma": "cane",
+          "pos": "NCFS000"
+        },
+        {
+          "lemma": "caner",
+          "pos": "VMIP1S0"
+        },
+        {
+          "lemma": "caner",
+          "pos": "VMIP3S0"
+        },
+        {
+          "lemma": "caner",
+          "pos": "VMM02S0"
+        },
+        {
+          "lemma": "caner",
+          "pos": "VMSP1S0"
+        },
+        {
+          "lemma": "caner",
+          "pos": "VMSP3S0"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "fane",
+      "lemmas": [
+        {
+          "lemma": "fane",
+          "pos": "NCFS000"
+        },
+        {
+          "lemma": "faner",
+          "pos": "VMIP1S0"
+        },
+        {
+          "lemma": "faner",
+          "pos": "VMIP3S0"
+        },
+        {
+          "lemma": "faner",
+          "pos": "VMM02S0"
+        },
+        {
+          "lemma": "faner",
+          "pos": "VMSP1S0"
+        },
+        {
+          "lemma": "faner",
+          "pos": "VMSP3S0"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "mage",
+      "lemmas": [
+        {
+          "lemma": "mage",
+          "pos": "NCMS000"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "magne",
+      "lemmas": [
+        {
+          "lemma": "magner",
+          "pos": "VMIP1S0"
+        },
+        {
+          "lemma": "magner",
+          "pos": "VMIP3S0"
+        },
+        {
+          "lemma": "magner",
+          "pos": "VMM02S0"
+        },
+        {
+          "lemma": "magner",
+          "pos": "VMSP1S0"
+        },
+        {
+          "lemma": "magner",
+          "pos": "VMSP3S0"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "maie",
+      "lemmas": [
+        {
+          "lemma": "maie",
+          "pos": "NCFS000"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "mande",
+      "lemmas": [
+        {
+          "lemma": "mander",
+          "pos": "VMIP1S0"
+        },
+        {
+          "lemma": "mander",
+          "pos": "VMIP3S0"
+        },
+        {
+          "lemma": "mander",
+          "pos": "VMM02S0"
+        },
+        {
+          "lemma": "mander",
+          "pos": "VMSP1S0"
+        },
+        {
+          "lemma": "mander",
+          "pos": "VMSP3S0"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "mange",
+      "lemmas": [
+        {
+          "lemma": "manger",
+          "pos": "VMIP1S0"
+        },
+        {
+          "lemma": "manger",
+          "pos": "VMIP3S0"
+        },
+        {
+          "lemma": "manger",
+          "pos": "VMM02S0"
+        },
+        {
+          "lemma": "manger",
+          "pos": "VMSP1S0"
+        },
+        {
+          "lemma": "manger",
+          "pos": "VMSP3S0"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "manie",
+      "lemmas": [
+        {
+          "lemma": "manie",
+          "pos": "NCFS000"
+        },
+        {
+          "lemma": "manier",
+          "pos": "VMIP1S0"
+        },
+        {
+          "lemma": "manier",
+          "pos": "VMIP3S0"
+        },
+        {
+          "lemma": "manier",
+          "pos": "VMM02S0"
+        },
+        {
+          "lemma": "manier",
+          "pos": "VMSP1S0"
+        },
+        {
+          "lemma": "manier",
+          "pos": "VMSP3S0"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "manne",
+      "lemmas": [
+        {
+          "lemma": "manne",
+          "pos": "NCFS000"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "manse",
+      "lemmas": [
+        {
+          "lemma": "manse",
+          "pos": "NCCS000"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "mante",
+      "lemmas": [
+        {
+          "lemma": "mante",
+          "pos": "NCFS000"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "mare",
+      "lemmas": [
+        {
+          "lemma": "mare",
+          "pos": "NCFS000"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "marne",
+      "lemmas": [
+        {
+          "lemma": "marne",
+          "pos": "NCFS000"
+        },
+        {
+          "lemma": "marner",
+          "pos": "VMIP1S0"
+        },
+        {
+          "lemma": "marner",
+          "pos": "VMIP3S0"
+        },
+        {
+          "lemma": "marner",
+          "pos": "VMM02S0"
+        },
+        {
+          "lemma": "marner",
+          "pos": "VMSP1S0"
+        },
+        {
+          "lemma": "marner",
+          "pos": "VMSP3S0"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "mate",
+      "lemmas": [
+        {
+          "lemma": "mater",
+          "pos": "VMIP1S0"
+        },
+        {
+          "lemma": "mater",
+          "pos": "VMIP3S0"
+        },
+        {
+          "lemma": "mater",
+          "pos": "VMM02S0"
+        },
+        {
+          "lemma": "mater",
+          "pos": "VMSP1S0"
+        },
+        {
+          "lemma": "mater",
+          "pos": "VMSP3S0"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "maye",
+      "lemmas": [
+        {
+          "lemma": "maye",
+          "pos": "NCFS000"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "maze",
+      "lemmas": [
+        {
+          "lemma": "mazer",
+          "pos": "VMIP1S0"
+        },
+        {
+          "lemma": "mazer",
+          "pos": "VMIP3S0"
+        },
+        {
+          "lemma": "mazer",
+          "pos": "VMM02S0"
+        },
+        {
+          "lemma": "mazer",
+          "pos": "VMSP1S0"
+        },
+        {
+          "lemma": "mazer",
+          "pos": "VMSP3S0"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "mine",
+      "lemmas": [
+        {
+          "lemma": "mine",
+          "pos": "NCFS000"
+        },
+        {
+          "lemma": "miner",
+          "pos": "VMIP1S0"
+        },
+        {
+          "lemma": "miner",
+          "pos": "VMIP3S0"
+        },
+        {
+          "lemma": "miner",
+          "pos": "VMM02S0"
+        },
+        {
+          "lemma": "miner",
+          "pos": "VMSP1S0"
+        },
+        {
+          "lemma": "miner",
+          "pos": "VMSP3S0"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "m\u00e8ne",
+      "lemmas": [
+        {
+          "lemma": "mener",
+          "pos": "VMIP1S0"
+        },
+        {
+          "lemma": "mener",
+          "pos": "VMIP3S0"
+        },
+        {
+          "lemma": "mener",
+          "pos": "VMM02S0"
+        },
+        {
+          "lemma": "mener",
+          "pos": "VMSP1S0"
+        },
+        {
+          "lemma": "mener",
+          "pos": "VMSP3S0"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "pane",
+      "lemmas": [
+        {
+          "lemma": "paner",
+          "pos": "VMIP1S0"
+        },
+        {
+          "lemma": "paner",
+          "pos": "VMIP3S0"
+        },
+        {
+          "lemma": "paner",
+          "pos": "VMM02S0"
+        },
+        {
+          "lemma": "paner",
+          "pos": "VMSP1S0"
+        },
+        {
+          "lemma": "paner",
+          "pos": "VMSP3S0"
+        }
+      ]
+    }
+  },
+  {
+    "dist": 1300,
+    "entry": {
+      "form": "\u00e9mane",
+      "lemmas": [
+        {
+          "lemma": "\u00e9maner",
+          "pos": "VMIP1S0"
+        },
+        {
+          "lemma": "\u00e9maner",
+          "pos": "VMIP3S0"
+        },
+        {
+          "lemma": "\u00e9maner",
+          "pos": "VMM02S0"
+        },
+        {
+          "lemma": "\u00e9maner",
+          "pos": "VMSP1S0"
+        },
+        {
+          "lemma": "\u00e9maner",
+          "pos": "VMSP3S0"
+        }
+      ]
+    }
+  }
+]

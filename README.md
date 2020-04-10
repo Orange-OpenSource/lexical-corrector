@@ -1,4 +1,4 @@
-# Rapid lexicon acces with correction 
+# Rapid lexicon access with correction
 
 Library for rapid lexicon access including correction (based on Levenshtein's distance).
 In correction mode all words up to a maximal Levenshtein distance are returned. 
@@ -23,7 +23,8 @@ Johannes Heinecke
 * GNU libunistring unicode library (Ubuntu: `sudo apt install libunistring-dev`)
 * for tests only
   * `jq` json parser  (Ubuntu: `sudo apt install jq`)
-  * `meld` utilities   (Ubuntu: `sudo apt install meld`)
+  * `meld` graphical file differ  (Ubuntu: `sudo apt install meld`)
+  * `valgrind`   (Ubuntu: `sudo apt install valgrind`)
 
 ## Compiling
 
@@ -43,6 +44,7 @@ For the tests a partial lexicon is downloaded from the FreeLing project
     make speed_test
     make valgrind_test
     make python_test
+    make pythonbasic_test
 
 ### Java library
 
@@ -167,7 +169,7 @@ get corrections. fo find the best guesses up to a certain edit distance
 See [java/src/main/java/com/orange/labs/lexicon/Lexicon.java](java/src/main/java/com/orange/labs/lexicon/Lexicon.java) for more
 information.
 
-### Python (3)
+### Python3
 
 In difference to Java and C++, the Python3 API returns JSON objects (this was done to avoid fiddling too much with Swig's interfacing)
 
@@ -176,12 +178,39 @@ In difference to Java and C++, the Python3 API returns JSON objects (this was do
     import LexCor
 
     lc = LexCor.LexicalCorrector(dictionary, letters, 1)
-    #                          word to correct, maximal Levenshtein-distance (* 1000)
+    #                          word to correct, maximal Levenshtein-distance)
     res = lc.findWordCorrected("violinn", 1500)
     j = json.loads(res)
     json.dump(j, sys.stdout, indent=2, ensure_ascii=False)
 
 See also [bindings/testpython.py](bindings/testpython.py).
+
+`LexCor.LexicalCorrector()` is not threadsafe! In order to have multiple threads correct words using the same dictionary, either
+* create an instance of `LexCor.LexicalCorrector` for each thread
+* create an empty `LexCor.LexicalCorrector` and use an instance of `LexCor.AbreBinaire(dictionaryfile, letters, 1)` for all data and an instance of `LexCor.Corrector()`for each thread. 
+
+for instance:
+
+    import json
+    import LexCor
+
+    # creating empty LexicalCorrector
+    lc = LexCor.LexicalCorrector()
+
+    # creating data tree. The AbreBinaire is threadsafe (read-only)
+    ab = LexCor.ArbreBinaire(sys.argv[2], sys.argv[3], True)
+
+    # creating two correctors (one for each thread, if we head threads here)
+    # a Corrector instance must no be used by two threads at the same time
+    # in order to multithread, create an individual instance of Corrector for each thread
+    cr = LexCor.Corrector(ab) # for one thread
+    cr2 = LexCor.Corrector(ab # for a second thread
+    # ...
+ 
+    # give Corrector instance to `findWord...()`methods
+    res = lc.findWordCorrected("tandu", 1500, cr2) 
+
+See also [bindings/testpython_basic.py](bindings/testpython_basic.py).
 
 The the default distance for one different character is 1000. The file [example/letters.txt](example/letters.txt) can be used to define different distance values for some kind of errors.
 

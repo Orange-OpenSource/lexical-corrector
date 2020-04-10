@@ -306,6 +306,8 @@ int main(int argc, char *argv[]) {
 	    cout << mot << " (max penalty allowed: " << distance << ")" << endl;
 	    //}
 
+	    //const WordForm * s = cr.findWordExact(mot.c_str());
+	    //cerr << "eeeeeee " << s << endl;
 	    map<const WordForm *, unsigned int> *res;
 	    if (!exact) res = cr.findWordCorrected(mot.c_str(), distance);
 	    else res = cr.findWordBest(mot.c_str(), distance);
@@ -331,6 +333,7 @@ int main(int argc, char *argv[]) {
 	string word;
 	if (ifp) {
 	    cerr << "Reading text from '" << textfile << "'" << endl;
+	    cerr << "version: " << __version__ << endl;
 	    cout << '[';
 	    bool first = true;
 	    while (!ifp.eof()) {

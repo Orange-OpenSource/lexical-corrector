@@ -107,6 +107,7 @@ ArbreBinaire::~ArbreBinaire() {
 #ifdef SIMILIARLETTERS 
     delete Noeud::similar;
 #endif
+    //cerr << "** delete AbreBinaire " << this << endl;
 }
 
 void ArbreBinaire::dot(ostream &out) {

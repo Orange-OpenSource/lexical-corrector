@@ -28,6 +28,7 @@
 # Author: Johannes Heinecke
 # Version: 2.0 as of 9th April 2020
 
+# testing the original API (AbreBinaire and Corrector)
 
 import sys
 
@@ -40,6 +41,7 @@ else:
     import json
     import LexCor
 
+
     def pp(res):
         j = json.loads(res)
         json.dump(j, sys.stdout, indent=2)
@@ -47,44 +49,29 @@ else:
 
     print("version:", LexCor.__version__, file=sys.stderr)
 
-    # dictionary, distance definitions, format
-    # for format see README.md
-    lc = LexCor.LexicalCorrector(sys.argv[2], sys.argv[3], 1)
+    # creating empty LexicalCorrector
+    lc = LexCor.LexicalCorrector()
 
-    #res = lc.findWordExact("trompette")
-    #pp(res)
+    # creating data tree. The AbreBinaire is threadsafe (read-only)
+    ab = LexCor.ArbreBinaire(sys.argv[2], sys.argv[3], True)
 
-    #res = lc.findWordCorrected("mange", 1500)
-    #pp(res)
+    # creating two correctors (one for each thread, if we head threads here)
+    # a Corrector instance must no be used by two threads at the same time
+    # in order to multithread, create an individual instance of Corrector for each thread
+    cr = LexCor.Corrector(ab)
+    cr2 = LexCor.Corrector(ab)
 
-    #res = lc.findWordBest("manè", 1500)
-    #pp(res)
+    # call to empty lc gives error
+    res = lc.findWordExact("correction")
+    pp(res)
+    
+    # give corrector to thread, since lc itself is empty
+    res = lc.findWordExact("mange", cr)
+    pp(res)
 
+    res = lc.findWordCorrected("tandu", 1500, cr2)
+    pp(res)
 
-
-    ifp = open(sys.argv[4])
-
-    distfactor = 1000
-
-    allres = "["
-    first = True
-    for word in ifp:
-        word = word.strip()
-        if len(word) < 1:
-            continue
-        maxdistance = int(distfactor * (len(word) / 5))
-
-        if (maxdistance < 1):
-            maxdistance = 1000
-        if not first:
-            allres += ","
-        first = False
-        allres += '{ "word": "%s", "maxdist": %d, "results": ' % (word, maxdistance)
-
-        res = lc.findWordCorrected(word, maxdistance)
-        allres += res + "}"
-    allres += "]"
-    j = json.loads(allres)
-    json.dump(j, sys.stdout, indent=2, ensure_ascii=False)
-    print()
+    res = lc.findWordBest("manè", 1500, cr)
+    pp(res)
 

@@ -43,28 +43,29 @@ are permitted provided that the following conditions are met:
 #include "Arbre.h"
 #include "Corrector.h"
 
-//const string __version__ = "2.0.0";
-
 
 class LexicalCorrector {
  public:
+    // create lexical corrector with all data
     LexicalCorrector(const char *lexfile, const char *similarletters, int multipleEntries);
+    // create empty lexical corrector (AbreBinaire and Corrector must be created elsewhere and given to find*() commands
+    LexicalCorrector();
 
     ~LexicalCorrector();
     
     
     // returns the correct word or an empty string
-    string findWordExact(const char *word);
+    string findWordExact(const char *word, Corrector *c = 0) const;
 
     // find corrections of a word. result is a json string 
-    string findWordCorrected(const char *word, unsigned int maxdist);
+    string findWordCorrected(const char *word, unsigned int maxdist, Corrector *c = 0) const;
 
     // find corrections of a word with lowest distance 
-    string findWordBest(const char *word, unsigned int maxdist);
+    string findWordBest(const char *word, unsigned int maxdist, Corrector *c = 0) const;
 
  private:
     // helper function to create json output
-    void getWFs(std::ostream &out, map<const WordForm *, unsigned int> *res);
+    void getWFs(std::ostream &out, map<const WordForm *, unsigned int> *res) const;
 
     ArbreBinaire *ab = 0;
     Corrector *cr = 0;

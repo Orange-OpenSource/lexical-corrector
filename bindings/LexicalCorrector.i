@@ -48,6 +48,19 @@ using namespace std;
 	#include "LexicalCorrector.h"
 %}
 
+
+extern const string __version__;
+class ArbreBinaire {
+ public:
+    ArbreBinaire(const char *lexfile = 0, const char *similarletters = 0, bool multipleEntries = true);
+    ~ArbreBinaire();
+};
+
+class Corrector {
+public:
+    Corrector(const ArbreBinaire *ab);
+    ~Corrector();
+};
+
+
 %include "LexicalCorrector.h"
-
-

@@ -43,21 +43,34 @@ using namespace std;
 
 
 LexicalCorrector::LexicalCorrector(const char *lexfile, const char *similarletters, int multipleEntries) {
-    cerr << "loading " << lexfile << " " << similarletters << endl;
+    cerr << "** loading " << lexfile << " " << similarletters << endl;
     ab = new ArbreBinaire(lexfile, similarletters, (multipleEntries == 0 ? false : true));
     cr = new Corrector(ab);
+}
+
+LexicalCorrector::LexicalCorrector() {
+    cerr << "** creating empty LexicalCorrector" << endl;
+    ab = 0;
+    cr = 0;
 }
 
 LexicalCorrector::~LexicalCorrector() {
     if (cr != 0) delete cr;
     if (ab != 0) delete ab;
+    cerr << "** deleting LexicalCorrector" << endl;
 }
 
 
 // returns the correct word or an empty string
-string LexicalCorrector::findWordExact(const char *word) {
-    const WordForm *wf = cr->findWordExact(word);
-    return wf->toJson();
+string LexicalCorrector::findWordExact(const char *word, Corrector *c) const {
+    Corrector *crloc = cr;
+    if (c != 0) crloc = c;
+    if (crloc == 0) return "{\"error\": \"no corrector\"}";
+
+    //cerr << "eee " << cr << " " << c << " " << crloc << endl;
+    const WordForm *wf = crloc->findWordExact(word);
+    if (wf != 0) return wf->toJson();
+    else return "{\"info\": \"no entry found\"}";
 }
 
 
@@ -74,7 +87,7 @@ bool resultSort(std::pair<const WordForm *, unsigned int> a,
 
 
 
-void LexicalCorrector::getWFs(ostream &out, map<const WordForm *, unsigned int> *res) {
+void LexicalCorrector::getWFs(ostream &out, map<const WordForm *, unsigned int> *res) const {
     // trier en fonction de la distance levenshtein
     vector<std::pair<const WordForm *, unsigned int> > resVec(res->begin(), res->end());
     sort(resVec.begin(), resVec.end(), &resultSort);
@@ -90,8 +103,12 @@ void LexicalCorrector::getWFs(ostream &out, map<const WordForm *, unsigned int> 
 }
 
 // find corrections of a word. result is a json string 
-string LexicalCorrector::findWordCorrected(const char *word, unsigned int maxdist) {
-    map<const WordForm *, unsigned int> *res = cr->findWordCorrected(word, maxdist);
+string LexicalCorrector::findWordCorrected(const char *word, unsigned int maxdist, Corrector *c) const {
+    Corrector *crloc = cr;
+    if (c != 0) crloc = c;
+    if (crloc == 0) return "{}";
+
+    map<const WordForm *, unsigned int> *res = crloc->findWordCorrected(word, maxdist);
     ostringstream out;
 
     getWFs(out, res);
@@ -99,8 +116,12 @@ string LexicalCorrector::findWordCorrected(const char *word, unsigned int maxdis
 }
 
 // find corrections of a word with lowest distance 
-string LexicalCorrector::findWordBest(const char *word, unsigned int maxdist) {
-    map<const WordForm *, unsigned int> *res = cr->findWordBest(word, maxdist);
+string LexicalCorrector::findWordBest(const char *word, unsigned int maxdist, Corrector *c) const {
+    Corrector *crloc = cr;
+    if (c != 0) crloc = c;
+    if (crloc == 0) return "{}";
+
+    map<const WordForm *, unsigned int> *res = crloc->findWordBest(word, maxdist);
     ostringstream out;
 
     getWFs(out, res);

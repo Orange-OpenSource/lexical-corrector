@@ -76,7 +76,7 @@ The following configuration replaces `?` into letter with an diacritic symbol (l
 
     ./build/example/lexiconAccess  --similar example/correct-diacritics.txt  downloaded_data/dictionary.txt
 
-The format of the lexfile is space separated list of
+The format of the lexfile is **space separated** list of
 ```
 form lemma POS [lemma2 POS [...]]
 ```
@@ -89,7 +89,7 @@ form lemma2 POS
 ...
 ```
 
-if the option `--singleEntry` is used, the format is a tab-separated list of
+if the option `--singleEntry` is used, the format is a **tab-separated** list of
 ```
 form [lemma [POS [type [morpho features [syntactic feature [semantics]]]]]]"
 ```
@@ -177,9 +177,10 @@ In difference to Java and C++, the Python3 API returns JSON objects (this was do
     import json
     import LexCor
 
-    lc = LexCor.LexicalCorrector(dictionary, letters, 1)
+    #                            lexicon file, error definitions, lexicon format
+    lc = LexCor.LexicalCorrector(lexiconfile,  errordefinitions,  1)
     #                          word to correct, maximal Levenshtein-distance)
-    res = lc.findWordCorrected("violinn", 1500)
+    res = lc.findWordCorrected("violinn",       1500)
     j = json.loads(res)
     json.dump(j, sys.stdout, indent=2, ensure_ascii=False)
 

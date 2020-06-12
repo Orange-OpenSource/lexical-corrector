@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.0 as of 9th April 2020
+ Version:  2.2.0 as of 12th June 2020
 */
 
 %module LexCor
@@ -45,8 +45,13 @@ are permitted provided that the following conditions are met:
 using namespace std;
 
 %{
-	#include "LexicalCorrector.h"
+    #include "LexicalCorrector.h"
+//    typedef unsigned short distancetype; // can only hold distances up du 2^16
+    typedef unsigned int distancetype;
 %}
+
+/* Tell SWIG about it */
+typedef unsigned int distancetype;
 
 
 extern const string __version__;

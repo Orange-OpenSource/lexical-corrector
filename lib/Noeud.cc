@@ -1,6 +1,6 @@
 /** This library is under the 3-Clause BSD License
 
-Copyright (c) 2017, Orange S.A.
+Copyright (c) 2017-2020, Orange S.A.
 
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.2 as of 30th January 2019
+ Version:  2.2.0 as of 12th June 2020
 */
 
 // TODO conf pour le score de reduplication
@@ -49,7 +49,6 @@ using namespace std;
 #include <unicase.h>
 #endif
         
-
 unsigned int Noeud::ndct = 0;
 int Noeud::reduplicationPenalty = 900;
 int Noeud::transpositionPenalty = 900;
@@ -136,7 +135,7 @@ void Noeud::dot(ostream & out) {
 
 //#define DEBUG
 
-void Noeud::parcourir(const Character *word, const unsigned int maxdist, Calculator *calc, unsigned int depth) {
+void Noeud::parcourir(const Character *word, const distancetype maxdist, Calculator *calc, unsigned int depth) {
     calc->push(key_value);
 #ifdef DEBUG 
     cout << "KEY " << id << " " << (Character) key_value << " depth:" << depth << endl;
@@ -145,7 +144,7 @@ void Noeud::parcourir(const Character *word, const unsigned int maxdist, Calcula
     const Character *p = word;
     unsigned int row = calc->stacksize() - 1;
     unsigned int col = 1;
-    unsigned int similarpenalty;
+    distancetype similarpenalty;
     while (*p && col < calc->getTsize()) {
         
         Character key = *p;
@@ -204,15 +203,15 @@ void Noeud::parcourir(const Character *word, const unsigned int maxdist, Calcula
 #endif
         //cout << "cc " << cost << endl;
         // TODO si la différence est uniquement la suppression/ajout d'un accent on prend penalty/2
-        unsigned short val = calc->minNeighbour(row, col, cost);
+        distancetype val = calc->minNeighbour(row, col, cost);
 
 #define DAMERAU
 #ifdef DAMERAU
         if (row > 1 && col > 1 
             && key == calc->getPenultime() // a[i] = b[j-1]
             && *(p-1) == key_value) { // a[i-1] = b[j]
-            //unsigned int a = calc->get(row-2, col-2) + (cost*.9); // transposition de deux caractères
-	    unsigned int a = calc->get(row-2, col-2) + (transpositionPenalty); // transposition de deux caractères
+            //distancetype a = calc->get(row-2, col-2) + (cost*.9); // transposition de deux caractères
+	    distancetype a = calc->get(row-2, col-2) + (transpositionPenalty); // transposition de deux caractères
             if (a<val) val=a;
         }
 #endif
@@ -231,8 +230,8 @@ void Noeud::parcourir(const Character *word, const unsigned int maxdist, Calcula
 #endif
 
     // pas la peine de continuer si la distance > maxdist
-    //unsigned short curdist = table->get(row, depth  < col - 1 ? depth  : col - 1);
-    unsigned short lowest = calc->lowest(row, col);
+    //distancetype curdist = table->get(row, depth  < col - 1 ? depth  : col - 1);
+    distancetype lowest = calc->lowest(row, col);
 #ifdef DEBUG 
     cout << "LOWEST " << lowest << " depth:" << depth << " r:" <<row << " c:" << col-1 << " maxdist" << maxdist << endl;
 #endif
@@ -242,7 +241,7 @@ void Noeud::parcourir(const Character *word, const unsigned int maxdist, Calcula
 #ifdef DEBUG 
         cout << "continue" << endl;
 #endif
-        unsigned short curdist = calc->get(row, col - 1);
+        distancetype curdist = calc->get(row, col - 1);
         if (curdist <= maxdist && info) {
 #ifdef DEBUG
             cout << "FOUND " << *info << " " << curdist << endl;

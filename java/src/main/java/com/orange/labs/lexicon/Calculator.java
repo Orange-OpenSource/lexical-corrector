@@ -186,7 +186,7 @@ public class Calculator {
     }
 
     // unsuccessful trial to replace recursion by iteration
-    /*
+    
     void parcourir(Noeud root, String word, int maxdist) {
         Noeud start = root.left;
         Result r1 = firstpart(start, word, maxdist, 1);
@@ -285,7 +285,7 @@ public class Calculator {
         }
         return new Result(lowest, row, col);
     }
-*/
+
 
 
 }

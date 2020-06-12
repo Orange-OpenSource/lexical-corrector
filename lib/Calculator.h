@@ -1,6 +1,6 @@
 /** This library is under the 3-Clause BSD License
 
-Copyright (c) 2017, Orange S.A.
+Copyright (c) 2017-2020, Orange S.A.
 
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.2 as of 30th January 2019
+ Version:  2.2.0 as of 12th June 2020
 */
 
 #ifndef __TABLE_H__
@@ -72,7 +72,7 @@ public:
      * @param maxcol la colonne la plus à droit à regarder
      * @return la valeur la plus basse trouvée dans la ligne
      */
-    unsigned int lowest(unsigned int row, unsigned int maxcol);
+    distancetype lowest(unsigned int row, unsigned int maxcol);
 
     /** rendre la penalité la plus basse (au dessus et à gauche dans la table
 
@@ -81,7 +81,7 @@ public:
      * @param cost le cout a rajouter
      * @return la valeur la plus basse dans le voisinage
      */
-    unsigned int minNeighbour(unsigned int row, unsigned int col, int cost);
+    distancetype minNeighbour(unsigned int row, unsigned int col, int cost);
 
     friend ostream& operator<<(ostream& out, const Calculator& t);
     /**
@@ -99,7 +99,7 @@ public:
    * @param col la colonne
    * @return la valeur
    */
-    inline unsigned int get(unsigned row, unsigned col) {
+    inline distancetype get(unsigned row, unsigned col) {
 #ifdef DEBUG
         std::cout << "GET " << row << " " << col << std::endl;
 #endif
@@ -153,7 +153,7 @@ public:
      * @param wi l'entré lexicale trouvé
      * @param distance sa distance de Levenshtein
      */
-    inline void addResult(WordForm *wi, unsigned int distance) {
+    inline void addResult(WordForm *wi, distancetype distance) {
         solutions[wi] = distance;
     }
 
@@ -161,7 +161,7 @@ public:
      * rendre les résultats
      * @return
      */
-    inline map<const WordForm *, unsigned int> * getresults() {
+    inline map<const WordForm *, distancetype> * getresults() {
         return &solutions;
     }
 
@@ -213,7 +213,7 @@ private:
     vector<Character>stack;
 
     /// les solutions: WordInfo: Levenshtein-distance
-    map<const WordForm *, unsigned int> solutions;
+    map<const WordForm *, distancetype> solutions;
 
     /// bitmap des types of correction permises (@see Noeud.h)
     unsigned int correctiontype;

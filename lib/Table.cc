@@ -1,6 +1,6 @@
 /** This library is under the 3-Clause BSD License
 
-Copyright (c) 2017, Orange S.A.
+Copyright (c) 2017-2020, Orange S.A.
 
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.0 as of 6th April 2017
+ Version:  2.2.0 as of 12th June 2020
 */
 
 #include <iostream>
@@ -37,13 +37,15 @@ using namespace std;
 
 #include "Table.h"
 
-unsigned short Table::penalty = 1000;
+distancetype Table::penalty = 1000;
 
 Table::Table(unsigned int s) {
     tsize = s;
 
-    tmp = new unsigned short [tsize * tsize];
-    table = new unsigned short * [tsize];
+    //tmp = new unsigned short [tsize * tsize];
+    //table = new unsigned short * [tsize];
+    tmp = new distancetype [tsize * tsize];
+    table = new distancetype * [tsize];
     for (unsigned int i=0; i<tsize; ++i) {
 	table[i] = &tmp[tsize*i];
     }    
@@ -69,19 +71,19 @@ void Table::init() {
     solutions.clear();
 }
 
-const unsigned short penality = 1000;
+const distancetype penality = 1000;
 
-int Table::minNeighbour (unsigned int row, unsigned int col, int cost) {
-    unsigned short x = table[row][col-1]+penality;
-    unsigned short y = table[row-1][col]+penality;
-    unsigned short z = table[row-1][col-1]+cost;
+distancetype Table::minNeighbour (unsigned int row, unsigned int col, int cost) {
+    distancetype x = table[row][col-1]+penality;
+    distancetype y = table[row-1][col]+penality;
+    distancetype z = table[row-1][col-1]+cost;
     return (x <= y) ? (x <= z) ? x : z 	: (y <= z)? y : z;
 }
 
 
 // la valeur la plus basse de la ligne row
-unsigned short Table::lowest(unsigned int row, unsigned int maxcol) {
-    unsigned short min = 1000;
+distancetype Table::lowest(unsigned int row, unsigned int maxcol) {
+    distancetype min = 1000;
     //cout << "ROW: " << row << endl;
     for (unsigned int col=0; col < maxcol; ++col) {
 	min = table[row][col] < min ? table[row][col] : min;

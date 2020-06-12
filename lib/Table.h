@@ -1,6 +1,6 @@
 /** This library is under the 3-Clause BSD License
 
-Copyright (c) 2017, Orange S.A.
+Copyright (c) 2020, Orange S.A.
 
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.0 as of 6th April 2017
+ Version:  2.2.0 as of 12th June 2020
 */
 
 #ifndef __TABLE_H__
@@ -49,6 +49,7 @@ using std::endl;
 #include "Util.h"
 #include "LexicalEntry.h"
 
+
 //#define DEBUG
 
 class Table {
@@ -58,22 +59,22 @@ public:
 
     void init();
     /** la valeur la plus basse de la ligne row */
-    unsigned short lowest(unsigned int row, unsigned int maxcol);
+    distancetype lowest(unsigned int row, unsigned int maxcol);
 
     /** rendre la penalité la plus basse (au dessus et à gauche dans la table */
-    int minNeighbour(unsigned int row, unsigned int col, int cost);
+    distancetype minNeighbour(unsigned int row, unsigned int col, int cost);
 
     friend ostream& operator<<(ostream& out, const Table& t);
     void status(ostream &out, const Character *word, unsigned short maxrow, unsigned short maxcol);
 
-    inline unsigned short get(unsigned row, unsigned col) {
+    inline distancetype get(unsigned row, unsigned col) {
 #ifdef DEBUG
         std::cout << "GET " << row << " " << col << std::endl;
 #endif
         return table[row][col];
     }
 
-    inline void set(unsigned row, unsigned col, unsigned short val) {
+    inline void set(unsigned row, unsigned col, distancetype val) {
         table[row][col] = val;
     }
 
@@ -89,11 +90,11 @@ public:
         return stack.size();
     }
 
-    inline void addResult(WordForm *wi, unsigned short distance) {
+    inline void addResult(WordForm *wi, distancetype distance) {
         solutions[wi] = distance;
     }
 
-    inline map<WordForm *, unsigned short> * getresults() {
+    inline map<WordForm *, distancetype> * getresults() {
         return &solutions;
     }
 
@@ -112,20 +113,22 @@ public:
     }
 
 
-    static unsigned short penalty; // penalty for differences in Levenshtein distance
+    static distancetype penalty; // penalty for differences in Levenshtein distance
 private:
     // taille du tableau pour Levenshtein
     unsigned int tsize;
     // pointer pour allouer la mémoire
-    unsigned short *tmp;
+    //    unsigned short *tmp;
+    distancetype *tmp;
     // pointer sur les lignes
-    unsigned short **table;
+    //    unsigned short **table;
+    distancetype **table;
 
     // le stack (noeuds actuellement traversés lors de la recherche avec correction)
     vector<Character>stack;
 
     // les solutions: WordInfo: Levenshtein-distance
-    map<WordForm *, unsigned short> solutions;
+    map<WordForm *, distancetype> solutions;
 };
 
 #endif    

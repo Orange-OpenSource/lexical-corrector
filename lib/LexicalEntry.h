@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.0 as of 9th April 2020
+ Version:  2.2.0 as of 12th June 2020
 */
 
 /* 
@@ -50,6 +50,14 @@ using std::ostream;
 using std::string;
 
 #include "Util.h"
+
+#ifdef SHORT_TABLE
+    typedef unsigned short distancetype; // can only hold distances up du 2^16
+#else
+    typedef unsigned int distancetype;
+#endif
+
+
 
 class LexicalEntry {
 public:

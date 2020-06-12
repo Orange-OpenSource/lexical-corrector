@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.0 as of 9th April 2020
+ Version:  2.2.0 as of 12th June 2020
 */
 
 #include <iostream>
@@ -75,8 +75,8 @@ string LexicalCorrector::findWordExact(const char *word, Corrector *c) const {
 
 
 /// trier un map selon les valeurs
-bool resultSort(std::pair<const WordForm *, unsigned int> a,
-                std::pair<const WordForm *, unsigned int> b) {
+bool resultSort(std::pair<const WordForm *, distancetype> a,
+                std::pair<const WordForm *, distancetype> b) {
     if (a.second == b.second) {
 	if (a.first->form < b.first->form) return true;
     } else {
@@ -87,13 +87,13 @@ bool resultSort(std::pair<const WordForm *, unsigned int> a,
 
 
 
-void LexicalCorrector::getWFs(ostream &out, map<const WordForm *, unsigned int> *res) const {
+void LexicalCorrector::getWFs(ostream &out, map<const WordForm *, distancetype> *res) const {
     // trier en fonction de la distance levenshtein
-    vector<std::pair<const WordForm *, unsigned int> > resVec(res->begin(), res->end());
+    vector<std::pair<const WordForm *, distancetype> > resVec(res->begin(), res->end());
     sort(resVec.begin(), resVec.end(), &resultSort);
 
     out << '[';
-    for (vector<std::pair<const WordForm *, unsigned int>>::iterator it = resVec.begin();
+    for (vector<std::pair<const WordForm *, distancetype>>::iterator it = resVec.begin();
 	 it != resVec.end(); ++it) {
 	if (it != resVec.begin()) out << ", ";
 	out << "{ \"dist\": " << it->second
@@ -103,12 +103,12 @@ void LexicalCorrector::getWFs(ostream &out, map<const WordForm *, unsigned int> 
 }
 
 // find corrections of a word. result is a json string 
-string LexicalCorrector::findWordCorrected(const char *word, unsigned int maxdist, Corrector *c) const {
+string LexicalCorrector::findWordCorrected(const char *word, distancetype maxdist, Corrector *c) const {
     Corrector *crloc = cr;
     if (c != 0) crloc = c;
     if (crloc == 0) return "{}";
 
-    map<const WordForm *, unsigned int> *res = crloc->findWordCorrected(word, maxdist);
+    map<const WordForm *, distancetype> *res = crloc->findWordCorrected(word, maxdist);
     ostringstream out;
 
     getWFs(out, res);
@@ -116,12 +116,12 @@ string LexicalCorrector::findWordCorrected(const char *word, unsigned int maxdis
 }
 
 // find corrections of a word with lowest distance 
-string LexicalCorrector::findWordBest(const char *word, unsigned int maxdist, Corrector *c) const {
+string LexicalCorrector::findWordBest(const char *word, distancetype maxdist, Corrector *c) const {
     Corrector *crloc = cr;
     if (c != 0) crloc = c;
     if (crloc == 0) return "{}";
 
-    map<const WordForm *, unsigned int> *res = crloc->findWordBest(word, maxdist);
+    map<const WordForm *, distancetype> *res = crloc->findWordBest(word, maxdist);
     ostringstream out;
 
     getWFs(out, res);

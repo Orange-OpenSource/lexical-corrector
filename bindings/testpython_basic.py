@@ -26,11 +26,12 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Author: Johannes Heinecke
-# Version: 2.0 as of 9th April 2020
+# Version: 2.2.0 as of 12th June 2020
 
 # testing the original API (AbreBinaire and Corrector)
 
 import sys
+import collections
 
 if len(sys.argv) < 5:
     print("Error in %s" % sys.argv[0], file=sys.stderr)
@@ -43,8 +44,13 @@ else:
 
 
     def pp(res):
-        j = json.loads(res)
-        json.dump(j, sys.stdout, indent=2)
+        # before python3.6 apparently, python kson does not keep the original order of items
+        #print(res)
+        j = json.loads(res,
+                       object_pairs_hook=collections.OrderedDict,
+                       object_hook=collections.OrderedDict)
+        json.dump(j, sys.stdout,
+                  indent=2)
         print()
 
     print("version:", LexCor.__version__, file=sys.stderr)

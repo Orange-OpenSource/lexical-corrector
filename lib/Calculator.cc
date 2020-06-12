@@ -1,6 +1,6 @@
 /** This library is under the 3-Clause BSD License
 
-Copyright (c) 2017, Orange S.A.
+Copyright (c) 2017-2020, Orange S.A.
 
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.2 as of 30th January 2019
+ Version:  2.2.0 as of 12th June 2020
 */
 
 
@@ -39,7 +39,8 @@ using namespace std;
 #include "Calculator.h"
 #include "Noeud.h"
 
-unsigned int Calculator::penalty = 1000;
+//#define DEBUG
+distancetype Calculator::penalty = 1000;
 
 Calculator::Calculator(unsigned int size) {
     tsize = size;
@@ -74,21 +75,24 @@ void Calculator::init() {
 
 
 //#define DAMERAU
-unsigned int Calculator::minNeighbour (unsigned int row, unsigned int col, int cost) {
+distancetype Calculator::minNeighbour (unsigned int row, unsigned int col, int cost) {
 #ifdef DEBUG
     cout << "minneighbour " << row << " " << col << endl;
 #endif
-    unsigned x = table[row][col-1]+Calculator::penalty; // insertion
-    unsigned y = table[row-1][col]+Calculator::penalty; // deletion
-    unsigned z = table[row-1][col-1]+cost; // substitution
-    
+    distancetype x = table[row][col-1]+Calculator::penalty; // insertion
+    distancetype y = table[row-1][col]+Calculator::penalty; // deletion
+    distancetype z = table[row-1][col-1]+cost; // substitution
+#ifdef DEBUG
+    cout << "  insertion " << x << " deletion " << y << " subst " << z << endl;
+#endif
+
     return (x <= y) ? (x <= z) ? x : z : (y <= z)? y : z;
 }
 
 
 // la valeur la plus basse de la ligne row
-unsigned Calculator::lowest(unsigned int row, unsigned int maxcol) {
-    unsigned min = 1000000;
+distancetype Calculator::lowest(unsigned int row, unsigned int maxcol) {
+    distancetype min = 10000000;
     //cout << "ROW: " << row << endl;
     for (unsigned int col=0; col < maxcol; ++col) {
 	min = table[row][col] < min ? table[row][col] : min;

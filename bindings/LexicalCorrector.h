@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.0 as of 9th April 2020
+ Version:  2.2.0 as of 12th June 2020
 */
 
 
@@ -58,14 +58,14 @@ class LexicalCorrector {
     string findWordExact(const char *word, Corrector *c = 0) const;
 
     // find corrections of a word. result is a json string 
-    string findWordCorrected(const char *word, unsigned int maxdist, Corrector *c = 0) const;
+    string findWordCorrected(const char *word, distancetype maxdist, Corrector *c = 0) const;
 
     // find corrections of a word with lowest distance 
     string findWordBest(const char *word, unsigned int maxdist, Corrector *c = 0) const;
 
  private:
     // helper function to create json output
-    void getWFs(std::ostream &out, map<const WordForm *, unsigned int> *res) const;
+    void getWFs(std::ostream &out, map<const WordForm *, distancetype> *res) const;
 
     ArbreBinaire *ab = 0;
     Corrector *cr = 0;

@@ -1,6 +1,6 @@
 /** This library is under the 3-Clause BSD License
 
-Copyright (c) 2017, Orange S.A.
+Copyright (c) 2017-2020, Orange S.A.
 
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.0 as of 6th April 2017
+ Version:  2.2.0 as of 12th June 2020
 */
 
 #ifndef __ARBRE_H
@@ -78,7 +78,7 @@ class ArbreBinaire {
      * @param maxdist la distance de Levenshtein maximale permise
      * @param calc le Calculateur
      */
-    void parcourir(const Character *word, const unsigned int maxdist, Calculator *calc) const;
+    void parcourir(const Character *word, distancetype maxdist, Calculator *calc) const;
     unsigned int getMaxwordlength() const { return maxwordlength; }
     unsigned int getCountforms() const { return countforms; }
     friend ostream& operator<<(ostream& out, const ArbreBinaire& a);
@@ -99,7 +99,7 @@ class ArbreBinaire {
 	@param maxdist la distance Levenshtein maximale
 	@param le tableau pour calculer les résultats (préparer par le thread dans Corrector)
     */
-    void findWordCorrected(const Character *word, const unsigned int maxdist, Calculator *calc) const;
+    void findWordCorrected(const Character *word, const distancetype maxdist, Calculator *calc) const;
     
      
      /** mettre un nouveau moeud dans l'arbre

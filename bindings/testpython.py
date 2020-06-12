@@ -26,10 +26,11 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Author: Johannes Heinecke
-# Version: 2.0 as of 9th April 2020
+# Version: 2.2.0 as of 12th June 2020
 
 
 import sys
+import collections
 
 if len(sys.argv) < 5:
     print("Error in %s" % sys.argv[0], file=sys.stderr)
@@ -84,7 +85,12 @@ else:
         res = lc.findWordCorrected(word, maxdistance)
         allres += res + "}"
     allres += "]"
-    j = json.loads(allres)
-    json.dump(j, sys.stdout, indent=2, ensure_ascii=False)
+    # before python3.6 apparently, python kson does not keep the original order of items
+    #print(allres)
+    j = json.loads(allres,
+                   object_pairs_hook=collections.OrderedDict,
+                   object_hook=collections.OrderedDict)
+    #j = json.loads(allres)
+    json.dump(j, sys.stdout, indent=2, sort_keys=False, ensure_ascii=False)
     print()
 

@@ -1,6 +1,6 @@
 /** This library is under the 3-Clause BSD License
 
-Copyright (c) 2017, Orange S.A.
+Copyright (c) 2017-2020, Orange S.A.
 
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.0 as of 6th April 2017
+ Version:  2.2.0 as of 12th June 2020
 */
 
 #ifndef __CORRECTOR_H__
@@ -64,14 +64,14 @@ public:
        @param maxdist la distance Levenshtein maximale
        @return pointer sur map avec les résultats dans le calculateur (peut être vide) 
      */
-    map<const WordForm *, unsigned int> * findWordCorrected(const char *word, unsigned int maxdist);
+    map<const WordForm *, distancetype> * findWordCorrected(const char *word, distancetype maxdist);
 
     /** chercher un mot exact ou à corriger si le mot exact n'existe pas. Le(s) résultats se trouvent dans le Calculator	
        @param word le mot
        @param maxdist la distance Levenshtein maximale
        @return pointer sur map avec les résultats dans le calculateur (peut être vide) 
      */
-    map<const WordForm *, unsigned int> * findWordBest(const char *word, unsigned int maxdist);
+    map<const WordForm *, distancetype> * findWordBest(const char *word, distancetype maxdist);
     
     inline void setCorrectionType(unsigned int t) {
         calculator->setCorrectionType(t);

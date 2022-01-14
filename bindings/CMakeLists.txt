@@ -1,6 +1,6 @@
 # This library is under the Modified BSD License:
 # 
-# Copyright (c) 2017-2020, Orange S.A. All rights reserved.
+# Copyright (c) 2017-2022, Orange S.A. All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without modification, 
 # are permitted provided that the following conditions are met:
@@ -24,8 +24,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Author: Johannes Heinecke
-# Version: 2.0 as of 9th April 2020
-
+# Version:  2.3.0 as of 14th January 2022
 
 
 if(CP_EXPORT)
@@ -67,7 +66,7 @@ if(CP_EXPORT)
          add_custom_target(python_test
             #COMMAND echo "bin path ${CMAKE_CURRENT_BINARY_DIR}"
             COMMAND echo "PYTHON TEST ${PYCOMMAND} -u ${CMAKE_CURRENT_SOURCE_DIR}/testpython.py ${CMAKE_CURRENT_BINARY_DIR} ${FREELING_TXT} ${SIMILARLETTERS} ${WORDS}"
-            COMMAND ${PYCOMMAND} -u ${CMAKE_CURRENT_SOURCE_DIR}/testpython.py ${CMAKE_CURRENT_BINARY_DIR}  ${FREELING_TXT} ${SIMILARLETTERS} ${WORDS} | tee result_py.json
+            COMMAND ${PYCOMMAND} -u ${CMAKE_CURRENT_SOURCE_DIR}/testpython.py -d ${CMAKE_CURRENT_BINARY_DIR}  -l ${FREELING_TXT} -s ${SIMILARLETTERS} --test ${WORDS} | tee result_py.json
             COMMAND echo
             COMMAND echo "comparing: result_py.json ${PROJECT_SOURCE_DIR}/example/result_reference.json"
             COMMAND meld result_py.json ${PROJECT_SOURCE_DIR}/example/result_reference.json

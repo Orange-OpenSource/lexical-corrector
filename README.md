@@ -21,6 +21,8 @@ Johannes Heinecke
 ## Requirements
 
 * GNU libunistring unicode library (Ubuntu: `sudo apt install libunistring-dev`)
+* Python header files (Ubundu: `sudo apt install libpython3.8-dev`)
+
 * for tests only
   * `jq` json parser  (Ubuntu: `sudo apt install jq`)
   * `meld` graphical file differ  (Ubuntu: `sudo apt install meld`)

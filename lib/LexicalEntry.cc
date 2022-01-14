@@ -1,6 +1,6 @@
 /** This library is under the 3-Clause BSD License
 
-Copyright (c) 2017-2020, Orange S.A.
+Copyright (c) 2017-2022, Orange S.A.
 
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.0.0 as of 9th April 2020
+ Version:  2.3.0 as of 14th January 2022
 */
 
 #include <string>
@@ -87,9 +87,9 @@ WordForm::WordForm(const string &lexiconline, bool multipleEntries) {
         string::size_type space = lexiconline.find('\t');
         //std::cout << space << " " << lexiconline << std::endl;
         if (space == string::npos) {
-            space = lexiconline.find(' ');
-        }
-        if (space != string::npos) {
+	    // no TAB, entire line is form
+            form = lexiconline;
+        } else  {
             form = lexiconline.substr(0, space);
                                  
             //LexicalEntry *le = new LexicalEntry();
@@ -115,14 +115,14 @@ WordForm::WordForm(const string &lexiconline, bool multipleEntries) {
 			}
 		    }
 		}
-            } else {
+	   //} else {
 		// line has form BLANK other info
-                le.lemma = lexiconline.substr(space+1);
+                //le.lemma = lexiconline.substr(space+1);
             }
             entries.push_back(le);
             //std::cout << "[" << form << "] [" << le->lemma << "]" << std::endl;
-        } else {
-            form = lexiconline;
+        //} else {
+            //form = lexiconline;
         }
     }
 }

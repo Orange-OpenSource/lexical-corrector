@@ -26,18 +26,45 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Author: Johannes Heinecke
-# Version: 2.2.0 as of 12th June 2020
+# Version: 2.3.0 as of 14th January 2022
 
 
 import sys
 import collections
 
-if len(sys.argv) < 5:
-    print("Error in %s" % sys.argv[0], file=sys.stderr)
-    print("usage:\n  %s libdirname lexfile similarlettersfile testwordlist" % sys.argv[0], file=sys.stderr)
-else:
-    sys.path.append(sys.argv[1])
+distfactor = 1000
 
+def getword(word):
+    maxdistance = int(distfactor * (len(word) / 5))
+
+    if (maxdistance < 1):
+        maxdistance = 1000
+    first = False
+
+
+    res = lc.findWordCorrected(word, maxdistance)
+    return '{ "word": "%s", "maxdist": %d, "results": %s }' % (word, maxdistance, res)
+
+
+
+import argparse
+    
+parser = argparse.ArgumentParser()
+parser.add_argument("--libdir", "-d", required=True, type=str, help="directory of library")
+parser.add_argument("--lexicon", "-l", required=True, type=str, help="lexicon file")
+parser.add_argument("--similar", "-s", required=True, type=str, help="error definitions")
+parser.add_argument("--test", default="-", type=str, help="file containing test words")
+parser.add_argument("--singleEntry", "-e", default=True, action="store_false", help="lexicon file contains a single entry per line")
+
+
+if len(sys.argv) < 2:
+    parser.print_help()
+else:
+    args = parser.parse_args()
+
+
+
+    sys.path.append(args.libdir)
     import json
     import LexCor
 
@@ -50,7 +77,8 @@ else:
 
     # dictionary, distance definitions, format
     # for format see README.md
-    lc = LexCor.LexicalCorrector(sys.argv[2], sys.argv[3], 1)
+    lc = LexCor.LexicalCorrector(args.lexicon, args.similar, args.singleEntry)
+    print("version:", lc.getVersion(), file=sys.stderr)
 
     #res = lc.findWordExact("trompette")
     #pp(res)
@@ -63,34 +91,29 @@ else:
 
 
 
-    ifp = open(sys.argv[4])
+    if args.test == "-":
+        import readline
+        line = input(">> ")
+        while line:
+            res = getword(line)
+            print(json.dumps(json.loads(res), indent=2))
+            line = input(">> ")
+    else:
+        ifp = open(args.test)
 
-    distfactor = 1000
+        allres = []
+        for word in ifp:
+            word = word.strip()
+            if len(word) < 1:
+                continue
+            allres.append(getword(word))
 
-    allres = "["
-    first = True
-    for word in ifp:
-        word = word.strip()
-        if len(word) < 1:
-            continue
-        maxdistance = int(distfactor * (len(word) / 5))
-
-        if (maxdistance < 1):
-            maxdistance = 1000
-        if not first:
-            allres += ","
-        first = False
-        allres += '{ "word": "%s", "maxdist": %d, "results": ' % (word, maxdistance)
-
-        res = lc.findWordCorrected(word, maxdistance)
-        allres += res + "}"
-    allres += "]"
-    # before python3.6 apparently, python kson does not keep the original order of items
-    #print(allres)
-    j = json.loads(allres,
-                   object_pairs_hook=collections.OrderedDict,
-                   object_hook=collections.OrderedDict)
-    #j = json.loads(allres)
-    json.dump(j, sys.stdout, indent=2, sort_keys=False, ensure_ascii=False)
-    print()
+        # before python3.6 apparently, python json does not keep the original order of items
+        #print(allres)
+        j = json.loads("[%s]" % ",".join(allres),
+                       object_pairs_hook=collections.OrderedDict,
+                       object_hook=collections.OrderedDict)
+        #j = json.loads(allres)
+        json.dump(j, sys.stdout, indent=2, sort_keys=False, ensure_ascii=False)
+        print()
 

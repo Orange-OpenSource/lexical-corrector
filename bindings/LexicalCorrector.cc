@@ -1,6 +1,6 @@
 /** This library is under the 3-Clause BSD License
 
-Copyright (c) 2017-2020, Orange S.A.
+Copyright (c) 2017-2022, Orange S.A.
 
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.2.0 as of 12th June 2020
+ Version:  2.3.0 as of 14th January 2022
 */
 
 #include <iostream>
@@ -60,6 +60,9 @@ LexicalCorrector::~LexicalCorrector() {
     cerr << "** deleting LexicalCorrector" << endl;
 }
 
+const string &LexicalCorrector::getVersion() const {
+    return ab->getVersion();
+};
 
 // returns the correct word or an empty string
 string LexicalCorrector::findWordExact(const char *word, Corrector *c) const {

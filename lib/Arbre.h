@@ -1,6 +1,6 @@
 /** This library is under the 3-Clause BSD License
 
-Copyright (c) 2017-2020, Orange S.A.
+Copyright (c) 2017-2022, Orange S.A.
 
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.2.0 as of 12th June 2020
+ Version:  2.3.0 as of 14th Janauary 2022
 */
 
 #ifndef __ARBRE_H
@@ -45,7 +45,7 @@ are permitted provided that the following conditions are met:
 using std::ostream;
 using std::string;
 
-const string __version__ = "2.1.0";
+const string __version__ = "2.3.0";
 
 class ArbreBinaire {
  public:
@@ -82,6 +82,10 @@ class ArbreBinaire {
     unsigned int getMaxwordlength() const { return maxwordlength; }
     unsigned int getCountforms() const { return countforms; }
     friend ostream& operator<<(ostream& out, const ArbreBinaire& a);
+
+    const string& getVersion() const {
+	return __version__;
+    }
    
  private:
      // les instance de Corrector sont des amis et peuvent appeller les deux méthodes privées pour trouver des mots

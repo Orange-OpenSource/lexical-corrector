@@ -1,6 +1,6 @@
 # This library is under the Modified BSD License:
 # 
-# Copyright (c) 2017-2020, Orange S.A. All rights reserved.
+# Copyright (c) 2017-2022, Orange S.A. All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without modification, 
 # are permitted provided that the following conditions are met:
@@ -24,7 +24,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Author: Johannes Heinecke
-# Version: 2.0 as of 9th April 2020
+# Version: 2.3.0 as of 14th January 2022
 
 
 cmake_minimum_required (VERSION 3.5)

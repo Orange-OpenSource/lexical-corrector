@@ -260,7 +260,7 @@ int main(int argc, char *argv[]) {
     
     // creer Arbre  
     ArbreBinaire ab(lexfile, similarletters, multipleEntries);
-   
+    //cout << ab.getVersion() << endl;
 
     // create a dot-file to visualise the tree
     //if (argc > optct+2) {

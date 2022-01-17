@@ -45,6 +45,9 @@ using std::istringstream;
 using std::istream_iterator;
 using std::ostringstream;
 
+using std::cerr;
+using std::endl;
+
 /** A wordform found in the lexicon
  * 
  * @param lexiconline
@@ -156,6 +159,18 @@ string WordForm::toJson() const {
         out << "{"<< "\"lemma\": \"" << Replace((it)->lemma, "\"", "\\\"") << "\"";
         if (!(it)->pos.empty()) {
 	    out << ", \"pos\": \"" << Replace((it)->pos, "\"", "\\\"") << "\"";
+	}
+        if (!(it)->type.empty()) {
+	    out << ", \"type\": \"" << Replace((it)->type, "\"", "\\\"") << "\"";
+	}
+        if (!(it)->traits_m.empty()) {
+	    out << ", \"traits_m\": \"" << Replace((it)->traits_m, "\"", "\\\"") << "\"";
+	}
+        if (!(it)->traits_s.empty()) {
+	    out << ", \"traits_s\": \"" << Replace((it)->traits_s, "\"", "\\\"") << "\"";
+	}
+        if (!(it)->usems.empty()) {
+	    out << ", \"usems\": \"" << Replace((it)->usems, "\"", "\\\"") << "\"";
 	}
         //if (!(it)->type.empty()) out << "\n\t\ttype: " << (it)->type;
         //if (!(it)->traits_m.empty()) out << "\n\t\tmorpho: " << (it)->traits_m;

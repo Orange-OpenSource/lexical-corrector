@@ -76,9 +76,9 @@ public:
         lemma = le.lemma;
         pos = le.pos;
         type = le.type;
-        traits_m = traits_m;
+        traits_m = le.traits_m;
         traits_s = le.traits_s;
-        usems = usems;
+        usems = le.usems;
     }
     
 };

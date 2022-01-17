@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.0 as of 6th April 2017
+ Version:  2.3.1 as of 17th January 2022
 */
 
 #include "Util.h"
@@ -204,4 +204,21 @@ void SplitNoEmptyFields(vector<string> &result,
     if (chaine.size() - pos1) {
         result.push_back(string(chaine, pos1, pos2 - pos1));
     }
+}
+
+// author: johannes.heinecke@orange.com
+string Replace(const string & chaine, const char *ancien, const char *nouveau)
+{
+        string result = chaine;
+        if (!ancien) return result;
+        if (!nouveau) return result;
+        if (strlen(ancien) == 0) return result;  // MODIF JHE 01/06/2006
+        string::size_type pos = result.find(ancien,0);
+        while (pos != string::npos)
+        {
+                result.replace(pos,strlen(ancien),nouveau);
+                pos = result.find(ancien,pos+strlen(nouveau));
+        }
+
+        return(result);
 }

@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  1.0 as of 6th April 2017
+ Version:  2.3.1 as of 17th January 2022
 */
 
 
@@ -82,6 +82,7 @@ template <class T>ostream& operator<<(ostream &out,
 
 
 void SplitNoEmptyFields(vector<string> &result, const string & chaine,  const char * chaineRecherche);
+string Replace(const string & chaine, const char *ancien, const char *nouveau);
 
 // the following functions are taken from
 // https://github.com/JeffBezanson/cutef8/blob/master/utf8.c

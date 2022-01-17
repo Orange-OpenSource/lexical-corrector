@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.3.0 as of 14th Janauary 2022
+ Version:  2.3.1 as of 17th Janauary 2022
 */
 
 #ifndef __ARBRE_H
@@ -45,7 +45,7 @@ are permitted provided that the following conditions are met:
 using std::ostream;
 using std::string;
 
-const string __version__ = "2.3.0";
+const string __version__ = "2.3.1";
 
 class ArbreBinaire {
  public:

@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.3.0 as of 14th January 2022
+ Version:  2.3.1 as of 17th January 2022
 */
 
 #include <string>
@@ -147,14 +147,16 @@ bool LESort(const LexicalEntry & a,
 string WordForm::toJson() const {
     ostringstream out;
     out << '{'
-	<< "\"form\": \"" << form << "\","
+	<< "\"form\": \"" << Replace(form, "\"", "\\\"") << "\","
 	<< "\"lemmas\": [";
     vector<LexicalEntry>ee = entries;
     sort(ee.begin(), ee.end(), &LESort);
     for (vector<LexicalEntry>::const_iterator it = ee.begin(); it != ee.end(); ++it) {
 	if (it != ee.begin()) out << ",";
-        out << "{"<< "\"lemma\": \"" << (it)->lemma << "\"";
-        if (!(it)->pos.empty()) out << ", \"pos\": \"" << (it)->pos << "\"";
+        out << "{"<< "\"lemma\": \"" << Replace((it)->lemma, "\"", "\\\"") << "\"";
+        if (!(it)->pos.empty()) {
+	    out << ", \"pos\": \"" << Replace((it)->pos, "\"", "\\\"") << "\"";
+	}
         //if (!(it)->type.empty()) out << "\n\t\ttype: " << (it)->type;
         //if (!(it)->traits_m.empty()) out << "\n\t\tmorpho: " << (it)->traits_m;
         //if (!(it)->traits_s.empty()) out << "\n\t\tsyntax: " << (it)->traits_s;

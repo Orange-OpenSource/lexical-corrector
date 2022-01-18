@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.3.0 as of 14th January 2022
+ Version:  2.3.2 as of 17th January 2022
 */
 
 
@@ -47,7 +47,7 @@ are permitted provided that the following conditions are met:
 class LexicalCorrector {
  public:
     // create lexical corrector with all data
-    LexicalCorrector(const char *lexfile, const char *similarletters, int multipleEntries);
+    LexicalCorrector(const char *lexfile, const char *similarletters, int multipleEntries, std::vector<int> *columns=0);
     // create empty lexical corrector (AbreBinaire and Corrector must be created elsewhere and given to find*() commands
     LexicalCorrector();
 

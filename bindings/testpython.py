@@ -43,6 +43,7 @@ def getword(word):
 
 
     res = lc.findWordCorrected(word, maxdistance)
+
     return '{ "word": "%s", "maxdist": %d, "results": %s }' % (word, maxdistance, res)
 
 
@@ -77,7 +78,9 @@ else:
 
     # dictionary, distance definitions, format
     # for format see README.md
-    lc = LexCor.LexicalCorrector(args.lexicon, args.similar, args.singleEntry)
+    #cols = LexCor.vectorInt(0)
+    #cols[0] = 1
+    lc = LexCor.LexicalCorrector(args.lexicon, args.similar, args.singleEntry) #, cols)
     print("version:", lc.getVersion(), file=sys.stderr)
 
     #res = lc.findWordExact("trompette")

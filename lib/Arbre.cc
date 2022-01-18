@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.2.0 as of 12th June 2020
+ Version:  2.3.2 as of 17th Janauary 2022
 */
 
 
@@ -50,7 +50,7 @@ using namespace std;
 
 const int maxUCS = 2000;
 
-ArbreBinaire::ArbreBinaire(const char *lexfile, const char *similarletters, bool multipleEntries) {
+ArbreBinaire::ArbreBinaire(const char *lexfile, const char *similarletters, bool multipleEntries, set<int> *columns) {
     // allouer autant de Noeud que nécessaire
 
  
@@ -86,7 +86,7 @@ ArbreBinaire::ArbreBinaire(const char *lexfile, const char *similarletters, bool
                 getline(ifp, line);
                 //ct++;
                 if (!line.empty()) {
-                    this->addWord(line, multipleEntries);
+                    this->addWord(line, multipleEntries, columns);
                 }
                 //if (ct % 10000 == 0) cout << ct << " lines read" << endl;
             }
@@ -177,10 +177,10 @@ void ArbreBinaire::parcourir(const Character *word, const distancetype maxdist, 
 
 #undef DEBUG
 
-void ArbreBinaire::addWord(const string &lexiconline, bool multipleEntries) {
+void ArbreBinaire::addWord(const string &lexiconline, bool multipleEntries, set<int> *columns) {
     Noeud *n = root;
 
-    WordForm *wf = new WordForm(lexiconline, multipleEntries);
+    WordForm *wf = new WordForm(lexiconline, multipleEntries, columns);
     maxwordlength = maxwordlength < wf->form.size() ? wf->form.size() : maxwordlength;
     countforms++;
 

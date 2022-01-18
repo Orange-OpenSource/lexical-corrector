@@ -1,0 +1,3 @@
+Version 2.3.2:
+	- adding option in LexiconCorrector (python) to specify the columns to be used when reading a single-entry file
+

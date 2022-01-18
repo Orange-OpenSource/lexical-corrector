@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.2.0 as of 12th June 2020
+ Version:  2.3.2 as of 17th January 2022
 */
 
 /* 
@@ -91,7 +91,7 @@ public:
      * @param lexiconline line read from file
      * @param multipleEntries if true, we expect a line like "form lemma cat lemma cat ..." else lines are "form description"
      */
-    WordForm(const string &lexiconline, bool multipleEntries = true);
+    WordForm(const string &lexiconline, bool multipleEntries = true, set<int> *columns = 0);
     ~WordForm();
     string form;
     vector<LexicalEntry>entries;

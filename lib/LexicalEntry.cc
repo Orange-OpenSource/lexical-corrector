@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.3.1 as of 17th January 2022
+ Version:  2.3.2 as of 17th January 2022
 */
 
 #include <string>
@@ -53,7 +53,7 @@ using std::endl;
  * @param lexiconline
  * @param multipleEntries
  */
-WordForm::WordForm(const string &lexiconline, bool multipleEntries) {
+WordForm::WordForm(const string &lexiconline, bool multipleEntries, set<int> *columns) {
     if (multipleEntries) {
 	// format of dico line:
 	// form lemma POS lemma2 POS lemma3 POS ...
@@ -94,7 +94,8 @@ WordForm::WordForm(const string &lexiconline, bool multipleEntries) {
             form = lexiconline;
         } else  {
             form = lexiconline.substr(0, space);
-                                 
+	    if (columns && columns->empty()) return;
+
             //LexicalEntry *le = new LexicalEntry();
             LexicalEntry le;
             
@@ -102,16 +103,22 @@ WordForm::WordForm(const string &lexiconline, bool multipleEntries) {
             SplitNoEmptyFields(elems, lexiconline, "\t");
             if (elems.size() > 1) {
 		// line is a TSV line
-                le.lemma = elems[1];
+		if (columns == 0 || columns->find(1) != columns->end())
+		    le.lemma = elems[1];
 		if (elems.size() > 2) {
-		    le.pos = elems[2];
+		    if (columns == 0 || columns->find(2) != columns->end())
+			le.pos = elems[2];
 		    if (elems.size() > 3) {
-			le.type = elems[3];
+			if (columns == 0 || columns->find(3) != columns->end())
+			    le.type = elems[3];
 			if (elems.size() > 4) {
+			    if (columns == 0 || columns->find(4) != columns->end())
 			    le.traits_m = elems[4];
 			    if (elems.size() > 5) {
+				if (columns == 0 || columns->find(5) != columns->end())
 				le.traits_s = elems[5];
 				if (elems.size() > 6) {
+				    if (columns == 0 || columns->find(6) != columns->end())
 				    le.usems = elems[6];
 				}
 			    }
@@ -150,35 +157,40 @@ bool LESort(const LexicalEntry & a,
 string WordForm::toJson() const {
     ostringstream out;
     out << '{'
-	<< "\"form\": \"" << Replace(form, "\"", "\\\"") << "\","
-	<< "\"lemmas\": [";
-    vector<LexicalEntry>ee = entries;
-    sort(ee.begin(), ee.end(), &LESort);
-    for (vector<LexicalEntry>::const_iterator it = ee.begin(); it != ee.end(); ++it) {
-	if (it != ee.begin()) out << ",";
-        out << "{"<< "\"lemma\": \"" << Replace((it)->lemma, "\"", "\\\"") << "\"";
-        if (!(it)->pos.empty()) {
-	    out << ", \"pos\": \"" << Replace((it)->pos, "\"", "\\\"") << "\"";
+	<< "\"form\": \"" << Replace(form, "\"", "\\\"") << "\"";
+    if (!entries.empty()) {
+	out << ",\"lemmas\": [";
+	vector<LexicalEntry>ee = entries;
+	sort(ee.begin(), ee.end(), &LESort);
+	for (vector<LexicalEntry>::const_iterator it = ee.begin(); it != ee.end(); ++it) {
+	    if (it != ee.begin()) out << ",";
+	    out << "{"
+		<< "\"lemma\": \"" << Replace((it)->lemma, "\"", "\\\"") << "\"";
+	    
+	    if (!(it)->pos.empty()) {
+		out << ", \"pos\": \"" << Replace((it)->pos, "\"", "\\\"") << "\"";
+	    }
+	    if (!(it)->type.empty()) {
+		out << ", \"type\": \"" << Replace((it)->type, "\"", "\\\"") << "\"";
+	    }
+	    if (!(it)->traits_m.empty()) {
+		out << ", \"traits_m\": \"" << Replace((it)->traits_m, "\"", "\\\"") << "\"";
+	    }
+	    if (!(it)->traits_s.empty()) {
+		out << ", \"traits_s\": \"" << Replace((it)->traits_s, "\"", "\\\"") << "\"";
+	    }
+	    if (!(it)->usems.empty()) {
+		out << ", \"usems\": \"" << Replace((it)->usems, "\"", "\\\"") << "\"";
+	    }
+	    //if (!(it)->type.empty()) out << "\n\t\ttype: " << (it)->type;
+	    //if (!(it)->traits_m.empty()) out << "\n\t\tmorpho: " << (it)->traits_m;
+	    //if (!(it)->traits_s.empty()) out << "\n\t\tsyntax: " << (it)->traits_s;
+	    //if (!(it)->usems.empty()) out << "\n\t\tsem: " << (it)->usems;
+	    out << "}";
 	}
-        if (!(it)->type.empty()) {
-	    out << ", \"type\": \"" << Replace((it)->type, "\"", "\\\"") << "\"";
-	}
-        if (!(it)->traits_m.empty()) {
-	    out << ", \"traits_m\": \"" << Replace((it)->traits_m, "\"", "\\\"") << "\"";
-	}
-        if (!(it)->traits_s.empty()) {
-	    out << ", \"traits_s\": \"" << Replace((it)->traits_s, "\"", "\\\"") << "\"";
-	}
-        if (!(it)->usems.empty()) {
-	    out << ", \"usems\": \"" << Replace((it)->usems, "\"", "\\\"") << "\"";
-	}
-        //if (!(it)->type.empty()) out << "\n\t\ttype: " << (it)->type;
-        //if (!(it)->traits_m.empty()) out << "\n\t\tmorpho: " << (it)->traits_m;
-        //if (!(it)->traits_s.empty()) out << "\n\t\tsyntax: " << (it)->traits_s;
-        //if (!(it)->usems.empty()) out << "\n\t\tsem: " << (it)->usems;
-	out << "}";
+	out << "]";
     }
-    out << "]}";
+    out << "}";
     return out.str();
 }
 

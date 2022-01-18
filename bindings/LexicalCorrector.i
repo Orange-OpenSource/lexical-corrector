@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.3.0 as of 14th January 2022
+ Version:  2.3.2 as of 17th January 2022
 */
 
 %module LexCor
@@ -37,12 +37,16 @@ are permitted provided that the following conditions are met:
 //%include "cpointer.i"
 
 //#ifdef SWIGPYTHON
-//%include "std_vector.i"
 //%include "std_iostream.i"
 //#endif
 
 
 using namespace std;
+
+%include "std_vector.i"
+namespace std {
+	%template(vectorInt) std::vector<int>;
+};
 
 %{
     #include "LexicalCorrector.h"

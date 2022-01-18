@@ -28,7 +28,7 @@ are permitted provided that the following conditions are met:
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
  Author: Johannes Heinecke
- Version:  2.3.1 as of 17th Janauary 2022
+ Version:  2.3.2 as of 17th Janauary 2022
 */
 
 #ifndef __ARBRE_H
@@ -45,7 +45,7 @@ are permitted provided that the following conditions are met:
 using std::ostream;
 using std::string;
 
-const string __version__ = "2.3.1";
+const string __version__ = "2.3.2";
 
 class ArbreBinaire {
  public:
@@ -56,14 +56,14 @@ class ArbreBinaire {
      * @param similarletters a file defining which letters are considered similar (gives lower penality)
      * @param multipleEntries if true, we expect a line like "form lemma POS lemma POS ..." (space separated) else lines are "form [lemma [POS [type [morpho features [syntactic feature [semantics]]]]]] (tab separated)"
      */
-    ArbreBinaire(const char *lexfile = 0, const char *similarletters = 0, bool multipleEntries = true);
+    ArbreBinaire(const char *lexfile = 0, const char *similarletters = 0, bool multipleEntries = true, set<int> *columns = 0);
     ~ArbreBinaire();
 
     /** rajouter un mots dans l'arbre 
      * @param lexiconline la ligne du lexique lu
      * @param multipleEntries if true, we expect a line like "form lemma cat lemma cat ..." else lines are "form description"
      */
-    void addWord(const string &lexiconline, bool multipleEntries = true);
+    void addWord(const string &lexiconline, bool multipleEntries = true, set<int> *columns = 0);
     
  
     /**

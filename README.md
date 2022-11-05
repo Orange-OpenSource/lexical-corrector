@@ -42,6 +42,7 @@ For the tests a partial lexicon is downloaded from the FreeLing project
 (you can also use `Debug`, especially for test_valgrind)
 
     make [-j 4]
+    make create_dict
     make mini_test
     make speed_test
     make valgrind_test
